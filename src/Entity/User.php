@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=50)
      */
     private $username;
     /**
@@ -94,8 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
-        $this->tricks = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
