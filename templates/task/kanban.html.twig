@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+	<link href="{{ asset('css/kanban.css') }}" rel="stylesheet">
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+{% endblock %}
+
+
+{% block body %}
+	<div class="container-fluid pad">
+		<div class="col-xs-2 header">
+			ADD TASK
+		</div>
+		<div class="col-xs-2 header">
+			TASKS
+		</div>
+		<div class="col-xs-2 header">
+			IN PROGRESS
+		</div>
+		<div class="col-xs-2 header">
+			FOR REVIEW
+		</div>
+		<div class="col-xs-2 header">
+			FOR REVISED
+		</div>
+		<div class="col-xs-2 header">
+			DONE
+		</div>
+
+	</div>
+
+	<div class="container-fluid pad">
+		<div class="col-xs-2 white">
+			<p class="input-label">Task Name</p>
+			<input type="text" id="name" class="form-control"/>
+			<p class="input-label">Task Description</p>
+			<input type="text" id="desc" class="form-control"/>
+			<p class="input-label">Task Deadline</p>
+			<input type="text" id="deadline" class="form-control"/>
+			<button class="btn btn-default submit">Add Task</button>
+		</div>
+		<div class="col-xs-2 drag-1 bg" id="1">
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox checkbox1" name="" value="">
+					<span class='task-name'>Create Website</span>
+					<br/>
+					<span class='task-desc'>Use HTML5, CSS3, jQuery,and  Bootstrap 3</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 20, 2015</span>
+					<span class="datetime"></span>
+				</p>
+			</div>
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox checkbox1" name="" value="">
+					<span class='task-name'>Add Navbar</span>
+					<br/>
+					<span class='task-desc'>Use of unordered list displayed inline</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 13, 2015</span>
+				</p>
+			</div>
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox checkbox1" name="" value="">
+					<span class='task-name'>Add Carousel</span>
+					<br/>
+					<span class='task-desc'>Use Bootstrap 3 Carousel</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 10, 2015</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-2 drag-2 bg" id="2">
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox2 checkbox" name="" value="">
+					<span class='task-name'>Add Footer</span>
+					<br/>
+					<span class='task-desc'>with site map links</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 16, 2015</span>
+				</p>
+			</div>
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox2 checkbox" name="" value="">
+					<span class='task-name'>Add Content</span>
+					<br/>
+					<span class='task-desc'>Use the documentation as resource</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 14, 2015</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-2 drag-3 bg" id="3">
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox3 checkbox" name="" value="">
+					<span class='task-name'>Mobile Design</span>
+					<br/>
+					<span class='task-desc'>Use Bootstrap 3's grid system and media queries</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 11, 2015</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-2 drag-4 bg" id="4">
+			<div class="box">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox4 checkbox" name="" value="">
+					<span class='task-name'>Create Static Design</span>
+					<br/>
+					<span class='task-desc'>Use Photoshop</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 10, 2015</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-2 drag-5 bg done" id="5">
+			<div class="box box2">
+				<p class='tasks'>
+					<input type="checkbox" class="checkbox5 checkbox" name="" value="">
+					<span class='task-name'>Documentation of Website</span>
+					<br/>
+					<span class='task-desc'>Chapters 1 and 2 only</span>
+					<br/>
+					<span class='task-deadline pull-right'>
+						DEADLINE: September 3, 2015</span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid pad move">
+		<div class="col-xs-2 "></div>
+		<div class="col-xs-2 ">
+			<button class="btn btn-default toProg">Move Selected to Progress</button>
+			<button class="btn btn-default toProgress">Move all to Progress</button>
+		</div>
+		<div class="col-xs-2 ">
+			<button class="btn btn-default toRev">Move Selected to Review</button>
+			<button class="btn btn-default toReview">Move all to Review</button>
+		</div>
+		<div class="col-xs-2 ">
+			<button class="btn btn-default toRevi">Move Selected to Reviesed</button>
+			<button class="btn btn-default toRevised">Move all to Revised</button>
+		</div>
+		<div class="col-xs-2 ">
+			<button class="btn btn-default toDo">Move Selected to Review</button>
+			<button class="btn btn-default toDone">Move all to Done</button>
+		</div>
+		<div class="col-xs-2 "></div>
+
+	</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+	<script src="{{ asset('js/scipt.js') }}"></script>
+{% endblock %}

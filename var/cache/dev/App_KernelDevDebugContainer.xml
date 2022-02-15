@@ -15,7 +15,6 @@
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
-      <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
       <parameter key="TwigExtraBundle">Twig\Extra\TwigExtraBundle\TwigExtraBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
@@ -23,7 +22,6 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
-      <parameter key="DropzoneBundle">Symfony\UX\Dropzone\DropzoneBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -49,10 +47,6 @@
       <parameter key="WebProfilerBundle" type="collection">
         <parameter key="path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\web-profiler-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebProfilerBundle</parameter>
-      </parameter>
-      <parameter key="WebpackEncoreBundle" type="collection">
-        <parameter key="path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\webpack-encore-bundle\src</parameter>
-        <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
       </parameter>
       <parameter key="TwigExtraBundle" type="collection">
         <parameter key="path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\twig\extra-bundle</parameter>
@@ -81,10 +75,6 @@
       <parameter key="EasyAdminBundle" type="collection">
         <parameter key="path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\easycorp\easyadmin-bundle\src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
-      </parameter>
-      <parameter key="DropzoneBundle" type="collection">
-        <parameter key="path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\ux-dropzone</parameter>
-        <parameter key="namespace">Symfony\UX\Dropzone</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -232,7 +222,6 @@
     <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
-      <parameter>@Dropzone/form_theme.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -568,9 +557,6 @@
         <argument key="debug.validator" type="service" id="debug.validator" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine" type="service" id="doctrine" on-invalid="ignore_uninitialized"/>
         <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
-        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
-        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
@@ -633,15 +619,6 @@
           <argument>reset</argument>
         </argument>
         <argument key="form.type.entity" type="collection">
-          <argument>reset</argument>
-        </argument>
-        <argument key="webpack_encore.tag_renderer" type="collection">
-          <argument>reset</argument>
-        </argument>
-        <argument key="cache.webpack_encore" type="collection">
-          <argument>reset</argument>
-        </argument>
-        <argument key="webpack_encore.entrypoint_lookup[_default]" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="security.token_storage" type="collection">
@@ -798,7 +775,6 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
       </argument>
       <call method="setName">
@@ -834,7 +810,6 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
       </argument>
       <call method="setName">
@@ -858,7 +833,6 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
       </argument>
       <call method="setName">
@@ -1232,7 +1206,6 @@
         <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
-        <argument>Symfony\UX\Dropzone\Form</argument>
       </argument>
       <argument type="collection">
         <argument>App\Form\RegistrationFormType</argument>
@@ -1246,7 +1219,6 @@
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType</argument>
-        <argument>Symfony\UX\Dropzone\Form\DropzoneType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1516,7 +1488,6 @@
         <argument key="cache.annotations" type="service" id="cache.annotations" on-invalid="ignore_uninitialized"/>
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
@@ -1533,7 +1504,6 @@
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.result" type="service" id="cache.doctrine.orm.default.result" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
@@ -2054,13 +2024,11 @@
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\debug-bundle/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\twig-bundle/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\web-profiler-bundle/translations</argument>
-          <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\webpack-encore-bundle\src/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\twig\extra-bundle/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\security-bundle/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\monolog-bundle/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\maker-bundle\src/translations</argument>
           <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\sensio\framework-extra-bundle\src/translations</argument>
-          <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\ux-dropzone/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2076,13 +2044,11 @@
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\debug-bundle/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\twig-bundle/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\web-profiler-bundle/translations</argument>
-            <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\webpack-encore-bundle\src/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\twig\extra-bundle/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\security-bundle/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\monolog-bundle/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\maker-bundle\src/translations</argument>
             <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\sensio\framework-extra-bundle\src/translations</argument>
-            <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\ux-dropzone/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -2336,14 +2302,6 @@
         <argument type="collection">
           <argument type="service_closure" id="data_collector.router"/>
           <argument>onKernelController</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="webpack_encore.exception_listener"/>
-          <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2722,14 +2680,6 @@
           <argument>onKernelResponse</argument>
         </argument>
         <argument>-128</argument>
-      </call>
-      <call method="addListener">
-        <argument>kernel.finish_request</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener"/>
-          <argument>resetAssets</argument>
-        </argument>
-        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>kernel.response</argument>
@@ -3480,7 +3430,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.jGwcz5r"/>
+      <argument type="service" id=".service_locator.R4MAzD_"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4137,10 +4087,6 @@
       <call method="addInstance">
         <argument>cache.doctrine.orm.default.query</argument>
         <argument type="service" id="cache.doctrine.orm.default.query"/>
-      </call>
-      <call method="addInstance">
-        <argument>cache.webpack_encore</argument>
-        <argument type="service" id="cache.webpack_encore"/>
       </call>
       <call method="addInstance">
         <argument>cache.security_expression_language</argument>
@@ -4993,12 +4939,6 @@
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addExtension">
-        <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
-      </call>
-      <call method="addExtension">
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension"/>
       </call>
       <call method="addGlobal">
@@ -5107,14 +5047,6 @@
       <call method="addPath">
         <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\easycorp\easyadmin-bundle\src/Resources/views</argument>
         <argument>!EasyAdmin</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\ux-dropzone/Resources/views</argument>
-        <argument>Dropzone</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\vendor\symfony\ux-dropzone/Resources/views</argument>
-        <argument>!Dropzone</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST/templates</argument>
@@ -5325,80 +5257,6 @@
       <argument>^/((index|app(_[\w]+)?)\.php/)?_wdt</argument>
       <argument type="service" id="web_profiler.csp.handler"/>
       <argument type="service" id="data_collector.dump" on-invalid="ignore"/>
-    </service>
-    <service id=".1_ServiceLocator~D0BWmoq" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="webpack_encore.entrypoint_lookup_collection" type="service_closure" id="webpack_encore.entrypoint_lookup_collection"/>
-        <argument key="webpack_encore.tag_renderer" type="service_closure" id="webpack_encore.tag_renderer"/>
-      </argument>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection">
-      <argument type="service" id=".service_locator.Yi4Ff.p"/>
-      <argument>_default</argument>
-    </service>
-    <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer">
-      <tag name="kernel.reset" method="reset"/>
-      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
-      <argument type="service" id="assets.packages"/>
-      <argument type="collection"/>
-      <argument type="collection">
-        <argument key="defer">true</argument>
-      </argument>
-      <argument type="collection"/>
-      <argument type="service" id="debug.event_dispatcher"/>
-    </service>
-    <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id=".1_ServiceLocator~D0BWmoq"/>
-    </service>
-    <service id="webpack_encore.twig_stimulus_extension" class="Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
-      <tag name="kernel.cache_warmer"/>
-      <argument type="collection">
-        <argument key="_default">C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST/public/build/entrypoints.json</argument>
-      </argument>
-      <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\var\cache\dev/webpack_encore.cache.php</argument>
-    </service>
-    <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
-      <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\var\cache\dev/webpack_encore.cache.php</argument>
-      <argument type="service" id="cache.webpack_encore"/>
-      <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
-    </service>
-    <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
-      <tag name="cache.pool"/>
-      <tag name="kernel.reset" method="reset"/>
-      <argument type="service" id="cache.webpack_encore.recorder_inner"/>
-    </service>
-    <service id="webpack_encore.exception_listener" class="Symfony\WebpackEncoreBundle\EventListener\ExceptionListener">
-      <tag name="kernel.event_listener" event="kernel.exception"/>
-      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
-      <argument type="collection">
-        <argument>_default</argument>
-      </argument>
-    </service>
-    <service id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener" class="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener">
-      <tag name="kernel.event_subscriber"/>
-      <tag name="container.hot_path"/>
-      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
-      <argument type="collection">
-        <argument>_default</argument>
-      </argument>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
-      <tag name="kernel.reset" method="reset"/>
-      <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST/public/build/entrypoints.json</argument>
-      <argument>null</argument>
-      <argument>_default</argument>
-      <argument>true</argument>
-    </service>
-    <service id=".service_locator.Yi4Ff.p" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="_default" type="service_closure" id="webpack_encore.entrypoint_lookup[_default]"/>
-      </argument>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
     <service id="security.authorization_checker" class="Symfony\Component\Security\Core\Authorization\AuthorizationChecker" public="true">
@@ -6793,9 +6651,6 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator">
       <tag name="ea.field_configurator"/>
     </service>
-    <service id="form.dropzone" class="Symfony\UX\Dropzone\Form\DropzoneType">
-      <tag name="form.type"/>
-    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
@@ -7455,7 +7310,7 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.jGwcz5r" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.R4MAzD_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
@@ -7469,7 +7324,6 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
-        <argument key="Symfony\UX\Dropzone\Form\DropzoneType" type="service_closure" id="form.dropzone"/>
       </argument>
     </service>
     <service id="messenger.bus.default.middleware.traceable" class="Symfony\Component\Messenger\Middleware\TraceableMiddleware">
@@ -8909,14 +8763,6 @@
     </service>
     <service id="cache.doctrine.orm.default.result.recorder_inner" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
     <service id="cache.doctrine.orm.default.query.recorder_inner" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
-    <service id="cache.webpack_encore.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
-      <argument>vY95abZXgS</argument>
-      <argument>0</argument>
-      <argument>%container.build_id%</argument>
-      <argument>C:\Users\NMPROOT\Documents\OPENCLASSROOM\p8\TODOLIST\var\cache\dev/pools/system</argument>
-      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
-      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
-    </service>
     <service id="cache.security_expression_language.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>aJKH8ZmO3l</argument>
       <argument>0</argument>
@@ -9065,8 +8911,6 @@
     <service id="doctrine.migrations.metadata_storage" alias="doctrine.migrations.storage.table_storage"/>
     <service id="Twig_Environment" alias="twig"/>
     <service id="Twig\Environment" alias="twig"/>
-    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
-    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface" alias="security.authorization_checker"/>
     <service id="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface" alias="security.token_storage"/>
     <service id="Symfony\Component\Security\Core\Security" alias="security.helper"/>
@@ -9131,7 +8975,6 @@
     <service id=".service_locator.GsIjbjK" alias="messenger.receiver_locator"/>
     <service id=".service_locator.Q7if2wv" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.ZBZXtOS" alias=".service_locator.NZdAz3P"/>
-    <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~D0BWmoq"/>
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.AWPr3oy" alias=".service_locator.Olybskb"/>
@@ -9141,7 +8984,7 @@
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
     <service id=".service_locator.Bk8AJBi" alias=".service_locator.QEKWTPg"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.DGxZ6ri" alias=".service_locator.jGwcz5r"/>
+    <service id=".service_locator.MyylfZM" alias=".service_locator.R4MAzD_"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.Nox_JIJ" alias=".service_locator.wmdtZbW"/>

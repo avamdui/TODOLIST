@@ -67,7 +67,8 @@ class __TwigTemplate_2c12e56623a26d60b3243f07dea5541e extends Template
 
         echo "<img class=\"slide-image\" src=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/todolist_content.jpg"), "html", null, true);
-        echo "\" alt=\"todo list\">";
+        echo "\" alt=\"todo list\">
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -76,7 +77,7 @@ class __TwigTemplate_2c12e56623a26d60b3243f07dea5541e extends Template
 
     }
 
-    // line 5
+    // line 6
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -86,85 +87,100 @@ class __TwigTemplate_2c12e56623a26d60b3243f07dea5541e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
-        echo "    <a href=\"";
+        // line 7
+        echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_create");
         echo "\" class=\"btn btn-info pull-right\">Créer une tâche</a>
-    <div class=\"row\">
-        ";
-        // line 8
+\t<div class=\"row\">
+\t\t";
+        // line 9
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["tasks"]) || array_key_exists("tasks", $context) ? $context["tasks"] : (function () { throw new RuntimeError('Variable "tasks" does not exist.', 8, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["tasks"]) || array_key_exists("tasks", $context) ? $context["tasks"] : (function () { throw new RuntimeError('Variable "tasks" does not exist.', 9, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["task"]) {
-            // line 9
-            echo "        <div class=\"col-sm-4 col-lg-4 col-md-4\">
-            <div class=\"thumbnail\">
-                <div class=\"caption\">
-                    <h4 class=\"pull-right\">
-                        ";
-            // line 13
-            if (twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 13)) {
-                echo "<span class=\"glyphicon glyphicon-ok\"></span>";
-            } else {
-                echo "<span class=\"glyphicon glyphicon-remove\"></span>";
-            }
+            // line 10
+            echo "\t\t\t<div class=\"col-sm-4 col-lg-4 col-md-4\">
+\t\t\t\t<div class=\"thumbnail\">
+\t\t\t\t\t<div class=\"caption\">
+\t\t\t\t\t\t<h4 class=\"pull-right\">
+\t\t\t\t\t\t\t";
             // line 14
-            echo "                    </h4>
-                    <h4><a href=\"";
-            // line 15
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 15)]), "html", null, true);
-            echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "title", [], "any", false, false, false, 15), "html", null, true);
-            echo "</a></h4>
-                    <p>";
-            // line 16
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "content", [], "any", false, false, false, 16), "html", null, true);
-            echo "</p>
-                </div>
-                <div>
-                    <form action=\"";
+            if (twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 14)) {
+                // line 15
+                echo "\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-ok\"></span>
+\t\t\t\t\t\t\t";
+            } else {
+                // line 17
+                echo "\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-remove\"></span>
+\t\t\t\t\t\t\t";
+            }
             // line 19
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_toggle", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 19)]), "html", null, true);
-            echo "\">
-                        <button class=\"btn btn-success btn-sm pull-right\">
-                            ";
+            echo "\t\t\t\t\t\t</h4>
+\t\t\t\t\t\t<h4>
+\t\t\t\t\t\t\t<a href=\"";
             // line 21
-            if ( !twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 21)) {
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 21)]), "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "title", [], "any", false, false, false, 21), "html", null, true);
+            echo "</a>
+\t\t\t\t\t\t</h4>
+\t\t\t\t\t\t<p class=\"text-muted small mb-0\">Tache créer par :
+\t\t\t\t\t\t\t";
+            // line 24
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["task"], "user", [], "any", false, false, false, 24), "username", [], "any", false, false, false, 24), "html", null, true);
+            echo "</p>
+\t\t\t\t\t\t<br>
+\t\t\t\t\t\t<p>";
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "content", [], "any", false, false, false, 26), "html", null, true);
+            echo "</p>
+
+\t\t\t\t\t</div>
+\t\t\t\t\t<div>
+\t\t\t\t\t\t<form action=\"";
+            // line 30
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_toggle", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 30)]), "html", null, true);
+            echo "\">
+\t\t\t\t\t\t\t<button class=\"btn btn-success btn-sm pull-right\">
+\t\t\t\t\t\t\t\t";
+            // line 32
+            if ( !twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 32)) {
                 echo "Marquer comme faite";
             } else {
-                echo "Marquer non terminée";
+                echo "Marquer non terminée
+\t\t\t\t\t\t\t\t";
             }
-            // line 22
-            echo "                        </button>
-                    </form>
-                    <form action=\"";
-            // line 24
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 24)]), "html", null, true);
+            // line 34
+            echo "\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t<form action=\"";
+            // line 36
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 36)]), "html", null, true);
             echo "\">
-                        <button class=\"btn btn-danger btn-sm pull-right\">Supprimer</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        ";
+\t\t\t\t\t\t\t<button class=\"btn btn-danger btn-sm pull-right\">Supprimer</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 31
-            echo "            <div class=\"alert alert-warning\" role=\"alert\">
-                Il n'y a pas encore de tâche enregistrée. <a href=\"";
-            // line 32
+            // line 43
+            echo "\t\t\t<div class=\"alert alert-warning\" role=\"alert\">
+\t\t\t\tIl n'y a pas encore de tâche enregistrée.
+\t\t\t\t<a href=\"";
+            // line 45
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_create");
             echo "\" class=\"btn btn-warning pull-right\">Créer une tâche</a>
-            </div>
-        ";
+\t\t\t</div>
+\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['task'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 35
-        echo "    </div>
+        // line 48
+        echo "\t</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -186,46 +202,59 @@ class __TwigTemplate_2c12e56623a26d60b3243f07dea5541e extends Template
 
     public function getDebugInfo()
     {
-        return array (  167 => 35,  158 => 32,  155 => 31,  143 => 24,  139 => 22,  133 => 21,  128 => 19,  122 => 16,  116 => 15,  113 => 14,  107 => 13,  101 => 9,  96 => 8,  90 => 6,  80 => 5,  59 => 3,  36 => 1,);
+        return array (  183 => 48,  174 => 45,  170 => 43,  158 => 36,  154 => 34,  147 => 32,  142 => 30,  135 => 26,  130 => 24,  122 => 21,  118 => 19,  114 => 17,  110 => 15,  108 => 14,  102 => 10,  97 => 9,  91 => 7,  81 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block header_img %}<img class=\"slide-image\" src=\"{{ asset('img/todolist_content.jpg') }}\" alt=\"todo list\">{% endblock %}
+{% block header_img %}<img class=\"slide-image\" src=\"{{ asset('img/todolist_content.jpg') }}\" alt=\"todo list\">
+{% endblock %}
 
 {% block body %}
-    <a href=\"{{ path('task_create') }}\" class=\"btn btn-info pull-right\">Créer une tâche</a>
-    <div class=\"row\">
-        {% for task in tasks %}
-        <div class=\"col-sm-4 col-lg-4 col-md-4\">
-            <div class=\"thumbnail\">
-                <div class=\"caption\">
-                    <h4 class=\"pull-right\">
-                        {% if task.isDone %}<span class=\"glyphicon glyphicon-ok\"></span>{% else %}<span class=\"glyphicon glyphicon-remove\"></span>{% endif %}
-                    </h4>
-                    <h4><a href=\"{{ path('task_edit', {'id' : task.id }) }}\">{{ task.title }}</a></h4>
-                    <p>{{ task.content }}</p>
-                </div>
-                <div>
-                    <form action=\"{{ path('task_toggle', {'id' : task.id }) }}\">
-                        <button class=\"btn btn-success btn-sm pull-right\">
-                            {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
-                        </button>
-                    </form>
-                    <form action=\"{{ path('task_delete', {'id' : task.id }) }}\">
-                        <button class=\"btn btn-danger btn-sm pull-right\">Supprimer</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        {% else %}
-            <div class=\"alert alert-warning\" role=\"alert\">
-                Il n'y a pas encore de tâche enregistrée. <a href=\"{{ path('task_create') }}\" class=\"btn btn-warning pull-right\">Créer une tâche</a>
-            </div>
-        {% endfor %}
-    </div>
+\t<a href=\"{{ path('task_create') }}\" class=\"btn btn-info pull-right\">Créer une tâche</a>
+\t<div class=\"row\">
+\t\t{% for task in tasks %}
+\t\t\t<div class=\"col-sm-4 col-lg-4 col-md-4\">
+\t\t\t\t<div class=\"thumbnail\">
+\t\t\t\t\t<div class=\"caption\">
+\t\t\t\t\t\t<h4 class=\"pull-right\">
+\t\t\t\t\t\t\t{% if task.isDone %}
+\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-ok\"></span>
+\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t<span class=\"glyphicon glyphicon-remove\"></span>
+\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t</h4>
+\t\t\t\t\t\t<h4>
+\t\t\t\t\t\t\t<a href=\"{{ path('task_edit', {'id' : task.id }) }}\">{{ task.title }}</a>
+\t\t\t\t\t\t</h4>
+\t\t\t\t\t\t<p class=\"text-muted small mb-0\">Tache créer par :
+\t\t\t\t\t\t\t{{ task.user.username}}</p>
+\t\t\t\t\t\t<br>
+\t\t\t\t\t\t<p>{{ task.content }}</p>
+
+\t\t\t\t\t</div>
+\t\t\t\t\t<div>
+\t\t\t\t\t\t<form action=\"{{ path('task_toggle', {'id' : task.id }) }}\">
+\t\t\t\t\t\t\t<button class=\"btn btn-success btn-sm pull-right\">
+\t\t\t\t\t\t\t\t{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+\t\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t<form action=\"{{ path('task_delete', {'id' : task.id }) }}\">
+\t\t\t\t\t\t\t<button class=\"btn btn-danger btn-sm pull-right\">Supprimer</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t{% else %}
+\t\t\t<div class=\"alert alert-warning\" role=\"alert\">
+\t\t\t\tIl n'y a pas encore de tâche enregistrée.
+\t\t\t\t<a href=\"{{ path('task_create') }}\" class=\"btn btn-warning pull-right\">Créer une tâche</a>
+\t\t\t</div>
+\t\t{% endfor %}
+\t</div>
 {% endblock %}
 ", "task/list.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\templates\\task\\list.html.twig");
     }

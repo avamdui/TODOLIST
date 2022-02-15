@@ -307,11 +307,11 @@ class __TwigTemplate_9042950f236df9209a129dc4a4f8690c75a84160cfab2bce549848fb0ac
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         echo "
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>
-
+\t\t\t\t<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/dragula.min.js'></script>
 \t\t\t\t<!-- Renders app.js & a webpack runtime.js file
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/runtime.js\" defer></script>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/app.js\" defer></script>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                See note below about the \"defer\" attribute -->
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/runtime.js\" defer></script>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/app.js\" defer></script>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                See note below about the \"defer\" attribute -->
 \t\t\t";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -433,11 +433,11 @@ class __TwigTemplate_9042950f236df9209a129dc4a4f8690c75a84160cfab2bce549848fb0ac
 \t\t\t{% block javascripts %}
 \t\t\t\t{{ encore_entry_script_tags('app') }}
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\" crossorigin=\"anonymous\"></script>
-
+\t\t\t\t<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/dragula.min.js'></script>
 \t\t\t\t<!-- Renders app.js & a webpack runtime.js file
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/runtime.js\" defer></script>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/app.js\" defer></script>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                See note below about the \"defer\" attribute -->
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/runtime.js\" defer></script>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                <script src=\"/build/app.js\" defer></script>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                See note below about the \"defer\" attribute -->
 \t\t\t{% endblock %}
 
 \t\t</body>

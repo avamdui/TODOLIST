@@ -19,7 +19,7 @@ class TaskController extends AbstractController
     {
         $tasks = $repo->findAll();
         return $this->render(
-            'task/list.html.twig',
+            'task/kanban.html.twig',
             [
                 'tasks' => $tasks
             ]

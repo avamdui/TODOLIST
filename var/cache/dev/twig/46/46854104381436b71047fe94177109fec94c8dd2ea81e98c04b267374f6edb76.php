@@ -124,36 +124,38 @@ class __TwigTemplate_2e91626dbe78a456878c7e0decdf5138988c91b0f5c5a914a10dd720a36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "title", [], "any", false, false, false, 21), "html", null, true);
             echo "</a>
 \t\t\t\t\t\t</h4>
-\t\t\t\t\t\t<p>";
-            // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "content", [], "any", false, false, false, 23), "html", null, true);
-            echo "</p>
-\t\t\t\t\t\t<p class=\"text-muted small mb-0\">
+\t\t\t\t\t\t<p class=\"text-muted small mb-0\">Tache créer par :
 \t\t\t\t\t\t\t";
-            // line 25
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["task"], "user", [], "any", false, false, false, 25), "username", [], "any", false, false, false, 25), "html", null, true);
+            // line 24
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["task"], "user", [], "any", false, false, false, 24), "username", [], "any", false, false, false, 24), "html", null, true);
             echo "</p>
+\t\t\t\t\t\t<br>
+\t\t\t\t\t\t<p>";
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["task"], "content", [], "any", false, false, false, 26), "html", null, true);
+            echo "</p>
+
 \t\t\t\t\t</div>
 \t\t\t\t\t<div>
 \t\t\t\t\t\t<form action=\"";
-            // line 28
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_toggle", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 28)]), "html", null, true);
+            // line 30
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_toggle", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 30)]), "html", null, true);
             echo "\">
 \t\t\t\t\t\t\t<button class=\"btn btn-success btn-sm pull-right\">
 \t\t\t\t\t\t\t\t";
-            // line 30
-            if ( !twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 30)) {
+            // line 32
+            if ( !twig_get_attribute($this->env, $this->source, $context["task"], "isDone", [], "any", false, false, false, 32)) {
                 echo "Marquer comme faite";
             } else {
                 echo "Marquer non terminée
 \t\t\t\t\t\t\t\t";
             }
-            // line 32
+            // line 34
             echo "\t\t\t\t\t\t\t</button>
 \t\t\t\t\t\t</form>
 \t\t\t\t\t\t<form action=\"";
-            // line 34
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 34)]), "html", null, true);
+            // line 36
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["task"], "id", [], "any", false, false, false, 36)]), "html", null, true);
             echo "\">
 \t\t\t\t\t\t\t<button class=\"btn btn-danger btn-sm pull-right\">Supprimer</button>
 \t\t\t\t\t\t</form>
@@ -164,11 +166,11 @@ class __TwigTemplate_2e91626dbe78a456878c7e0decdf5138988c91b0f5c5a914a10dd720a36
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 41
+            // line 43
             echo "\t\t\t<div class=\"alert alert-warning\" role=\"alert\">
 \t\t\t\tIl n'y a pas encore de tâche enregistrée.
 \t\t\t\t<a href=\"";
-            // line 43
+            // line 45
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("task_create");
             echo "\" class=\"btn btn-warning pull-right\">Créer une tâche</a>
 \t\t\t</div>
@@ -177,7 +179,7 @@ class __TwigTemplate_2e91626dbe78a456878c7e0decdf5138988c91b0f5c5a914a10dd720a36
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['task'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 46
+        // line 48
         echo "\t</div>
 ";
         
@@ -200,7 +202,7 @@ class __TwigTemplate_2e91626dbe78a456878c7e0decdf5138988c91b0f5c5a914a10dd720a36
 
     public function getDebugInfo()
     {
-        return array (  181 => 46,  172 => 43,  168 => 41,  156 => 34,  152 => 32,  145 => 30,  140 => 28,  134 => 25,  129 => 23,  122 => 21,  118 => 19,  114 => 17,  110 => 15,  108 => 14,  102 => 10,  97 => 9,  91 => 7,  81 => 6,  59 => 3,  36 => 1,);
+        return array (  183 => 48,  174 => 45,  170 => 43,  158 => 36,  154 => 34,  147 => 32,  142 => 30,  135 => 26,  130 => 24,  122 => 21,  118 => 19,  114 => 17,  110 => 15,  108 => 14,  102 => 10,  97 => 9,  91 => 7,  81 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -227,9 +229,11 @@ class __TwigTemplate_2e91626dbe78a456878c7e0decdf5138988c91b0f5c5a914a10dd720a36
 \t\t\t\t\t\t<h4>
 \t\t\t\t\t\t\t<a href=\"{{ path('task_edit', {'id' : task.id }) }}\">{{ task.title }}</a>
 \t\t\t\t\t\t</h4>
-\t\t\t\t\t\t<p>{{ task.content }}</p>
-\t\t\t\t\t\t<p class=\"text-muted small mb-0\">
+\t\t\t\t\t\t<p class=\"text-muted small mb-0\">Tache créer par :
 \t\t\t\t\t\t\t{{ task.user.username}}</p>
+\t\t\t\t\t\t<br>
+\t\t\t\t\t\t<p>{{ task.content }}</p>
+
 \t\t\t\t\t</div>
 \t\t\t\t\t<div>
 \t\t\t\t\t\t<form action=\"{{ path('task_toggle', {'id' : task.id }) }}\">
