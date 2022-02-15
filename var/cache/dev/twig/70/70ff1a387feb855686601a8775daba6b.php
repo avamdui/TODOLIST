@@ -40,22 +40,26 @@ class __TwigTemplate_ad409eecdf96822ad5beade4909b3013 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "registration/confirmation_email.html.twig"));
 
         // line 1
-        echo "<h1>Hi! Please confirm your email!</h1>
+        echo "<h1>
+\tSalut! Veuillez confirmer votre email!</h1>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href=\"";
-        // line 5
-        echo twig_escape_filter($this->env, (isset($context["signedUrl"]) || array_key_exists("signedUrl", $context) ? $context["signedUrl"] : (function () { throw new RuntimeError('Variable "signedUrl" does not exist.', 5, $this->source); })()), "html", null, true);
-        echo "\">Confirm my Email</a>.
-    This link will expire in ";
-        // line 6
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans((isset($context["expiresAtMessageKey"]) || array_key_exists("expiresAtMessageKey", $context) ? $context["expiresAtMessageKey"] : (function () { throw new RuntimeError('Variable "expiresAtMessageKey" does not exist.', 6, $this->source); })()), (isset($context["expiresAtMessageData"]) || array_key_exists("expiresAtMessageData", $context) ? $context["expiresAtMessageData"] : (function () { throw new RuntimeError('Variable "expiresAtMessageData" does not exist.', 6, $this->source); })()), "VerifyEmailBundle"), "html", null, true);
+
+\tVeuillez confirmer votre adresse e-mail en cliquant sur le lien suivant :
+\t<br><br>
+\t<a href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, (isset($context["signedUrl"]) || array_key_exists("signedUrl", $context) ? $context["signedUrl"] : (function () { throw new RuntimeError('Variable "signedUrl" does not exist.', 8, $this->source); })()), "html", null, true);
+        echo "\">Confirmer mon e-mail</a>.
+\t\t\t\t\t\t\t\t    Ce lien expirera dans
+\t";
+        // line 10
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans((isset($context["expiresAtMessageKey"]) || array_key_exists("expiresAtMessageKey", $context) ? $context["expiresAtMessageKey"] : (function () { throw new RuntimeError('Variable "expiresAtMessageKey" does not exist.', 10, $this->source); })()), (isset($context["expiresAtMessageData"]) || array_key_exists("expiresAtMessageData", $context) ? $context["expiresAtMessageData"] : (function () { throw new RuntimeError('Variable "expiresAtMessageData" does not exist.', 10, $this->source); })()), "VerifyEmailBundle"), "html", null, true);
         echo ".
 </p>
 
 <p>
-    Cheers!
+\tCheers!
 </p>
 ";
         
@@ -78,22 +82,26 @@ class __TwigTemplate_ad409eecdf96822ad5beade4909b3013 extends Template
 
     public function getDebugInfo()
     {
-        return array (  53 => 6,  49 => 5,  43 => 1,);
+        return array (  57 => 10,  52 => 8,  43 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<h1>Hi! Please confirm your email!</h1>
+        return new Source("<h1>
+\tSalut! Veuillez confirmer votre email!</h1>
 
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href=\"{{ signedUrl }}\">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+
+\tVeuillez confirmer votre adresse e-mail en cliquant sur le lien suivant :
+\t<br><br>
+\t<a href=\"{{ signedUrl }}\">Confirmer mon e-mail</a>.
+\t\t\t\t\t\t\t\t    Ce lien expirera dans
+\t{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
 </p>
 
 <p>
-    Cheers!
+\tCheers!
 </p>
-", "registration/confirmation_email.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\templates\\registration\\confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\templates\\registration\\confirmation_email.html.twig");
     }
 }

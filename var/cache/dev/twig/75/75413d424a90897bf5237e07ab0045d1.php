@@ -90,6 +90,6 @@ class __TwigTemplate_33e4a4faf7e9b063aa559112241f5a18 extends Template
 {% else %}
     <a href=\"mailto:{{ field.value }}\">{{ field.formattedValue }}</a>
 {% endif %}
-", "@EasyAdmin/crud/field/email.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\email.html.twig");
+", "@EasyAdmin/crud/field/email.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\email.html.twig");
     }
 }

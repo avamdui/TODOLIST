@@ -85,6 +85,7 @@ class ComposerStaticInit9e48982ba57361ddd935de7d3179eeaa
             'Symfony\\Component\\Messenger\\Bridge\\Doctrine\\' => 44,
             'Symfony\\Component\\Messenger\\Bridge\\Amqp\\' => 40,
             'Symfony\\Component\\Messenger\\' => 28,
+            'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 39,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\Intl\\' => 23,
             'Symfony\\Component\\HttpKernel\\' => 29,
@@ -364,6 +365,10 @@ class ComposerStaticInit9e48982ba57361ddd935de7d3179eeaa
         array (
             0 => __DIR__ . '/..' . '/symfony/messenger',
         ),
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/google-mailer',
+        ),
         'Symfony\\Component\\Mailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/mailer',
@@ -608,8 +613,8 @@ class ComposerStaticInit9e48982ba57361ddd935de7d3179eeaa
         'App\\Controller\\Admin\\DashboardController' => __DIR__ . '/../..' . '/src/Controller/Admin/DashboardController.php',
         'App\\Controller\\Admin\\TaskCrudController' => __DIR__ . '/../..' . '/src/Controller/Admin/TaskCrudController.php',
         'App\\Controller\\DefaultController' => __DIR__ . '/../..' . '/src/Controller/DefaultController.php',
+        'App\\Controller\\LoginController' => __DIR__ . '/../..' . '/src/Controller/LoginController.php',
         'App\\Controller\\RegistrationController' => __DIR__ . '/../..' . '/src/Controller/RegistrationController.php',
-        'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
         'App\\Controller\\TaskController' => __DIR__ . '/../..' . '/src/Controller/TaskController.php',
         'App\\Entity\\Task' => __DIR__ . '/../..' . '/src/Entity/Task.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
@@ -4246,6 +4251,8 @@ class ComposerStaticInit9e48982ba57361ddd935de7d3179eeaa
         'Symfony\\Component\\Intl\\Util\\IcuVersion' => __DIR__ . '/..' . '/symfony/intl/Util/IcuVersion.php',
         'Symfony\\Component\\Intl\\Util\\IntlTestHelper' => __DIR__ . '/..' . '/symfony/intl/Util/IntlTestHelper.php',
         'Symfony\\Component\\Intl\\Util\\Version' => __DIR__ . '/..' . '/symfony/intl/Util/Version.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\Transport\\GmailSmtpTransport' => __DIR__ . '/..' . '/symfony/google-mailer/Transport/GmailSmtpTransport.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\Transport\\GmailTransportFactory' => __DIR__ . '/..' . '/symfony/google-mailer/Transport/GmailTransportFactory.php',
         'Symfony\\Component\\Mailer\\DataCollector\\MessageDataCollector' => __DIR__ . '/..' . '/symfony/mailer/DataCollector/MessageDataCollector.php',
         'Symfony\\Component\\Mailer\\DelayedEnvelope' => __DIR__ . '/..' . '/symfony/mailer/DelayedEnvelope.php',
         'Symfony\\Component\\Mailer\\Envelope' => __DIR__ . '/..' . '/symfony/mailer/Envelope.php',
@@ -5694,6 +5701,7 @@ class ComposerStaticInit9e48982ba57361ddd935de7d3179eeaa
         'Symfony\\WebpackEncoreBundle\\DependencyInjection\\WebpackEncoreExtension' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/DependencyInjection/WebpackEncoreExtension.php',
         'Symfony\\WebpackEncoreBundle\\EventListener\\ExceptionListener' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/EventListener/ExceptionListener.php',
         'Symfony\\WebpackEncoreBundle\\EventListener\\PreLoadAssetsEventListener' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/EventListener/PreLoadAssetsEventListener.php',
+        'Symfony\\WebpackEncoreBundle\\EventListener\\ResetAssetsEventListener' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/EventListener/ResetAssetsEventListener.php',
         'Symfony\\WebpackEncoreBundle\\Event\\RenderAssetTagEvent' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Event/RenderAssetTagEvent.php',
         'Symfony\\WebpackEncoreBundle\\Exception\\EntrypointNotFoundException' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Exception/EntrypointNotFoundException.php',
         'Symfony\\WebpackEncoreBundle\\Exception\\UndefinedBuildException' => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src/Exception/UndefinedBuildException.php',

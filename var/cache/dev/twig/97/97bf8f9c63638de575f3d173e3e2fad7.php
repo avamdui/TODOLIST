@@ -87,6 +87,6 @@ class __TwigTemplate_da9b6931db6bfd99ef7ee74a3acb8368 extends Template
 {% else %}
     {{ field.formattedValue }}
 {% endif %}
-", "@EasyAdmin/crud/field/collection.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\collection.html.twig");
+", "@EasyAdmin/crud/field/collection.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\collection.html.twig");
     }
 }

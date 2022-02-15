@@ -3011,6 +3011,6 @@ body.theme-light #collector-content .sf-dump-ellipsis-path { max-width: 5em; }
 body.theme-light #collector-content .sf-dump .trace li.selected {
     background: rgba(255, 255, 153, 0.5);
 }
-", "@WebProfiler/Profiler/profiler.css.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\profiler.css.twig");
+", "@WebProfiler/Profiler/profiler.css.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\profiler.css.twig");
     }
 }

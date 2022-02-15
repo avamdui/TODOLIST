@@ -79,7 +79,7 @@ class __TwigTemplate_53962f32eac2013271464c5d7230969a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@EasyAdmin/layout.html.twig"));
 
         // line 2
-        $context["__internal_8bd71f3e22dcc80886b3241c516ea0e5b2cb29b0c44e4ed209757a39704982dc"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 2, $this->source); })()), "i18n", [], "any", false, false, false, 2), "translationDomain", [], "any", false, false, false, 2);
+        $context["__internal_08bd37549879ad8021717789a106840cda16cc189308788a473f9bd11877b33e"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["ea"]) || array_key_exists("ea", $context) ? $context["ea"] : (function () { throw new RuntimeError('Variable "ea" does not exist.', 2, $this->source); })()), "i18n", [], "any", false, false, false, 2), "translationDomain", [], "any", false, false, false, 2);
         // line 3
         echo "
 <!DOCTYPE html>
@@ -1864,6 +1864,6 @@ $context["item"], "isMenuSection", [], "any", false, false, false, 99)) {
     </body>
 {% endblock body %}
 </html>
-", "@EasyAdmin/layout.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\layout.html.twig");
+", "@EasyAdmin/layout.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\layout.html.twig");
     }
 }

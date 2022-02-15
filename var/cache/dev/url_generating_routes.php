@@ -20,6 +20,7 @@ return [
     'login' => [[], ['_controller' => 'App\\Controller\\LoginController::index'], [], [['text', '/login']], [], [], []],
     'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'app_verify_email' => [[], ['_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], [], [['text', '/verify/email']], [], [], []],
+    'logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'task_list' => [[], ['_controller' => 'App\\Controller\\TaskController::listAction'], [], [['text', '/tasks']], [], [], []],
     'task_create' => [[], ['_controller' => 'App\\Controller\\TaskController::createAction'], [], [['text', '/tasks/create']], [], [], []],
     'task_edit' => [['id'], ['_controller' => 'App\\Controller\\TaskController::editAction'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],

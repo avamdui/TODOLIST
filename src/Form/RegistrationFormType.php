@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,15 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'attr' => ['autocomplete' => 'email'],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter your email',
+                    ]),
+                ],
+            ])
+            ->add('username')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -43,7 +52,10 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-        ;
+            ->add('plainPassword_confirm', PasswordType::class, [
+                'mapped' => false,
+                'label' => 'Répeter votre mot de passe'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

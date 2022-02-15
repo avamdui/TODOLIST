@@ -65,31 +65,31 @@ class __TwigTemplate_8451d00451ec5beaddcf55a823b51b48341de5538de5ec68413bbb54a10
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "\t";
-        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 4, $this->source); })())) {
-            // line 5
-            echo "\t\t<div class=\"alert alert-danger\" role=\"alert\">";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 5, $this->source); })()), "messageKey", [], "any", false, false, false, 5), twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 5, $this->source); })()), "messageData", [], "any", false, false, false, 5), "security"), "html", null, true);
-            echo "</div>
-\t";
-        }
-        // line 7
-        echo "
-\t<form action=\"";
+        echo "\t<br>
+\t<div class=\"row justify-content-center\">
+\t\t<div class=\"col-md-10 col-md-offset-1 mb-4\">
+\t\t\t<h1>Connexion</h1>
+\t\t\t<form action=\"";
         // line 8
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
-        echo "\" method=\"post\">
-\t\t<label for=\"username\">Nom d'utilisateur :</label>
-\t\t<input type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 10
-        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 10, $this->source); })()), "html", null, true);
-        echo "\"/>
+        echo "\" method=\"POST\">
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<input class=\"form-control\" placeholder=\" Adresse email...\" type=\"text\" name=\"_username\" requiered>
+\t\t\t\t</div>
+\t\t\t\t<br>
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<input class=\"form-control\" placeholder=\" Mot de passe...\" type=\"password\" name=\"_password\" requiered>
+\t\t\t\t</div>
+\t\t\t\t<br>
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\">
+\t\t\t\t\t\tConnexion !
+\t\t\t\t\t</button>
+\t\t\t\t</div>
+\t\t\t</form>
+\t\t</div>
+\t</div>
 
-\t\t<label for=\"password\">Mot de passe :</label>
-\t\t<input type=\"password\" id=\"password\" name=\"_password\"/>
-
-\t\t<button class=\"btn btn-success\" type=\"submit\">Se connecter</button>
-\t</form>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -111,7 +111,7 @@ class __TwigTemplate_8451d00451ec5beaddcf55a823b51b48341de5538de5ec68413bbb54a10
 
     public function getDebugInfo()
     {
-        return array (  85 => 10,  80 => 8,  77 => 7,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  74 => 8,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -119,20 +119,29 @@ class __TwigTemplate_8451d00451ec5beaddcf55a823b51b48341de5538de5ec68413bbb54a10
         return new Source("{% extends 'base.html.twig' %}
 
 {% block body %}
-\t{% if error %}
-\t\t<div class=\"alert alert-danger\" role=\"alert\">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-\t{% endif %}
+\t<br>
+\t<div class=\"row justify-content-center\">
+\t\t<div class=\"col-md-10 col-md-offset-1 mb-4\">
+\t\t\t<h1>Connexion</h1>
+\t\t\t<form action=\"{{ path('login') }}\" method=\"POST\">
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<input class=\"form-control\" placeholder=\" Adresse email...\" type=\"text\" name=\"_username\" requiered>
+\t\t\t\t</div>
+\t\t\t\t<br>
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<input class=\"form-control\" placeholder=\" Mot de passe...\" type=\"password\" name=\"_password\" requiered>
+\t\t\t\t</div>
+\t\t\t\t<br>
+\t\t\t\t<div class=\"form-group\">
+\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\">
+\t\t\t\t\t\tConnexion !
+\t\t\t\t\t</button>
+\t\t\t\t</div>
+\t\t\t</form>
+\t\t</div>
+\t</div>
 
-\t<form action=\"{{ path('login') }}\" method=\"post\">
-\t\t<label for=\"username\">Nom d'utilisateur :</label>
-\t\t<input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\"/>
-
-\t\t<label for=\"password\">Mot de passe :</label>
-\t\t<input type=\"password\" id=\"password\" name=\"_password\"/>
-
-\t\t<button class=\"btn btn-success\" type=\"submit\">Se connecter</button>
-\t</form>
 {% endblock %}
-", "security/login.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\templates\\security\\login.html.twig");
+", "security/login.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\templates\\security\\login.html.twig");
     }
 }

@@ -1077,6 +1077,6 @@ $context["log"], "type", [], "any", false, false, false, 142))) ? ("silenced") :
         {% endif %}
     </div>
 {% endmacro %}
-", "@WebProfiler/Collector/logger.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\P8\\Projet8\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\logger.html.twig");
+", "@WebProfiler/Collector/logger.html.twig", "C:\\Users\\NMPROOT\\Documents\\OPENCLASSROOM\\p8\\TODOLIST\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\logger.html.twig");
     }
 }
