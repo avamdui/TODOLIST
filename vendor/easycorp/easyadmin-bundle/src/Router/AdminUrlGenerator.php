@@ -16,21 +16,20 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class AdminUrlGenerator
 {
-    private $isInitialized;
-    private $adminContextProvider;
-    private $urlGenerator;
-    private $dashboardControllerRegistry;
-    private $crudControllerRegistry;
-    private $urlSigner;
-    private $dashboardRoute;
-    private $includeReferrer;
-    private $addSignature;
-    private $routeParameters;
-    private $currentPageReferrer;
+    private bool $isInitialized = false;
+    private AdminContextProvider $adminContextProvider;
+    private UrlGeneratorInterface $urlGenerator;
+    private DashboardControllerRegistry $dashboardControllerRegistry;
+    private CrudControllerRegistry $crudControllerRegistry;
+    private UrlSigner $urlSigner;
+    private ?string $dashboardRoute = null;
+    private ?bool $includeReferrer = null;
+    private ?bool $addSignature = null;
+    private array $routeParameters = [];
+    private ?string $currentPageReferrer = null;
 
     public function __construct(AdminContextProvider $adminContextProvider, UrlGeneratorInterface $urlGenerator, DashboardControllerRegistry $dashboardControllerRegistry, CrudControllerRegistry $crudControllerRegistry, UrlSigner $urlSigner)
     {
-        $this->isInitialized = false;
         $this->adminContextProvider = $adminContextProvider;
         $this->urlGenerator = $urlGenerator;
         $this->dashboardControllerRegistry = $dashboardControllerRegistry;
@@ -255,9 +254,10 @@ final class AdminUrlGenerator
         $this->dashboardRoute = explode('.', $this->dashboardRoute, 2)[0];
 
         // this removes any parameter with a NULL value
-        $routeParameters = array_filter($this->routeParameters, static function ($parameterValue) {
-            return null !== $parameterValue;
-        });
+        $routeParameters = array_filter(
+            $this->routeParameters,
+            static fn ($parameterValue): bool => null !== $parameterValue
+        );
         ksort($routeParameters, \SORT_STRING);
 
         $context = $this->adminContextProvider->getContext();

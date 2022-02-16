@@ -9,10 +9,10 @@ use function Symfony\Component\String\u;
  */
 final class ExceptionContext
 {
-    private $publicMessage;
-    private $debugMessage;
-    private $parameters;
-    private $statusCode;
+    private string $publicMessage;
+    private string $debugMessage;
+    private array $parameters;
+    private int $statusCode;
 
     public function __construct(string $publicMessage, string $debugMessage = '', array $parameters = [], int $statusCode = 500)
     {
@@ -39,9 +39,10 @@ final class ExceptionContext
 
     public function getTranslationParameters(): array
     {
-        return array_map(static function ($parameter) {
-            return u($parameter)->ensureStart('%')->ensureEnd('%')->toString();
-        }, $this->parameters);
+        return array_map(
+            static fn ($parameter): string => u($parameter)->ensureStart('%')->ensureEnd('%')->toString(),
+            $this->parameters
+        );
     }
 
     public function getStatusCode(): int

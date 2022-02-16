@@ -13,46 +13,39 @@ use Symfony\Component\Uid\Ulid;
  */
 final class FieldDto
 {
-    private $fieldFqcn;
-    private $propertyName;
-    private $value;
-    private $formattedValue;
+    private ?string $fieldFqcn = null;
+    private ?string $propertyName = null;
+    private mixed $value = null;
+    private mixed $formattedValue = null;
     private $formatValueCallable;
     private $label;
-    private $formType;
-    private $formTypeOptions;
-    private $sortable;
-    private $virtual;
-    private $permission;
-    private $textAlign;
+    private ?string $formType = null;
+    private KeyValueStore $formTypeOptions;
+    private ?bool $sortable = null;
+    private ?bool $virtual = null;
+    private ?string $permission = null;
+    private string $textAlign = TextAlign::LEFT;
     private $help;
-    private $cssClass;
+    private string $cssClass = '';
     // how many columns the field takes when rendering
     // (defined as Bootstrap 5 grid classes; e.g. 'col-md-6 col-xxl-3')
-    private $columns;
+    private ?string $columns = null;
     // same as $columns but used when the user doesn't define columns explicitly
-    private $defaultColumns;
-    private $translationParameters;
-    private $templateName;
-    private $templatePath;
-    /** @var AssetsDto */
-    private $assets;
-    private $customOptions;
-    private $doctrineMetadata;
+    private string $defaultColumns = '';
+    private array $translationParameters = [];
+    private ?string $templateName = 'crud/field/text';
+    private ?string $templatePath = null;
+    private AssetsDto $assets;
+    private KeyValueStore $customOptions;
+    private KeyValueStore $doctrineMetadata;
     /** @internal */
     private $uniqueId;
-    private $displayedOn;
+    private KeyValueStore $displayedOn;
 
     public function __construct()
     {
         $this->uniqueId = new Ulid();
-        $this->textAlign = TextAlign::LEFT;
-        $this->cssClass = '';
-        $this->columns = null;
-        $this->defaultColumns = '';
-        $this->templateName = 'crud/field/text';
         $this->assets = new AssetsDto();
-        $this->translationParameters = [];
         $this->formTypeOptions = KeyValueStore::new();
         $this->customOptions = KeyValueStore::new();
         $this->doctrineMetadata = KeyValueStore::new();
@@ -116,12 +109,12 @@ final class FieldDto
     /**
      * Returns the original unmodified value stored in the entity field.
      */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }
 
-    public function setValue($value): void
+    public function setValue(mixed $value): void
     {
         $this->value = $value;
     }
@@ -130,12 +123,12 @@ final class FieldDto
      * Returns the value to be displayed for the field (it could be the
      * same as the value stored in the field or not).
      */
-    public function getFormattedValue()
+    public function getFormattedValue(): mixed
     {
         return $this->formattedValue;
     }
 
-    public function setFormattedValue($formattedValue): void
+    public function setFormattedValue(mixed $formattedValue): void
     {
         $this->formattedValue = $formattedValue;
     }
@@ -153,7 +146,7 @@ final class FieldDto
     /**
      * @return string|false|null
      */
-    public function getLabel()
+    public function getLabel()/*: string|false|null*/
     {
         return $this->label;
     }
@@ -161,8 +154,22 @@ final class FieldDto
     /**
      * @param string|false|null $label
      */
-    public function setLabel($label): void
+    public function setLabel(/*string|false|null*/ $label): void
     {
+        if (!\is_string($label)
+            && false !== $label
+            && null !== $label) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$label',
+                __METHOD__,
+                '"string", "false" or "null"',
+                \gettype($label)
+            );
+        }
+
         $this->label = $label;
     }
 
@@ -194,17 +201,17 @@ final class FieldDto
     }
 
     /**
-     * @param string $optionName You can use "dot" notation to set nested options (e.g. 'attr.class')
+     * @param $optionName You can use "dot" notation to set nested options (e.g. 'attr.class')
      */
-    public function setFormTypeOption(string $optionName, $optionValue): void
+    public function setFormTypeOption(string $optionName, mixed $optionValue): void
     {
         $this->formTypeOptions->set($optionName, $optionValue);
     }
 
     /**
-     * @param string $optionName You can use "dot" notation to set nested options (e.g. 'attr.class')
+     * @param $optionName You can use "dot" notation to set nested options (e.g. 'attr.class')
      */
-    public function setFormTypeOptionIfNotSet(string $optionName, $optionValue): void
+    public function setFormTypeOptionIfNotSet(string $optionName, mixed $optionValue): void
     {
         $this->formTypeOptions->setIfNotSet($optionName, $optionValue);
     }
@@ -359,7 +366,7 @@ final class FieldDto
         return $this->customOptions;
     }
 
-    public function getCustomOption(string $optionName)
+    public function getCustomOption(string $optionName): mixed
     {
         return $this->customOptions->get($optionName);
     }
@@ -369,7 +376,7 @@ final class FieldDto
         $this->customOptions = KeyValueStore::new($customOptions);
     }
 
-    public function setCustomOption(string $optionName, $optionValue): void
+    public function setCustomOption(string $optionName, mixed $optionValue): void
     {
         $this->customOptions->set($optionName, $optionValue);
     }

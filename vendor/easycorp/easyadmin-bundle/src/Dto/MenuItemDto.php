@@ -16,33 +16,22 @@ final class MenuItemDto
     public const TYPE_SUBMENU = 'submenu';
     public const TYPE_ROUTE = 'route';
 
-    private $type;
-    private $index;
-    private $subIndex;
-    private $label;
-    private $icon;
-    private $cssClass;
-    private $permission;
-    private $routeName;
-    private $routeParameters;
-    private $linkUrl;
-    private $linkRel;
-    private $linkTarget;
-    private $translationParameters;
-    /** @var MenuItemBadgeDto|null */
-    private $badge;
+    private ?string $type = null;
+    private ?int $index = null;
+    private ?int $subIndex = null;
+    private ?string $label = null;
+    private ?string $icon = null;
+    private string $cssClass = '';
+    private ?string $permission = null;
+    private ?string $routeName = null;
+    private ?array $routeParameters = null;
+    private ?string $linkUrl = null;
+    private string $linkRel = '';
+    private string $linkTarget = '_self';
+    private array $translationParameters = [];
+    private ?MenuItemBadgeDto $badge = null;
     /** @var MenuItemDto[] */
-    private $subItems;
-
-    public function __construct()
-    {
-        $this->cssClass = '';
-        $this->translationParameters = [];
-        $this->linkRel = '';
-        $this->linkTarget = '_self';
-        $this->badge = null;
-        $this->subItems = [];
-    }
+    private array $subItems = [];
 
     public function getType(): string
     {
@@ -119,7 +108,7 @@ final class MenuItemDto
         return $this->routeParameters;
     }
 
-    public function setRouteParameter(string $parameterName, $parameterValue): void
+    public function setRouteParameter(string $parameterName, mixed $parameterValue): void
     {
         $this->routeParameters[$parameterName] = $parameterValue;
     }
@@ -184,7 +173,7 @@ final class MenuItemDto
         return $this->badge;
     }
 
-    public function setBadge($content, string $style): void
+    public function setBadge(mixed $content, string $style): void
     {
         $this->badge = new MenuItemBadgeDto($content, trim($style));
     }

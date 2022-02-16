@@ -14,21 +14,31 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  */
 final class EntityDto
 {
-    private $isAccessible;
-    private $fqcn;
-    private $metadata;
+    private bool $isAccessible = true;
+    private string $fqcn;
+    private ClassMetadata $metadata;
     private $instance;
     private $primaryKeyName;
-    private $primaryKeyValue;
-    private $permission;
-    /** @var ?FieldCollection */
-    private $fields;
-    /** @var ActionCollection */
-    private $actions;
+    private mixed $primaryKeyValue = null;
+    private ?string $permission;
+    private ?FieldCollection $fields = null;
+    private ?ActionCollection $actions = null;
 
-    public function __construct(string $entityFqcn, ClassMetadata $entityMetadata, ?string $entityPermission = null, $entityInstance = null)
+    public function __construct(string $entityFqcn, ClassMetadata $entityMetadata, ?string $entityPermission = null, /*?object*/ $entityInstance = null)
     {
-        $this->isAccessible = true;
+        if (!\is_object($entityInstance)
+            && null !== $entityInstance) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$entityInstance',
+                __METHOD__,
+                '"object" or "null"',
+                \gettype($entityInstance)
+            );
+        }
+
         $this->fqcn = $entityFqcn;
         $this->metadata = $entityMetadata;
         $this->instance = $entityInstance;
@@ -64,7 +74,7 @@ final class EntityDto
         return sprintf('%s #%s', $this->getName(), substr($this->getPrimaryKeyValueAsString(), 0, 16));
     }
 
-    public function getInstance()
+    public function getInstance()/*: ?object*/
     {
         return $this->instance;
     }
@@ -74,7 +84,7 @@ final class EntityDto
         return $this->primaryKeyName;
     }
 
-    public function getPrimaryKeyValue()
+    public function getPrimaryKeyValue(): mixed
     {
         if (null === $this->instance) {
             return null;
@@ -199,7 +209,7 @@ final class EntityDto
         return \array_key_exists($propertyNameParts[0], $this->metadata->embeddedClasses);
     }
 
-    public function setInstance($newEntityInstance): void
+    public function setInstance(?object $newEntityInstance): void
     {
         if (null !== $this->instance && !$newEntityInstance instanceof $this->fqcn) {
             throw new \InvalidArgumentException(sprintf('The new entity instance must be of the same type as the previous instance (original instance: "%s", new instance: "%s").', $this->fqcn, \get_class($newEntityInstance)));
@@ -209,8 +219,20 @@ final class EntityDto
         $this->primaryKeyValue = null;
     }
 
-    public function newWithInstance($newEntityInstance): self
+    public function newWithInstance(/*object*/ $newEntityInstance): self
     {
+        if (!\is_object($newEntityInstance)) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$newEntityInstance',
+                __METHOD__,
+                '"object"',
+                \gettype($newEntityInstance)
+            );
+        }
+
         if (null !== $this->instance && !$newEntityInstance instanceof $this->fqcn) {
             throw new \InvalidArgumentException(sprintf('The new entity instance must be of the same type as the previous instance (original instance: "%s", new instance: "%s").', $this->fqcn, \get_class($newEntityInstance)));
         }

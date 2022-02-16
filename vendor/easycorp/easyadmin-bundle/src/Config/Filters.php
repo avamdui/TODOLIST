@@ -10,8 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\FilterConfigDto;
  */
 final class Filters
 {
-    /** @var FilterConfigDto */
-    private $dto;
+    private FilterConfigDto $dto;
 
     private function __construct(FilterConfigDto $filterConfigDto)
     {
@@ -25,15 +24,8 @@ final class Filters
         return new self($dto);
     }
 
-    /**
-     * @param FilterInterface|string $propertyNameOrFilter
-     */
-    public function add($propertyNameOrFilter): self
+    public function add(FilterInterface|string $propertyNameOrFilter): self
     {
-        if (!\is_string($propertyNameOrFilter) && !$propertyNameOrFilter instanceof FilterInterface) {
-            throw new \InvalidArgumentException(sprintf('The argument of "%s" can only be either a string with the filter property name or an object implementing "%s".', __METHOD__, FilterInterface::class));
-        }
-
         $filterPropertyName = \is_string($propertyNameOrFilter) ? $propertyNameOrFilter : (string) $propertyNameOrFilter;
         if (null !== $this->dto->getFilter($filterPropertyName)) {
             throw new \InvalidArgumentException(sprintf('There are two or more different filters defined for the "%s" property, but you can only define a single filter per property.', $filterPropertyName));

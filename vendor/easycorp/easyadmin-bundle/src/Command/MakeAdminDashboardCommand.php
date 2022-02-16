@@ -20,8 +20,8 @@ class MakeAdminDashboardCommand extends Command
 {
     protected static $defaultName = 'make:admin:dashboard';
     protected static $defaultDescription = 'Creates a new EasyAdmin Dashboard class';
-    private $classMaker;
-    private $projectDir;
+    private ClassMaker $classMaker;
+    private string $projectDir;
 
     public function __construct(ClassMaker $classMaker, string $projectDir, string $name = null)
     {
@@ -43,9 +43,11 @@ class MakeAdminDashboardCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $fs = new Filesystem();
 
-        $controllerClassName = $io->ask('Which class name do you prefer for your Dashboard controller?', 'DashboardController', static function (string $className) {
-            return u($className)->ensureEnd('Controller')->toString();
-        });
+        $controllerClassName = $io->ask(
+            'Which class name do you prefer for your Dashboard controller?',
+            'DashboardController',
+            fn (string $className): string => u($className)->ensureEnd('Controller')->toString()
+        );
 
         $projectDir = $this->projectDir;
         $controllerDir = $io->ask(

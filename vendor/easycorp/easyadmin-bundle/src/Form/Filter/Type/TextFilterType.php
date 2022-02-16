@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TextFilterType extends AbstractType
 {
-    private $valueType;
+    private string $valueType;
 
     public function __construct(string $valueType = null)
     {
@@ -26,9 +26,7 @@ class TextFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new CallbackTransformer(
-            static function ($data) {
-                return $data;
-            },
+            static fn ($data) => $data,
             static function ($data) {
                 switch ($data['comparison']) {
                     case ComparisonType::STARTS_WITH:

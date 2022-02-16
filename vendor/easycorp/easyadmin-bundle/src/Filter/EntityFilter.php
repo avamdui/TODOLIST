@@ -84,9 +84,7 @@ final class EntityFilter implements FilterInterface
             return $this->processSingleParameterValue($queryBuilder, $parameterValue);
         }
 
-        return $parameterValue->map(function ($element) use ($queryBuilder) {
-            return $this->processSingleParameterValue($queryBuilder, $element);
-        });
+        return $parameterValue->map(fn ($element) => $this->processSingleParameterValue($queryBuilder, $element));
     }
 
     /**
@@ -109,12 +107,8 @@ final class EntityFilter implements FilterInterface
      *  gets processed to a binary value:
      *
      *      b"\x1EÄÕ\x1FÇFo`¶˜cC„Á¶L"
-     *
-     * @param mixed $parameterValue
-     *
-     * @return mixed
      */
-    private function processSingleParameterValue(QueryBuilder $queryBuilder, $parameterValue)
+    private function processSingleParameterValue(QueryBuilder $queryBuilder, mixed $parameterValue): mixed
     {
         $entityManager = $queryBuilder->getEntityManager();
 

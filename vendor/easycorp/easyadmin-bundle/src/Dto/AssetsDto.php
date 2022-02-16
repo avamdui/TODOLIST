@@ -8,15 +8,15 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Dto;
 final class AssetsDto
 {
     /** @var AssetDto[] */
-    private $webpackEncoreAssets = [];
+    private array $webpackEncoreAssets = [];
     /** @var AssetDto[] */
-    private $cssAssets = [];
+    private array $cssAssets = [];
     /** @var AssetDto[] */
-    private $jsAssets = [];
+    private array $jsAssets = [];
     /** @var AssetDto[] */
-    private $headContents = [];
+    private array $headContents = [];
     /** @var AssetDto[] */
-    private $bodyContents = [];
+    private array $bodyContents = [];
 
     public function __construct()
     {
@@ -125,14 +125,10 @@ final class AssetsDto
             }
         }
         foreach ($this->headContents as $headContent) {
-            if ($headContent->getLoadedOn()->has($pageName)) {
-                $filteredAssets->addHtmlContentToHead($headContent);
-            }
+            $filteredAssets->addHtmlContentToHead($headContent);
         }
         foreach ($this->bodyContents as $bodyContent) {
-            if ($bodyContent->getLoadedOn()->has($pageName)) {
-                $filteredAssets->addHtmlContentToBody($bodyContent);
-            }
+            $filteredAssets->addHtmlContentToBody($bodyContent);
         }
 
         return $filteredAssets;

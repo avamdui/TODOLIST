@@ -83,6 +83,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ServiceLocator;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 return static function (ContainerConfigurator $container) {
@@ -228,6 +229,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set(EntityUpdater::class)
             ->arg(0, new Reference('property_accessor'))
+            ->arg(1, new Reference('validator'))
 
         ->set(PaginatorFactory::class)
             ->arg(0, new Reference(AdminContextProvider::class))
@@ -303,6 +305,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set(BooleanConfigurator::class)
             ->arg(0, new Reference(AdminUrlGenerator::class))
+            ->arg(1, new Reference(CsrfTokenManagerInterface::class))
 
         ->set(CodeEditorConfigurator::class)
 

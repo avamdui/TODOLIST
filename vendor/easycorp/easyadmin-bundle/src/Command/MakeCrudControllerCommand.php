@@ -20,9 +20,9 @@ class MakeCrudControllerCommand extends Command
 {
     protected static $defaultName = 'make:admin:crud';
     protected static $defaultDescription = 'Creates a new EasyAdmin CRUD controller class';
-    private $projectDir;
-    private $classMaker;
-    private $doctrine;
+    private string $projectDir;
+    private ClassMaker $classMaker;
+    private ManagerRegistry $doctrine;
 
     public function __construct(string $projectDir, ClassMaker $classMaker, ManagerRegistry $doctrine, string $name = null)
     {
@@ -71,9 +71,11 @@ class MakeCrudControllerCommand extends Command
         $guessedNamespace = u($controllerDir)->equalsTo('src')
             ? 'App'
             : u($controllerDir)->replace('/', ' ')->replace('\\', ' ')->replace('src ', 'app ')->title(true)->replace(' ', '\\')->trimEnd(\DIRECTORY_SEPARATOR);
-        $namespace = $io->ask('Namespace of the generated CRUD controller', $guessedNamespace, static function (string $namespace) {
-            return u($namespace)->replace('/', '\\')->toString();
-        });
+        $namespace = $io->ask(
+            'Namespace of the generated CRUD controller',
+            $guessedNamespace,
+            static fn (string $namespace): string => u($namespace)->replace('/', '\\')->toString()
+        );
 
         $generatedFilePath = $this->classMaker->make(
             sprintf('%s/%s', $controllerDir, $controllerFileNamePattern),

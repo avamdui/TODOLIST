@@ -28,8 +28,7 @@ final class Action
     // these are actions that can be applied to one or more entities at the same time
     public const TYPE_BATCH = 'batch';
 
-    /** @var ActionDto */
-    private $dto;
+    private ActionDto $dto;
 
     private function __construct(ActionDto $actionDto)
     {
@@ -45,8 +44,22 @@ final class Action
      * @param string|false|null $label Use FALSE to hide the label; use NULL to autogenerate it
      * @param string|null       $icon  The full CSS classes of the FontAwesome icon to render (see https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free)
      */
-    public static function new(string $name, $label = null, ?string $icon = null): self
+    public static function new(string $name, /*string|false|null*/ $label = null, ?string $icon = null): self
     {
+        if (!\is_string($label)
+            && false !== $label
+            && null !== $label) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$label',
+                __METHOD__,
+                '"string", "false" or "null"',
+                \gettype($label)
+            );
+        }
+
         $dto = new ActionDto();
         $dto->setType(self::TYPE_ENTITY);
         $dto->setName($name);
@@ -76,8 +89,22 @@ final class Action
     /**
      * @param string|false|null $label Use FALSE to hide the label; use NULL to autogenerate it
      */
-    public function setLabel($label): self
+    public function setLabel(/*string|false|null*/ $label): self
     {
+        if (!\is_string($label)
+            && false !== $label
+            && null !== $label) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$label',
+                __METHOD__,
+                '"string", "false" or "null"',
+                \gettype($label)
+            );
+        }
+
         $this->dto->setLabel($label ?? self::humanizeString($this->dto->getName()));
 
         return $this;
@@ -150,17 +177,13 @@ final class Action
     }
 
     /**
-     * @param array|callable $routeParameters The callable has the signature: function ($entity): array
+     * @param $routeParameters The callable has the signature: function ($entity): array
      *
      * Route parameters can be defined as a callable with the signature: function ($entityInstance): array
      * Example: ->linkToRoute('invoice_send', fn (Invoice $entity) => ['uuid' => $entity->getId()]);
      */
-    public function linkToRoute(string $routeName, $routeParameters = []): self
+    public function linkToRoute(string $routeName, array|callable $routeParameters = []): self
     {
-        if (!\is_array($routeParameters) && !\is_callable($routeParameters)) {
-            throw new \InvalidArgumentException(sprintf('The second argument of "%s" can only be either an array with the route parameters or a callable to generate those route parameters.', __METHOD__));
-        }
-
         $this->dto->setRouteName($routeName);
         $this->dto->setRouteParameters($routeParameters);
 
@@ -170,8 +193,21 @@ final class Action
     /**
      * @param string|callable $url
      */
-    public function linkToUrl($url): self
+    public function linkToUrl(/*string|callable*/ $url): self
     {
+        if (!\is_string($url)
+            && !\is_callable($url)) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$url',
+                __METHOD__,
+                '"string" or "callable"',
+                \gettype($url)
+            );
+        }
+
         $this->dto->setUrl($url);
 
         return $this;

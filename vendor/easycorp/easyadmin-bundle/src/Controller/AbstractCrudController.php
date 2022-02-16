@@ -40,6 +40,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\FormFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\Model\FileUploadState;
@@ -215,10 +216,23 @@ abstract class AbstractCrudController extends AbstractController implements Crud
         $entityInstance = $context->getEntity()->getInstance();
 
         if ($context->getRequest()->isXmlHttpRequest()) {
+            if ('PATCH' !== $context->getRequest()->getMethod()) {
+                return new Response(null, 400);
+            }
+
+            if (!$this->isCsrfTokenValid(BooleanField::CSRF_TOKEN_NAME, $context->getRequest()->query->get('csrfToken'))) {
+                return new Response(null, 400);
+            }
+
             $fieldName = $context->getRequest()->query->get('fieldName');
             $newValue = 'true' === mb_strtolower($context->getRequest()->query->get('newValue'));
 
-            $event = $this->ajaxEdit($context->getEntity(), $fieldName, $newValue);
+            try {
+                $event = $this->ajaxEdit($context->getEntity(), $fieldName, $newValue);
+            } catch (\Exception $exception) {
+                return new Response(null, 400);
+            }
+
             if ($event->isPropagationStopped()) {
                 return $event->getResponse();
             }

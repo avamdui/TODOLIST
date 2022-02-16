@@ -1407,17 +1407,17 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.0.4",
-            "version_normalized": "4.0.4.0",
+            "version": "v4.0.6",
+            "version_normalized": "4.0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "a87acaa5db2fd54139d271fdd75f8ac5e0bb6a03"
+                "reference": "1c8b03accb7255d15f05adca19072e062002bd82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/a87acaa5db2fd54139d271fdd75f8ac5e0bb6a03",
-                "reference": "a87acaa5db2fd54139d271fdd75f8ac5e0bb6a03",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/1c8b03accb7255d15f05adca19072e062002bd82",
+                "reference": "1c8b03accb7255d15f05adca19072e062002bd82",
                 "shasum": ""
             },
             "require": {
@@ -1443,7 +1443,8 @@
                 "symfony/string": "^5.4|^6.0",
                 "symfony/translation": "^5.4|^6.0",
                 "symfony/twig-bundle": "^5.4|^6.0",
-                "symfony/uid": "^5.4|^6.0"
+                "symfony/uid": "^5.4|^6.0",
+                "symfony/validator": "^5.4|^6.0"
             },
             "require-dev": {
                 "doctrine/doctrine-fixtures-bundle": "^3.4",
@@ -1453,7 +1454,7 @@
                 "symfony/dom-crawler": "^5.4|^6.0",
                 "symfony/phpunit-bridge": "^5.4|^6.0"
             },
-            "time": "2022-01-31T18:34:36+00:00",
+            "time": "2022-02-15T19:25:19+00:00",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1485,7 +1486,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.0.4"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.0.6"
             },
             "funding": [
                 {
@@ -3922,17 +3923,17 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v2.1.4",
-            "version_normalized": "2.1.4.0",
+            "version": "v2.1.5",
+            "version_normalized": "2.1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "110e8928b6e719e9b9f146c8fd92c41a4b74a3ac"
+                "reference": "809425c2360fb84a68ac69ca039fefe3ebc0811b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/110e8928b6e719e9b9f146c8fd92c41a4b74a3ac",
-                "reference": "110e8928b6e719e9b9f146c8fd92c41a4b74a3ac",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/809425c2360fb84a68ac69ca039fefe3ebc0811b",
+                "reference": "809425c2360fb84a68ac69ca039fefe3ebc0811b",
                 "shasum": ""
             },
             "require": {
@@ -3946,7 +3947,7 @@
                 "symfony/phpunit-bridge": "^5.4|^6.0",
                 "symfony/process": "^5.4|^6.0"
             },
-            "time": "2022-01-27T10:25:12+00:00",
+            "time": "2022-02-15T08:57:06+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Symfony\\Flex\\Flex"
@@ -3970,7 +3971,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/v2.1.4"
+                "source": "https://github.com/symfony/flex/tree/v2.1.5"
             },
             "funding": [
                 {

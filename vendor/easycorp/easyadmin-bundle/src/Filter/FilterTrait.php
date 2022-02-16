@@ -13,15 +13,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\FilterDto;
  */
 trait FilterTrait
 {
-    /** @var FilterDto */
-    private $dto;
+    private FilterDto $dto;
 
     private function __construct()
     {
         $dto = new FilterDto();
-        $dto->setApplyCallable(function (QueryBuilder $queryBuilder, FilterDataDto $filterDataDto, ?FieldDto $fieldDto, EntityDto $entityDto) {
-            return $this->apply($queryBuilder, $filterDataDto, $fieldDto, $entityDto);
-        });
+        $dto->setApplyCallable(fn (QueryBuilder $queryBuilder, FilterDataDto $filterDataDto, ?FieldDto $fieldDto, EntityDto $entityDto) => $this->apply($queryBuilder, $filterDataDto, $fieldDto, $entityDto));
 
         $this->dto = $dto;
     }
@@ -66,7 +63,7 @@ trait FilterTrait
         return $this;
     }
 
-    public function setFormTypeOption(string $optionName, $optionValue): self
+    public function setFormTypeOption(string $optionName, mixed $optionValue): self
     {
         $this->dto->setFormTypeOption($optionName, $optionValue);
 

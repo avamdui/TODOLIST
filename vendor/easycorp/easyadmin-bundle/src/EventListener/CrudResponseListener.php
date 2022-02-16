@@ -14,8 +14,8 @@ use Twig\Environment;
  */
 final class CrudResponseListener
 {
-    private $adminContextProvider;
-    private $twig;
+    private AdminContextProvider $adminContextProvider;
+    private Environment $twig;
 
     public function __construct(AdminContextProvider $adminContextProvider, Environment $twig)
     {
@@ -23,7 +23,7 @@ final class CrudResponseListener
         $this->twig = $twig;
     }
 
-    public function onKernelView(ViewEvent $event)
+    public function onKernelView(ViewEvent $event): void
     {
         $responseParameters = $event->getControllerResult();
         if (null === $responseParameters || !$responseParameters instanceof KeyValueStore) {
