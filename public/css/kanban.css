@@ -1,138 +1,24 @@
-.gu-mirror {
-    position: fixed!important;
-    margin: 0!important;
-    z-index: 9999 !important;
-  }
-  .gu-hide {
-    display: none !important;
-  }
-  .gu-unselectable {
-    -webkit-user-select: none!important;
-    -moz-user-select: none!important;
-    -ms-user-select: none!important;
-    user-select: none !important;
-  }
-  .gu-transit {
-    opacity: 0.2;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-    filter: alpha(opacity=20);
-  }
-  .gu-mirror {
-    opacity: 0.8;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-    filter: alpha(opacity=80);
-  }
-  @font-face {
-    font-family: 'Muli';
-    font-style: normal;
-    font-weight: 300;
-    src: url(https://fonts.gstatic.com/s/muli/v26/7Aulp_0qiz-aVz7u3PJLcUMYOFmQkEk30e0.ttf) format('truetype');
-  }
-  @font-face {
-    font-family: 'Muli';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/muli/v26/7Aulp_0qiz-aVz7u3PJLcUMYOFnOkEk30e0.ttf) format('truetype');
-  }
-  * {
-    font-family: 'Muli';
-  }
-  .pad {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .bg {
-    padding: 50px 0px;
-    min-height: 600px;
-    background: #e0eaf3;
-  }
-  .container-fluid .col-xs-2 div.box {
-    text-align: center;
-    margin: 10px auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 90%;
-    background: #fff;
-    border: 1px solid #ccc;
-  }
-  .drag-1,
-  .drag-2,
-  .drag-3,
-  .drag-4 {
-    border-right: 1px solid #ccc;
-  }
-  .form-control {
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 90%;
-    border-radius: 0;
-  }
-  .gwe {
-    border: none;
-  }
-  .btn {
-    margin-top: 20px;
-    border-radius: 0;
-  }
-  img {
-    margin: 0 auto;
-  }
-  .header {
-    padding-top: 5px;
-    height: 30px;
-    text-align: center;
-    font-weight: bold;
-    border: 1px solid #ccc;
-  }
-  .white {
-    text-align: center;
-  }
-  .white .form-control {
-    margin-top: 0;
-  }
-  .white .input-label {
-    margin-top: 20px;
-    text-align: center;
-  }
-  .box .tasks {
-    padding-bottom: 7px;
-  }
-  .box .tasks .task-name {
-    font-size: 1.3em;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .box .tasks .task-desc {
-    font-size: 1.1em;
-    color: #555;
-  }
-  .box .tasks .task-deadline {
-    margin-top: 5px;
-    margin-right: 5px;
-    font-size: 0.8em;
-    color: #555;
-  }
-  .done div.box {
-    pointer-events: none;
-    background: #ddd !important;
-  }
-  .done div.box .tasks {
-    color: #fff !important;
-  }
-  .move {
-    text-align: center;
-    background: #eee;
-  }
-  .move .btn {
-    margin-bottom: 20px;
-  }
-  .checked {
-    border: 3px solid #ddA500 !important;
-  }
-  input[type="checkbox"] {
-    margin-left: 2%;
-    border: #000;
-    color: #fff;
-    background: #fff;
-    border-radius: none;
-  }
+.ui-state-highlight {
+	background: #fafafa;
+	height: calc(1.5rem + 20px);
+}
+
+.collection .collection-item .dragging {
+    -webkit-transform-origin: rotate(2deg);
+    -moz-transform-origin: rotate(2deg);
+    -ms-transform-origin: rotate(2deg);
+    -o-transform-origin: rotate(2deg);
+    transform-origin: rotate(2deg);
+}
+
+.input-field {
+	background-color: #475B6F;
+	color: white;
+}
+.input-field label {
+	background-color: #475B6F;
+	color: white;
+}
+.input-field label::after {
+	background-color: #475B6F;
+}

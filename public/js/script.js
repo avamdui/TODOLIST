@@ -1,114 +1,162 @@
-classnames();
-//call dragula
-dragula([
-  document.getElementById('1'),
-  document.getElementById('2'),
-  document.getElementById('3'),
-  document.getElementById('4'),
-  document.getElementById('5')
-]).on('drop', function (el) {
-  //change classes depending on column
-  classnames();
-});
+var app = {
+
+	plusTasks: function(element){
+		var hidden = $('#' + element).find('.hidden');
+		var plusHiddenNextRemove = hidden.next();
+		hidden.append('<div class="input-field" id="divtask"><input id="newtask" onkeydown="app.newTasks(event,this)" type="text" class="validate"><label for="newtask">New Task</label></div>');
+		plusHiddenNextRemove.remove();
+	},
+
+	newTasks: function(e,input){
+		var event = window.event || e;
+		var jobName = $(input).val();
+		var element = $(input).parent().parent().parent();
+		var typeColumn = element.attr('id');
+		var hidden = element.find('.hidden');
+
+		if(event.keyCode == 13 && jobName !== ''){
+
+			// list[typeColumn] not found => []
+			if (!list[typeColumn]) {
+				list[typeColumn] = [];
+			}
+
+			list[typeColumn].push(jobName);
+			DB.setData(list);
+
+			element.append('<a href="#!" class="collection-item">'+ jobName + '<span onclick="app.deleteJobInList(this)"><i class="right material-icons" style="color: #ddd">not_interested</i></span><span onclick="app.editJobInList(event,this)"><i class="right material-icons" style="color: #ddd">mode_edit</i></span>')
+			hidden.remove();
+			// add Plus Button
+			element.append('<div class="hidden"> </div><div class="center white plus_jobs"> <a class="btn-floating btn-medium waves-effect waves-light" onclick="app.plusTasks(\'' + element.attr('id') + '\')" style="background-color: #26a69a;"><i class="material-icons">add</i></a> </div>');
+			this.countTasks();
+		}
+	},
+
+	addJobsToList: function(type,jobName){
+		var item = '<a href="#!" class="collection-item">'+ jobName + '<span onclick="app.deleteJobInList(this)"><i class="right material-icons" style="color: #ddd">not_interested</i></span><span onclick="app.editJobInList(event,this)"><i class="right material-icons" style="color: #ddd">mode_edit</i></span>';
+        $('#' + type).find('.hidden').before(item);
+        // console.log(type);
+	},
+
+	deleteJobInList: function(span){
+		var pointDelete = this;
+		var itemRemove = $(span).parent();
+		$('.modal').modal();
+		$('#modal-confirm').modal('open');
+		$('#btn-delete').off('click');
+		$('#btn-delete').on('click',function(){
+			var columnTYPE = itemRemove.parent().attr('id');
+			var itemPosition = $('#' + columnTYPE + ' .collection-item').index(itemRemove);
+			list[columnTYPE].splice(itemPosition,1);
+			DB.setData(list);
+			itemRemove.remove();
+			$('.modal').modal('close');
+			pointDelete.countTasks();
+		});
+
+	},
+
+	editJobInList: function(e,span){
+		var itemEdit = $(span).parent();
+		itemEdit.append('<div class="input-field" id="divtask" style="padding-left: 5px;"><input id="newtask" onkeydown="app.newTasksEdit(event,this)" type="text" class="validate"><label for="newtask">New Task</label></div>');
+
+	},
+
+	newTasksEdit: function (e,input) {
+		var evenNewTasksEdit = window.event || e;
+		var jobNewTaskEdit = $(input).val();
+		var parentNewTaskEdit = $(input).parent().parent();
+		if(evenNewTasksEdit.keyCode == 13 && jobNewTaskEdit !== ''){
+			parentNewTaskEdit.after('<a href="#!" class="collection-item">'+ jobNewTaskEdit + '<span onclick="app.deleteJobInList(this)"><i class="right material-icons" style="color: #ddd">not_interested</i></span><span onclick="app.editJobInList(event,this)"><i class="right material-icons" style="color: #ddd">mode_edit</i></span>');
+            var positionItemEdit = parentNewTaskEdit.index();
+            var columnNewTaskEdit = parentNewTaskEdit.parent().attr('id');
+            list[columnNewTaskEdit][positionItemEdit] = jobNewTaskEdit;
+            DB.setData(list);
+			parentNewTaskEdit.slideUp(1000,function(){
+				parentNewTaskEdit.remove();
+			});
+
+		}
+	},
+
+	countTasks: function(){
+		var countTaskInColumn = $('.count').parent().parent().next();
+		var valCount = $('.count');
+		for (var i = 0 ; i < countTaskInColumn.length; i++){
+			// $(valCount[i]).html($(countTaskInColumn[i]).find('a').length - 1);
+			valCount[i].innerHTML = $(countTaskInColumn[i]).find('a').length - 1;
+		}
+		// this.countTasks();
+	}
 
 
-//static adding of values
-$(".submit").click(function () {
-  var getvalue1 = document.getElementById("name"),
-    getvalue2 = document.getElementById("desc"),
-    getvalue3 = document.getElementById("deadline"),
-    a = getvalue1.value,
-    b = getvalue2.value,
-    c = getvalue3.value;
-  var today = new Date();
-  $(".drag-1").append("<div class='box box1'><p class='tasks'><input type='checkbox' class='checkbox checkbox1' name='' value=''/><span class='task-name'>" + a + "</span><br/><span class='task-desc'>" + b + "</span><br/><span class='task-deadline pull-right'> DEADLINE: " + c + "</span><span class='today'>" + today + "</p></div>");
-
-  //add class to checked items 
-  $('input:checkbox.checkbox').change(function () {
-    if ($(this).is(":checked")) {
-      $(this).parents(".box").addClass("checked");
-    } else {
-      $(this).parents(".box").removeClass("checked");
-    }
-  });
-});
-
-//move all to done
-$(".toDone").click(function () {
-  $(".drag-4 .box")
-    .appendTo(".drag-5");
-});
-//move all to revised
-$(".toRevised").click(function () {
-  $(".drag-3 .box")
-    .appendTo(".drag-4");
-});
-//move all to review
-$(".toReview").click(function () {
-  $(".drag-2 .box")
-    .appendTo(".drag-3");
-});
-//move all to progress
-$(".toProgress").click(function () {
-  $(".drag-1 .box")
-    .appendTo(".drag-2");
-});
-
-//add class to checked items 
-$('input:checkbox.checkbox').change(function () {
-  if ($(this).is(":checked")) {
-    $(this).parents(".box").addClass("checked");
-  } else {
-    $(this).parents(".box").removeClass("checked");
-  }
-});
-
-//add selected to progress
-$(".toProg").click(function () {
-  $(".drag-1 .checked")
-    .appendTo(".drag-2");
-  $(".drag-2 .checked").removeClass("checked");
-  $(".checkbox1").prop("checked", false);
-  $(".checkbox1").addClass("checkbox2");
-  $(".checkbox1").removeClass("checkbox1 checkbox4 checkbox5 checkbox2 checkbox3");
-});
-
-//add selected to review
-$(".toRev").click(function () {
-  $(".drag-2 .checked")
-    .appendTo(".drag-3");
-  $(".drag-3 .checked").removeClass("checked");
-  $(".checkbox2").prop("checked", false);
-  $(".checkbox2").addClass("checkbox3");
-  $(".checkbox2").removeClass("checkbox2 checkbox4 checkbox1 checkbox5 checkbox3");
-});
-
-//add selected to revised
-$(".toRevi").click(function () {
-  $(".drag-3 .checked")
-    .appendTo(".drag-4");
-  $(".drag-4 .checked").removeClass("checked");
-  $(".checkbox3").prop("checked", false);
-  $(".checkbox3").addClass("checkbox4");
-  $(".checkbox3").removeClass("checkbox3 checkbox5 checkbox1 checkbox2 checkbox3");
-});
-
-//add selected to done
-$(".toDo").click(function () {
-  $(".drag-4 .checked")
-    .appendTo(".drag-5");
-  $(".drag-5 .checked").removeClass("checked");
-  $(".checkbox4").prop("checked", false);
-  $(".checkbox4").addClass("checkbox5");
-  $(".checkbox4").removeClass("checkbox4 checkbox1 checkbox2 checkbox3");
-});
-
-
-//function for changing names of tasks depending on column
-var classnames = function () {
-  $(".drag-1").children($(".box")).addClass("box1").removeClass("box2 box3 box4 box5");
-  $(".drag-2").children($(".box")).addClass("box2").removeClass("box1 box3 box4 box5");
-  $(".drag-3").children($(".box")).addClass("box3").removeClass("box1 box2 box4 box5");
-  $(".drag-4").children($(".box")).addClass("box4").removeClass("box1 box2 box3 box5");
-  $(".drag-5").children($(".box")).addClass("box5").removeClass("box1 box2 box3 box4");
 };
+$(window).load(function() {
+	app.countTasks();
+
+});
+
+var DB = {
+	getData: function(){
+		if (typeof(Storage) !== 'undefined') {
+			var data;
+			try {
+				data = JSON.parse(localStorage.getItem('list')) || {};
+			} catch(e) {
+				console.log(e);
+				data = {};
+			}
+			return data;
+		}else{
+			console.log('Sorry ! Your browser not support HTML5 LocalStorage');
+			return {};
+		}
+	},
+
+	setData: function(data){
+		localStorage.setItem('list',JSON.stringify(data));
+	}
+};
+var list = DB.getData();
+var COLUMN_TYPE = ['todo','inprogress','done'];
+$( function() {
+
+    COLUMN_TYPE.forEach(function (type) {
+        var nameColumn = list[type] || [];
+        nameColumn.forEach(function (job) {
+			app.addJobsToList(type , job);
+        })
+	});
+
+
+	$( ".sorted-list" ).sortable({
+		connectWith: ".sorted-list",
+		placeholder: 'ui-state-highlight',
+		start: function(event , ui){
+			$(ui.item[0]).addClass('dragging');
+			ui.item.oldColumn = ui.item.context.parentElement.getAttribute('id');
+            ui.item.oldItemPosition = ui.item.index();
+            console.log(ui);
+		},
+		stop: function(event, ui){
+			$(ui.item[0]).removeClass('dragging');
+			app.countTasks();
+            console.log(ui);
+			var item = ui.item;
+			var oldColumn = item.oldColumn;
+			var oldItemPosition = item.oldItemPosition;
+			var newColumn = item.context.parentElement.getAttribute('id');
+			var newItemPosition = item.index();
+
+			// Remove item old position
+			list[oldColumn].splice(oldItemPosition,1);
+
+			// Add item new position
+			list[newColumn].splice(newItemPosition,0,item[0].innerText.replace('not_interestedmode_edit',''));
+
+			// Store data to localStorage
+			DB.setData(list);
+		}
+	});
+
+} );
