@@ -900,7 +900,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1644992938,
+1 => 1646032522,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1147,13 +1147,13 @@ return [[
                 'scale' => [
                     null,
                 ],
-                'message' => [
-                    1 => 'Vous devez saisir un titre.',
-                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
+                ],
+                'message' => [
+                    1 => 'Vous devez saisir un titre.',
                 ],
             ],
         ],
@@ -1182,13 +1182,13 @@ return [[
                 'scale' => [
                     null,
                 ],
-                'message' => [
-                    1 => 'Vous devez saisir du contenu.',
-                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
+                ],
+                'message' => [
+                    1 => 'Vous devez saisir du contenu.',
                 ],
             ],
         ],
@@ -1268,6 +1268,14 @@ return [[
                 'repositoryClass' => [
                     1 => 'App\\Repository\\UserRepository',
                 ],
+                'groups' => [
+                    2 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'message' => [
                     2 => 'Nom utilisateur déjà utilisé',
                     'Email déjà utilisé',
@@ -1278,14 +1286,6 @@ return [[
                     ],
                     [
                         'email',
-                    ],
-                ],
-                'groups' => [
-                    2 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
                     ],
                 ],
             ],
@@ -1406,6 +1406,14 @@ return [[
                 'scale' => [
                     null,
                 ],
+                'groups' => [
+                    1 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'maxMessage' => [
                     1 => 'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1417,14 +1425,6 @@ return [[
                 ],
                 'min' => [
                     1 => 8,
-                ],
-                'groups' => [
-                    1 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
                 ],
                 'message' => [
                     2 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',
@@ -1451,6 +1451,14 @@ return [[
         null,
         [
             'stdClass' => [
+                'groups' => [
+                    [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'maxMessage' => [
                     'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1462,14 +1470,6 @@ return [[
                 ],
                 'min' => [
                     8,
-                ],
-                'groups' => [
-                    [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
                 ],
                 'message' => [
                     1 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',

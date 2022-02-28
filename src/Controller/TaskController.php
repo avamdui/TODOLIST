@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\User;
 use App\Form\TaskType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\TaskRepository;
@@ -13,29 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/tasks", name="task_list")
-     */
-    public function listAction(TaskRepository $repo)
-    {
-        $tasks = $repo->findAll();
-        return $this->render(
-            'task/kanban.html.twig',
-            [
-                'tasks' => $tasks
-            ]
-        );
-    }
-
-    /**
      * @Route("/tasks/create", name="task_create")
+     * @param User $user
      */
-    public function createAction(Request $request, EntityManagerInterface $entityManager)
+    public function createAction(Task $task = null, Request $request, EntityManagerInterface $entityManager)
     {
         $user = $this->getUser();
         $task = new Task();
         if (!$user) {
-
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('homepage');
         }
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
@@ -47,11 +34,40 @@ class TaskController extends AbstractController
 
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
 
-            return $this->redirectToRoute('task_list');
+            return $this->redirectToRoute('task_user_list');
         }
 
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
+
+    /**
+     * @Route("/tasks", name="task_list")
+     */
+    public function listAction(TaskRepository $repo)
+    {
+        $tasks = $repo->findAll();
+        return $this->render(
+            'task/list.html.twig',
+            [
+                'tasks' => $tasks
+            ]
+        );
+    }
+
+    /**
+     * @Route("/tasks/{id}", name="task_user_list")
+     * @param User $user
+     */
+    public function listActionUser(User $user)
+    {
+        return $this->render(
+            'user/taskslist.html.twig',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
