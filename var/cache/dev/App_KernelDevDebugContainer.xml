@@ -7164,12 +7164,6 @@
         <argument key="responseParameters" type="service_closure" id=".errored..service_locator.2dc0eaX.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
       </argument>
     </service>
-    <service id=".service_locator.5miB8_X" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
     <service id=".service_locator.UDgw6Ol" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7208,7 +7202,7 @@
         <argument key="task" type="service_closure" id=".errored..service_locator.MQERK.A.App\Entity\Task"/>
       </argument>
     </service>
-    <service id=".service_locator.oozUOmS" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.zQD8NdO" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7246,12 +7240,12 @@
         <argument key="App\Controller\Admin\UserCrudController::createNewForm" type="service_closure" id=".service_locator.bgO__Zr"/>
         <argument key="App\Controller\Admin\UserCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
         <argument key="App\Controller\Admin\UserCrudController::delete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\UserCrudController::deleteEntity" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\Admin\UserCrudController::deleteEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController::detail" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::edit" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::index" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::new" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\LoginController::index" type="service_closure" id=".service_locator.UDgw6Ol"/>
@@ -7304,12 +7298,12 @@
         <argument key="App\Controller\Admin\UserCrudController:createNewForm" type="service_closure" id=".service_locator.bgO__Zr"/>
         <argument key="App\Controller\Admin\UserCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
         <argument key="App\Controller\Admin\UserCrudController:delete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\UserCrudController:deleteEntity" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\Admin\UserCrudController:deleteEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController:detail" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:edit" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:index" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:new" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\LoginController:index" type="service_closure" id=".service_locator.UDgw6Ol"/>
@@ -8041,12 +8035,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.oozUOmS"/>
+      <argument type="service" id=".service_locator.zQD8NdO"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.oozUOmS"/>
+      <argument type="service" id=".service_locator.zQD8NdO"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9045,7 +9039,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.oozUOmS"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.zQD8NdO"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9076,7 +9070,7 @@
     <service id=".service_locator.Dby0_1s" alias=".service_locator.4u5os03"/>
     <service id=".service_locator._0BW_Ne" alias=".service_locator.HK4bswD"/>
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
-    <service id=".service_locator.5jThOuN" alias=".service_locator.oozUOmS"/>
+    <service id=".service_locator.9BoWMlc" alias=".service_locator.zQD8NdO"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.MyylfZM" alias=".service_locator.R4MAzD_"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9119,7 +9113,6 @@
     <service id=".service_locator.Er0_7SX" alias=".service_locator.l2QwsaZ"/>
     <service id=".service_locator.1tlLxRd" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.6KoT76J" alias=".service_locator.2dc0eaX"/>
-    <service id=".service_locator.kydi4Ed" alias=".service_locator.5miB8_X"/>
     <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
     <service id=".service_locator.LzwvCJx" alias=".service_locator.4u5os03"/>
     <service id=".service_locator.KA7Sukb" alias=".service_locator.HK4bswD"/>
