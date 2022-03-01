@@ -396,3 +396,15 @@ ac6cd4,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=edit&crudController
 68acea,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CTaskCrudController&entityId=1&menuIndex=3&referrer=https%3A%2F%2F127.0.0.1%3A8000%2Fadmin%3FcrudAction%3Dindex%26crudControllerFqcn%3DApp%255CController%255CAdmin%255CTaskCrudController%26menuIndex%3D3%26signature%3DgFKwEaszM0J04ra36kwM9sWAufFyCtkhmYx8QB0f87k%26submenuIndex%3D1&signature=wXmjrU_Q-Kj7AtQ-6JJoRkN3S9zhRb_4VjmRqR6ilB8&submenuIndex=1,1646131931,,200
 885008,127.0.0.1,POST,https://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CTaskCrudController&entityId=1&menuIndex=3&referrer=https%3A%2F%2F127.0.0.1%3A8000%2Fadmin%3FcrudAction%3Dindex%26crudControllerFqcn%3DApp%255CController%255CAdmin%255CTaskCrudController%26menuIndex%3D3%26signature%3DgFKwEaszM0J04ra36kwM9sWAufFyCtkhmYx8QB0f87k%26submenuIndex%3D1&signature=wXmjrU_Q-Kj7AtQ-6JJoRkN3S9zhRb_4VjmRqR6ilB8&submenuIndex=1,1646131935,,302
 f7397f,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CTaskCrudController&menuIndex=3&signature=gFKwEaszM0J04ra36kwM9sWAufFyCtkhmYx8QB0f87k&submenuIndex=1,1646131937,,200
+6099d1,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&menuIndex=1&signature=DGDC18bbIKpvaBesYSM3IgMNo9GK_CkFFbwQzqi2ir8&submenuIndex=1,1646133491,,200
+71a707,127.0.0.1,GET,https://127.0.0.1:8000/,1646141469,,200
+e17193,127.0.0.1,GET,https://127.0.0.1:8000/login,1646141571,3c67bb,500
+3c67bb,127.0.0.1,GET,https://127.0.0.1:8000/login,1646141600,,500
+682a59,127.0.0.1,GET,https://127.0.0.1:8000/login,1646141626,,200
+d61be1,127.0.0.1,POST,https://127.0.0.1:8000/login,1646141660,,302
+ff554b,127.0.0.1,GET,https://127.0.0.1:8000/,1646141677,,200
+dd9c03,127.0.0.1,GET,https://127.0.0.1:8000/tasksDone,1646141708,,200
+4adc8f,127.0.0.1,GET,https://127.0.0.1:8000/tasks/2,1646141726,,200
+08739d,127.0.0.1,GET,https://127.0.0.1:8000/tasks/3/toggle,1646141748,,302
+ce9668,127.0.0.1,GET,https://127.0.0.1:8000/tasks,1646141789,6d5348,500
+6d5348,127.0.0.1,GET,https://127.0.0.1:8000/tasks,1646141798,,500
