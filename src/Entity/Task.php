@@ -38,7 +38,7 @@ class Task
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDone;
+    private $isDone = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="task")
@@ -49,7 +49,6 @@ class Task
     public function __construct()
     {
         $this->createdAt = new \Datetime();
-        $this->isDone = false;
     }
 
     public function getUser(): ?User
@@ -98,9 +97,16 @@ class Task
         $this->content = $content;
     }
 
-    public function isDone()
+    public function isDone(): bool
     {
         return $this->isDone;
+    }
+
+    public function setIsDone(bool $isDone): self
+    {
+        $this->isDone = $isDone;
+
+        return $this;
     }
 
     public function toggle($flag)

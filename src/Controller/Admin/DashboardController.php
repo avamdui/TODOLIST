@@ -36,12 +36,11 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Projet8');
+            ->setTitle('Administation');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::section('Taches');
 
         yield MenuItem::section('Utilisateurs');
 
