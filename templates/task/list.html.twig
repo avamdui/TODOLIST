@@ -7,7 +7,7 @@
 	<a href="{{ path('task_create') }}" class="btn btn-info pull-right">Créer une tâche</a>
 	<div class="row">
 		{% for task in tasks %}
-			<div class="col-sm-4 col-lg-4 col-md-4">
+			<div id="task-{{ task.id }}" class="col-sm-4 col-lg-4 col-md-4">
 				<div class="thumbnail">
 					<div class="caption">
 						<h4 class="pull-right">
@@ -27,15 +27,16 @@
 
 					</div>
 					<div>
-						<form action="{{ path('task_toggle', {'id' : task.id }) }}">
-							<button class="btn btn-success btn-sm pull-right">
+
+						<div id="btnToggleTask" data-task-id="{{ task.id }}">
+							<button type="button" class="btn btn-success btn-sm pull-right">
 								{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
 								{% endif %}
 							</button>
-						</form>
-						<form action="{{ path('task_delete', {'id' : task.id }) }}">
-							<button class="btn btn-danger btn-sm pull-right">Supprimer</button>
-						</form>
+						</div>
+		
+							<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+
 					</div>
 				</div>
 			</div>
@@ -46,4 +47,9 @@
 			</div>
 		{% endfor %}
 	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>
 {% endblock %}

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Controller\\Admin\\DashboardController' => $baseDir . '/src/Controller/Admin/DashboardController.php',
     'App\\Controller\\Admin\\TaskCrudController' => $baseDir . '/src/Controller/Admin/TaskCrudController.php',
+    'App\\Controller\\Admin\\UserCrudController' => $baseDir . '/src/Controller/Admin/UserCrudController.php',
     'App\\Controller\\DefaultController' => $baseDir . '/src/Controller/DefaultController.php',
     'App\\Controller\\LoginController' => $baseDir . '/src/Controller/LoginController.php',
     'App\\Controller\\RegistrationController' => $baseDir . '/src/Controller/RegistrationController.php',
@@ -4898,6 +4899,7 @@ return array(
     'Symfony\\Component\\VarDumper\\Caster\\IntlCaster' => $vendorDir . '/symfony/var-dumper/Caster/IntlCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\LinkStub' => $vendorDir . '/symfony/var-dumper/Caster/LinkStub.php',
     'Symfony\\Component\\VarDumper\\Caster\\MemcachedCaster' => $vendorDir . '/symfony/var-dumper/Caster/MemcachedCaster.php',
+    'Symfony\\Component\\VarDumper\\Caster\\MysqliCaster' => $vendorDir . '/symfony/var-dumper/Caster/MysqliCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\PdoCaster' => $vendorDir . '/symfony/var-dumper/Caster/PdoCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\PgSqlCaster' => $vendorDir . '/symfony/var-dumper/Caster/PgSqlCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\ProxyManagerCaster' => $vendorDir . '/symfony/var-dumper/Caster/ProxyManagerCaster.php',

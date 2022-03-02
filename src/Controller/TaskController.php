@@ -34,7 +34,7 @@ class TaskController extends AbstractController
 
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
 
-            return $this->redirectToRoute('task_user_list');
+            return $this->redirectToRoute('task_list');
         }
 
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
@@ -48,6 +48,19 @@ class TaskController extends AbstractController
         $tasks = $repo->findAll();
         return $this->render(
             'task/list.html.twig',
+            [
+                'tasks' => $tasks
+            ]
+        );
+    }
+    /**
+     * @Route("/taskskanban", name="task_list_kanban")
+     */
+    public function listKanbanAction(TaskRepository $repo)
+    {
+        $tasks = $repo->findAll();
+        return $this->render(
+            'task/kanban.html.twig',
             [
                 'tasks' => $tasks
             ]
@@ -114,9 +127,12 @@ class TaskController extends AbstractController
         $task->toggle(!$task->isDone());
         $entityManager->flush();
 
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+        return $this->render('task/btntoggle.html.twig', [
+            'task' => $task,
+        ]);
+        // $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
-        return $this->redirectToRoute('task_list');
+        //   return $this->redirectToRoute('task_list');
     }
 
     /**
@@ -127,9 +143,6 @@ class TaskController extends AbstractController
 
         $entityManager->remove($task);
         $entityManager->flush();
-
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
-
-        return $this->redirectToRoute('task_list');
+        return $this->json('ok');
     }
 }
