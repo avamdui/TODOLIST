@@ -11,16 +11,18 @@
 
 {% block body %}
 	<section class="container">
-		<div class="row">
+		<div
+			class="row">
+			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col s4">
 				<div class="col s12 m12">
 					<div class="card red">
 						<div class="card-content white-text">
 							<span class="card-title center">TODO</span>
 						</div>
-						<ul class="collection sorted-list" id="sortable">
-							<div class="hidden"></div>
-							<div class="center white plus_jobs" id="todo">
+						<div class="hidden"></div>
+						<div class="center white plus_jobs">
+							<ul class="collection sorted-list" id="todo" data-info="sortable">
 								{% for task in tasks %}
 									{% if task.isDone  == '0' %}
 										<li id="task-{{ task.id }}" class="col-12" data-task-id="{{ task.id }}">
@@ -37,79 +39,103 @@
 													</h4>
 												</div>
 											</div>
-										</li>
-										<hr>
+											<hr></li>
 									{% endif %}
 								{% endfor %}
 
-								<div class="alert alert-warning" role="alert">
-									<a href="{{ path('task_create') }}" class="btn btn-warning pull-right">+</a>
-								</div>
+							</ul>
+							<div class="alert alert-warning" role="alert">
+								<a href="{{ path('task_create') }}" class="btn btn-warning pull-right">+</a>
 							</div>
-						</ul>
+						</div>
 					</div>
 				</div>
 			</div>
+			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col s4">
 				<div class="col s12 m12">
 					<div class="card green">
 						<div class="card-content white-text">
 							<span class="card-title center">DONE</span>
 						</div>
-						<div class="collection sorted-list" id="done">
-							<div class="hidden"></div>
-							<div class="center white plus_jobs">
+						<div class="hidden"></div>
+						<div class="center white plus_jobs">
+							<ul class="collection sorted-list" id="done" data-info="sortable">
 								{% for task in tasks %}
 									{% if task.isDone %}
-										<div id="task-{{ task.id }}" class="col-12">
+										<li id="task-{{ task.id }}" class="col-12" data-task-id="{{ task.id }}">
 											<div class="thumbnail">
-												<li class="caption">
-													<h4>
-														<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
+												<div class="caption">
+													<h4 class="pull-right">
+														<h4>
+															<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
+														</h4>
+														<p class="text-muted small mb-0">Tache créer par :
+															{{ task.user.username}}</p>
+														<br>
+														<p>{{ task.content }}</p>
 													</h4>
-													<p class="text-muted small mb-0">Tache créer par :
-														{{ task.user.username}}</p>
-													<br>
-													<p>{{ task.content }}</p>
-												</li>
+												</div>
 											</div>
-										</div>
-										<hr>
+											<hr></li>
 									{% endif %}
 								{% endfor %}
-							</div>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
+			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col s4">
 				<div class="col s12 m12">
 					<div class="card blue">
 						<div class="card-content white-text">
-							<span class="card-title center">Delete</span>
+							<span class="card-title center">IN PROGRESS</span>
 						</div>
-						<div class="collection sorted-list" id="done">
-							<div class="hidden"></div>
-							<div class="center white plus_jobs"></div>
-							<div id="trash" class="ui-widget-content ui-state-default"></div>
+						<div class="hidden"></div>
+						<div class="center white plus_jobs" id="progresse">
+							<ul
+								class="collection sorted-list" data-info="sortable">{# {% for task in tasks %}
+																																				{% if task.isDone %}
+																																					<li id="task-{{ task.id }}" class="col-12" data-task-id="{{ task.id }}">
+																																						<div class="thumbnail">
+																																							<div class="caption">
+																																								<h4 class="pull-right">
+																																									<h4>
+																																										<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
+																																									</h4>
+																																									<p class="text-muted small mb-0">Tache créer par :
+																																										{{ task.user.username}}</p>
+																																									<br>
+																																									<p>{{ task.content }}</p>
+																																								</h4>
+																																							</div>
+																																						</div>
+																																						<hr></li>
+																																				{% endif %}
+																																			{% endfor %} #}
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-
+			{# ---------------------------------------------------------------------------------------- #}
 
 		</div>
-
 	</div>
-</div>{% endblock %}{% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>{% endblock %}{# <div>
-																																																																																																																																	<div id="btnToggleTask" data-task-id="{{ task.id }}">
-																																																																																																																																																												<button type="button" class="btn btn-success btn-sm pull-right">
-																																																																																																																																																													{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
-																																																																																																																																																													{% endif %}
-																																																																																																																																																												</button>
-																																																																																																																																																											</div>
-																																																																																																																																																											<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
-																																																																																																																																</div> #}
+{% endblock %}
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<script type="text/javascript" src="{{ asset('js/jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>
+{% endblock %}
+{# <div>
+																																																																																																																																									<div id="btnToggleTask" data-task-id="{{ task.id }}">
+																																																																																																																																																																				<button type="button" class="btn btn-success btn-sm pull-right">
+																																																																																																																																																																					{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+																																																																																																																																																																					{% endif %}
+																																																																																																																																																																				</button>
+																																																																																																																																																																			</div>
+																																																																																																																																																																			<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+																																																																																																																																								</div> #}

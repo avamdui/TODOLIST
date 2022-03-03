@@ -21,44 +21,61 @@
 $(document).ready(function () {
 
     // There's the gallery and the trash
-    var $todo = $("#todo"),
-        $done = $("#done"),
-        $sortable = $("#sortable"),
-        $trash = $("#trash");
+    var todo = $("#todo"),
+        done = $("#done"),
+        sortable = $("[data-info=sortable]");
+    //var trash = $("#trash");
 
 
     // Test sortable --> marche pas
-    $($sortable).sortable();
+    sortable.sortable();
 
     // Let the gallery items be draggable
-    $("li", $todo).sortable().draggable({ revert: "invalid" });
-    $("li", $done).draggable({ revert: "invalid" }).sortable();
-    $($trash).draggable({ revert: "invalid" });
+    $("li", todo).draggable({ revert: true, connectToSortable: "[data-info=sortable]" }); // 
+    $("li", done).draggable({ revert: true, connectToSortable: "[data-info=sortable]" });
+    // $("li", done).draggable({ revert: "invalid" });
+    //trash.draggable({ revert: "invalid" });
 
     // Let the trash be droppable, accepting the gallery items
-    $trash.droppable(
-        {
-            drop: function (event, ui) {
-                let id = $(this).attr('data-task-id');
-                $.getJSON('/tasks/' + id + '/delete')
-                    .then(function (rep) {
-                        if (rep == 'ok') {
-                            $('#task-' + id).remove();
-                        }
-                    });
-            }
-        });
+    // trash.droppable(
+    //     {
+    //         drop: function (event, ui) {
+    //             console.log('ui', ui);
+    //             let id = $(ui.draggable).attr('data-task-id');
+    //             $.getJSON('/tasks/' + id + '/delete')
+    //                 .then(function (rep) {
+    //                     if (rep == 'ok') {
+    //                         $('#task-' + id).remove();
+    //                     }
+    //                 });
+    //         }
+    //     });
 
 
     // Let the gallery be droppable as well, accepting items from the trash
-    $todo.droppable({
-        accept: "#trash",
+    todo.sortable({
+        accept: "#done",
         classes: {
             "ui-droppable-active": "custom-state-active"
         },
-        drop: function (event, ui) {
-            recycleImage(ui.draggable);
+        receive: function (event, ui) {
+            console.log('ui', ui);
+            let id = $(ui.item).attr('data-task-id');
+            $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { console.log(rep); });
         }
     });
 
+    done.sortable({
+        accept: "#todo",
+        classes: {
+            "ui-droppable-active": "custom-state-active"
+        },
+        receive: function (event, ui) {
+            console.log('ui', ui);
+            let id = $(ui.item).attr('data-task-id');
+            $.getJSON('/tasks/' + id + '/toggle')
+                .then(function (rep) { console.log(rep); })
+                .fail(function (err) { });
+        }
+    });
 });
