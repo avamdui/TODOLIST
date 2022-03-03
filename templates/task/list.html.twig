@@ -18,7 +18,7 @@
 						<div class="card-content white-text">
 							<span class="card-title center">TODO</span>
 						</div>
-						<div class="collection sorted-list">
+						<ul class="collection sorted-list" id="sortable">
 							<div class="hidden"></div>
 							<div class="center white plus_jobs" id="todo">
 								{% for task in tasks %}
@@ -46,7 +46,7 @@
 									<a href="{{ path('task_create') }}" class="btn btn-warning pull-right">+</a>
 								</div>
 							</div>
-						</div>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -105,11 +105,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>{% endblock %}{# <div>
-																																																																																																																												<div id="btnToggleTask" data-task-id="{{ task.id }}">
-																																																																																																																																																							<button type="button" class="btn btn-success btn-sm pull-right">
-																																																																																																																																																								{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
-																																																																																																																																																								{% endif %}
-																																																																																																																																																							</button>
-																																																																																																																																																						</div>
-																																																																																																																																																						<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
-																																																																																																																											</div> #}
+																																																																																																																																	<div id="btnToggleTask" data-task-id="{{ task.id }}">
+																																																																																																																																																												<button type="button" class="btn btn-success btn-sm pull-right">
+																																																																																																																																																													{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+																																																																																																																																																													{% endif %}
+																																																																																																																																																												</button>
+																																																																																																																																																											</div>
+																																																																																																																																																											<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+																																																																																																																																</div> #}

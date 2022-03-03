@@ -23,11 +23,16 @@ $(document).ready(function () {
     // There's the gallery and the trash
     var $todo = $("#todo"),
         $done = $("#done"),
+        $sortable = $("#sortable"),
         $trash = $("#trash");
 
+
+    // Test sortable --> marche pas
+    $($sortable).sortable();
+
     // Let the gallery items be draggable
-    $("li", $todo).draggable({ revert: "invalid" });
-    $("li", $done).draggable({ revert: "invalid" });
+    $("li", $todo).sortable().draggable({ revert: "invalid" });
+    $("li", $done).draggable({ revert: "invalid" }).sortable();
     $($trash).draggable({ revert: "invalid" });
 
     // Let the trash be droppable, accepting the gallery items
