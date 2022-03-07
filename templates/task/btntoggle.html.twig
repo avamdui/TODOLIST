@@ -1,0 +1,4 @@
+<button type="button" id="btnToggleTask" data-task-id="{{ task.id }}" class="btn btn-success btn-sm pull-right">
+	{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+	{% endif %}
+</button>

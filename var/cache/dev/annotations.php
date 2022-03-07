@@ -64,6 +64,8 @@ return [[
 '[C]Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%24container' => 1,
 'App%5CController%5CAdmin%5CDashboardController' => 0,
 '[C]App%5CController%5CAdmin%5CDashboardController' => 1,
+'App%5CController%5CAdmin%5CDashboardController%23__construct' => 0,
+'[C]App%5CController%5CAdmin%5CDashboardController%23__construct' => 1,
 'App%5CController%5CAdmin%5CDashboardController%23index' => 0,
 '[C]App%5CController%5CAdmin%5CDashboardController%23index' => 1,
 'App%5CController%5CAdmin%5CDashboardController%23configureDashboard' => 0,
@@ -82,10 +84,14 @@ return [[
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController%23configureActions' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController%23configureFilters' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController%23configureFilters' => 1,
+'App%5CController%5CAdmin%5CDashboardController%24adminUrlGenerator' => 0,
+'[C]App%5CController%5CAdmin%5CDashboardController%24adminUrlGenerator' => 1,
 'App%5CController%5CAdmin%5CTaskCrudController' => 0,
 '[C]App%5CController%5CAdmin%5CTaskCrudController' => 1,
 'App%5CController%5CAdmin%5CTaskCrudController%23getEntityFqcn' => 0,
 '[C]App%5CController%5CAdmin%5CTaskCrudController%23getEntityFqcn' => 1,
+'App%5CController%5CAdmin%5CTaskCrudController%23configureFields' => 0,
+'[C]App%5CController%5CAdmin%5CTaskCrudController%23configureFields' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureCrud' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureCrud' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureAssets' => 0,
@@ -94,8 +100,6 @@ return [[
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureActions' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFilters' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFilters' => 1,
-'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFields' => 0,
-'[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFields' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getSubscribedServices' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getSubscribedServices' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23index' => 0,
@@ -144,6 +148,12 @@ return [[
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getRedirectResponseAfterSave' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getFieldAssets' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getFieldAssets' => 1,
+'App%5CController%5CAdmin%5CUserCrudController' => 0,
+'[C]App%5CController%5CAdmin%5CUserCrudController' => 1,
+'App%5CController%5CAdmin%5CUserCrudController%23getEntityFqcn' => 0,
+'[C]App%5CController%5CAdmin%5CUserCrudController%23getEntityFqcn' => 1,
+'App%5CController%5CAdmin%5CUserCrudController%23configureFields' => 0,
+'[C]App%5CController%5CAdmin%5CUserCrudController%23configureFields' => 1,
 'App%5CController%5CDefaultController' => 0,
 '[C]App%5CController%5CDefaultController' => 1,
 'App%5CController%5CDefaultController%23indexAction' => 2,
@@ -206,6 +216,8 @@ return [[
 '[C]App%5CEntity%5CTask%23setContent' => 1,
 'App%5CEntity%5CTask%23isDone' => 0,
 '[C]App%5CEntity%5CTask%23isDone' => 1,
+'App%5CEntity%5CTask%23setIsDone' => 0,
+'[C]App%5CEntity%5CTask%23setIsDone' => 1,
 'App%5CEntity%5CTask%23toggle' => 0,
 '[C]App%5CEntity%5CTask%23toggle' => 1,
 'App%5CEntity%5CTask%24id' => 12,
@@ -786,6 +798,8 @@ return [[
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getEntityFqcn' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23getEntityFqcn' => 1,
+'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFields' => 0,
+'[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractCrudController%23configureFields' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController' => 0,
 '[C]EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController' => 1,
 'EasyCorp%5CBundle%5CEasyAdminBundle%5CController%5CAbstractDashboardController%23index' => 0,
@@ -904,7 +918,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1646056850,
+1 => 1646202030,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1195,13 +1209,13 @@ return [[
                 'scale' => [
                     null,
                 ],
+                'message' => [
+                    1 => 'Vous devez saisir un titre.',
+                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
-                ],
-                'message' => [
-                    1 => 'Vous devez saisir un titre.',
                 ],
             ],
         ],
@@ -1230,13 +1244,13 @@ return [[
                 'scale' => [
                     null,
                 ],
+                'message' => [
+                    1 => 'Vous devez saisir du contenu.',
+                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
-                ],
-                'message' => [
-                    1 => 'Vous devez saisir du contenu.',
                 ],
             ],
         ],
@@ -1316,14 +1330,6 @@ return [[
                 'repositoryClass' => [
                     1 => 'App\\Repository\\UserRepository',
                 ],
-                'groups' => [
-                    2 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
-                ],
                 'message' => [
                     2 => 'Nom utilisateur déjà utilisé',
                     'Email déjà utilisé',
@@ -1334,6 +1340,14 @@ return [[
                     ],
                     [
                         'email',
+                    ],
+                ],
+                'groups' => [
+                    2 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
                     ],
                 ],
             ],
@@ -1454,14 +1468,6 @@ return [[
                 'scale' => [
                     null,
                 ],
-                'groups' => [
-                    1 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
-                ],
                 'maxMessage' => [
                     1 => 'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1473,6 +1479,14 @@ return [[
                 ],
                 'min' => [
                     1 => 8,
+                ],
+                'groups' => [
+                    1 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
                 ],
                 'message' => [
                     2 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',
@@ -1499,14 +1513,6 @@ return [[
         null,
         [
             'stdClass' => [
-                'groups' => [
-                    [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
-                ],
                 'maxMessage' => [
                     'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1518,6 +1524,14 @@ return [[
                 ],
                 'min' => [
                     8,
+                ],
+                'groups' => [
+                    [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
                 ],
                 'message' => [
                     1 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',

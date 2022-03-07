@@ -1,0 +1,75 @@
+<section class="container">
+	<div class="row">
+		<div class="col s4">
+			<div class="col s12 m12">
+				<div class="card red">
+					<div class="card-content white-text">
+						<span class="card-title center">TODO</span>
+					</div>
+					<div class="collection sorted-list" id="todo">
+						<div class="hidden"></div>
+						<div class="center white plus_jobs">
+							{% for task in tasks %}
+								{% if task.isDone %}
+									<div id="task-{{ task.id }}" class="col-sm-4 col-lg-4 col-md-4">
+										<div class="thumbnail">
+											<div class="caption">
+												<h4 class="pull-right">
+													{% if task.isDone %}
+														<span class="glyphicon glyphicon-ok"></span>
+													{% else %}
+														<span class="glyphicon glyphicon-remove"></span>
+													{% endif %}
+												</h4>
+												<h4>
+													<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
+												</h4>
+												<p class="text-muted small mb-0">Tache créer par :
+													{{ task.user.username}}</p>
+												<br>
+												<p>{{ task.content }}</p>
+
+											</div>
+											<div>
+
+												<div id="btnToggleTask" data-task-id="{{ task.id }}">
+													<button type="button" class="btn btn-success btn-sm pull-right">
+														{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+														{% endif %}
+													</button>
+												</div>
+
+												<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+
+											</div>
+										</div>
+									</div>
+								{% else %}
+									<div class="alert alert-warning" role="alert">
+										Il n'y a pas encore de tâche enregistrée.
+										<a href="{{ path('task_create') }}" class="btn btn-warning pull-right">Créer une tâche</a>
+									</div>
+
+								{% endif %}
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col s4">
+			<div class="col s12 m12">
+				<div class="card green">
+					<div class="card-content white-text">
+						<span class="card-title center">DONE</span>
+					</div>
+					<div class="collection sorted-list" id="done">
+						<div class="hidden"></div>
+						<div class="center white plus_jobs"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+

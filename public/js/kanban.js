@@ -1,119 +1,81 @@
+// $(document).ready(function () {
+
+//     $('#btnToggleTask').on('click', function () {
+//         alert('coucou');
+//         let id = $(this).attr('data-task-id');
+//         // $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { alert(rep); });
+//         $(this).load('/tasks/' + id + '/toggle');
+//     });
+
+//     $('#btnDeleteTask').on('click', function () {
+//         let id = $(this).attr('data-task-id');
+//         $.getJSON('/tasks/' + id + '/delete')
+//             .then(function (rep) {
+//                 if (rep == 'ok') {
+//                     $('#task-' + id).remove();
+//                 }
+//             });
+//     });
+
+// });
 $(document).ready(function () {
 
-    classnames();
-    //call dragula
-    dragula([
-        document.getElementById('1'),
-        document.getElementById('2'),
-        document.getElementById('3'),
-        document.getElementById('4'),
-        document.getElementById('5')
-    ]).on('drop', function (el) {
-        //change classes depending on column
-        classnames();
-    });
+    // There's the gallery and the trash
+    var todo = $("#todo"),
+        done = $("#done"),
+        sortable = $("[data-info=sortable]");
+    //var trash = $("#trash");
 
 
-    //static adding of values
-    $(".submit").click(function () {
-        var getvalue1 = document.getElementById("name"),
-            getvalue2 = document.getElementById("desc"),
-            getvalue3 = document.getElementById("deadline"),
-            a = getvalue1.value,
-            b = getvalue2.value,
-            c = getvalue3.value;
-        var today = new Date();
-        $(".drag-1").append("<div class='box box1'><p class='tasks'><input type='checkbox' class='checkbox checkbox1' name='' value=''/><span class='task-name'>" + a + "</span><br/><span class='task-desc'>" + b + "</span><br/><span class='task-deadline pull-right'> DEADLINE: " + c + "</span><span class='today'>" + today + "</p></div>");
+    // Test sortable --> marche pas
+    sortable.sortable();
 
-        //add class to checked items 
-        $('input:checkbox.checkbox').change(function () {
-            if ($(this).is(":checked")) {
-                $(this).parents(".box").addClass("checked");
-            } else {
-                $(this).parents(".box").removeClass("checked");
-            }
-        });
-    });
+    // Let the gallery items be draggable
+    $("li", todo).draggable({ revert: true, connectToSortable: "[data-info=sortable]" }); // 
+    $("li", done).draggable({ revert: true, connectToSortable: "[data-info=sortable]" });
+    // $("li", done).draggable({ revert: "invalid" });
+    //trash.draggable({ revert: "invalid" });
 
-    //move all to done
-    $(".toDone").click(function () {
-        $(".drag-4 .box")
-            .appendTo(".drag-5");
-    });
-    //move all to revised
-    $(".toRevised").click(function () {
-        $(".drag-3 .box")
-            .appendTo(".drag-4");
-    });
-    //move all to review
-    $(".toReview").click(function () {
-        $(".drag-2 .box")
-            .appendTo(".drag-3");
-    });
-    //move all to progress
-    $(".toProgress").click(function () {
-        $(".drag-1 .box")
-            .appendTo(".drag-2");
-    });
+    // Let the trash be droppable, accepting the gallery items
+    // trash.droppable(
+    //     {
+    //         drop: function (event, ui) {
+    //             console.log('ui', ui);
+    //             let id = $(ui.draggable).attr('data-task-id');
+    //             $.getJSON('/tasks/' + id + '/delete')
+    //                 .then(function (rep) {
+    //                     if (rep == 'ok') {
+    //                         $('#task-' + id).remove();
+    //                     }
+    //                 });
+    //         }
+    //     });
 
-    //add class to checked items 
-    $('input:checkbox.checkbox').change(function () {
-        if ($(this).is(":checked")) {
-            $(this).parents(".box").addClass("checked");
-        } else {
-            $(this).parents(".box").removeClass("checked");
+
+    // Let the gallery be droppable as well, accepting items from the trash
+    todo.sortable({
+        accept: "#done",
+        classes: {
+            "ui-droppable-active": "custom-state-active"
+        },
+        receive: function (event, ui) {
+            console.log('ui', ui);
+            let id = $(ui.item).attr('data-task-id');
+            $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { console.log(rep); });
         }
     });
 
-    //add selected to progress
-    $(".toProg").click(function () {
-        $(".drag-1 .checked")
-            .appendTo(".drag-2");
-        $(".drag-2 .checked").removeClass("checked");
-        $(".checkbox1").prop("checked", false);
-        $(".checkbox1").addClass("checkbox2");
-        $(".checkbox1").removeClass("checkbox1 checkbox4 checkbox5 checkbox2 checkbox3");
-    });
-
-    //add selected to review
-    $(".toRev").click(function () {
-        $(".drag-2 .checked")
-            .appendTo(".drag-3");
-        $(".drag-3 .checked").removeClass("checked");
-        $(".checkbox2").prop("checked", false);
-        $(".checkbox2").addClass("checkbox3");
-        $(".checkbox2").removeClass("checkbox2 checkbox4 checkbox1 checkbox5 checkbox3");
-    });
-
-    //add selected to revised
-    $(".toRevi").click(function () {
-        $(".drag-3 .checked")
-            .appendTo(".drag-4");
-        $(".drag-4 .checked").removeClass("checked");
-        $(".checkbox3").prop("checked", false);
-        $(".checkbox3").addClass("checkbox4");
-        $(".checkbox3").removeClass("checkbox3 checkbox5 checkbox1 checkbox2 checkbox3");
-    });
-
-    //add selected to done
-    $(".toDo").click(function () {
-        $(".drag-4 .checked")
-            .appendTo(".drag-5");
-        $(".drag-5 .checked").removeClass("checked");
-        $(".checkbox4").prop("checked", false);
-        $(".checkbox4").addClass("checkbox5");
-        $(".checkbox4").removeClass("checkbox4 checkbox1 checkbox2 checkbox3");
+    done.sortable({
+        accept: "#todo",
+        classes: {
+            "ui-droppable-active": "custom-state-active"
+        },
+        receive: function (event, ui) {
+            console.log('ui', ui);
+            let id = $(ui.item).attr('data-task-id');
+            $.getJSON('/tasks/' + id + '/toggle')
+                .then(function (rep) { console.log(rep); })
+                .fail(function (err) { });
+        }
     });
 });
-
-//function for changing names of tasks depending on column
-var classnames = function () {
-    $(".drag-1").children($(".box")).addClass("box1").removeClass("box2 box3 box4 box5");
-    $(".drag-2").children($(".box")).addClass("box2").removeClass("box1 box3 box4 box5");
-    $(".drag-3").children($(".box")).addClass("box3").removeClass("box1 box2 box4 box5");
-    $(".drag-4").children($(".box")).addClass("box4").removeClass("box1 box2 box3 box5");
-    $(".drag-5").children($(".box")).addClass("box5").removeClass("box1 box2 box3 box4");
-
-}
-
-  //to show date and time moved
