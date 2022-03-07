@@ -36,20 +36,6 @@ $(document).ready(function () {
     // $("li", done).draggable({ revert: "invalid" });
     //trash.draggable({ revert: "invalid" });
 
-    // Let the trash be droppable, accepting the gallery items
-    // trash.droppable(
-    //     {
-    //         drop: function (event, ui) {
-    //             console.log('ui', ui);
-    //             let id = $(ui.draggable).attr('data-task-id');
-    //             $.getJSON('/tasks/' + id + '/delete')
-    //                 .then(function (rep) {
-    //                     if (rep == 'ok') {
-    //                         $('#task-' + id).remove();
-    //                     }
-    //                 });
-    //         }
-    //     });
 
 
     // Let the gallery be droppable as well, accepting items from the trash
@@ -78,4 +64,9 @@ $(document).ready(function () {
             //     .fail(function (err) { });
         }
     });
+
+    $('#btnaddtask').on('click', function () {
+        $('#hidden').toggle();
+    });
+
 });

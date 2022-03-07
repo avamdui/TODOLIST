@@ -31,9 +31,6 @@ class TaskController extends AbstractController
             $task->setUser($user);
             $entityManager->persist($task);
             $entityManager->flush();
-
-            $this->addFlash('success', 'La tâche a été bien été ajoutée.');
-
             return $this->redirectToRoute('task_list');
         }
 
@@ -46,10 +43,14 @@ class TaskController extends AbstractController
     public function listAction(TaskRepository $repo)
     {
         $tasks = $repo->findAll();
+        $task = new Task();
+        $user = $this->getUser();
+        $form = $this->createForm(TaskType::class, $task);
         return $this->render(
             'task/list.html.twig',
             [
-                'tasks' => $tasks
+                'tasks' => $tasks,
+                'form' => $form->createView()
             ]
         );
     }
