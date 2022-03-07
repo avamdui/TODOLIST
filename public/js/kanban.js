@@ -61,7 +61,7 @@ $(document).ready(function () {
         receive: function (event, ui) {
             console.log('ui', ui);
             let id = $(ui.item).attr('data-task-id');
-            $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { console.log(rep); });
+            // $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { console.log(rep); });
         }
     });
 
@@ -73,9 +73,9 @@ $(document).ready(function () {
         receive: function (event, ui) {
             console.log('ui', ui);
             let id = $(ui.item).attr('data-task-id');
-            $.getJSON('/tasks/' + id + '/toggle')
-                .then(function (rep) { console.log(rep); })
-                .fail(function (err) { });
+            // $.getJSON('/tasks/' + id + '/toggle')
+            //     .then(function (rep) { console.log(rep); })
+            //     .fail(function (err) { });
         }
     });
 });
