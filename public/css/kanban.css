@@ -1,24 +1,65 @@
-.ui-state-highlight {
-	background: #fafafa;
-	height: calc(1.5rem + 20px);
+.collection {
+    background-color: #FFFF;
+    padding: 16px;
+    width: 99%;
+    border-style: none;
+ margin: 5px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.highlight{
+    background-color: green;
+  }
+
+.card-text{
+    color: #434343;
+    font-weight: normal;
+    font-size: 14px;
+}
+.over{
+    background: #E9E9E9;
 }
 
-.collection .collection-item .dragging {
-    -webkit-transform-origin: rotate(2deg);
-    -moz-transform-origin: rotate(2deg);
-    -ms-transform-origin: rotate(2deg);
-    -o-transform-origin: rotate(2deg);
-    transform-origin: rotate(2deg);
+html{
+    font-family: "Nunito";
+    --scrollbarBG: #1B1C28;
+    --thumbBG: #ffff;
+
 }
 
-.input-field {
-	background-color: #475B6F;
-	color: white;
+
+.boards {
+    display: inline-flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    border-top: 1px solid rgb(212, 212, 212);
 }
-.input-field label {
-	background-color: #475B6F;
-	color: white;
+
+.board {
+    background: #F5F5F5;
+    margin: 0 .5rem;
+    padding: 0px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }
-.input-field label::after {
-	background-color: #475B6F;
+
+.board h3 {
+    padding: 16px!important;
+    min-width: 300px;
+    width: 100%;
+    margin: 0;
+    background-color: #FFFF;
+    font-weight: bold;
+    font-size: 18px;
+    color: #1C1C2E;
+}
+
+.dropzone {
+    padding: 16px;
+    min-width: 300px;
+    min-height: 200px;
+    justify-content: center;
+    height: 100%;
 }

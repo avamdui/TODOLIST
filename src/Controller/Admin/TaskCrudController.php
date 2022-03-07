@@ -25,17 +25,15 @@ class TaskCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
 
-        $user = $this->security->getUser();
-
         yield IdField::new('id')
             ->onlyOnIndex();
         yield TextField::new('title');
         yield TextareaField::new('content')
             ->onlyOnForms();
-        if ($this->getUser() == $user) {
-            yield BooleanField::new('is_done')
-                ->renderAsSwitch(false);
-        }
+
+        yield BooleanField::new('is_done')
+            ->renderAsSwitch(false);
+
         yield DateField::new('createdAt')
             ->hideOnForm();
     }

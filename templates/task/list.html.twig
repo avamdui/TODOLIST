@@ -12,58 +12,71 @@
 {% block body %}
 	<section class="container">
 		<div
-			class="row">
+			class="row boards">
 			{# ---------------------------------------------------------------------------------------- #}
-			<div class="col s6">
+			<div class="col 6">
 				<div class="col s12 m12">
 					<div class="card red">
 						<div class="card-content white-text">
-							<span class="card-title center">TODO</span>
+							<span class="card-title center">En cours</span>
 						</div>
 						<div class="center white plus_jobs">
-							<ul
-								class="collection sorted-list" id="todo" data-info="sortable">
-								{# -----------------------boucle------------------------------------------------ #}
+							<ul class="collection sorted-list" id="todo">
 								{% for task in tasks %}
-									{% if task.isDone  == '0' %}
+									{% if task.isDone =='0' %}
 										<li id="task-{{ task.id }}" class="col-12" data-task-id="{{ task.id }}">
-											<div class="thumbnail">
-												<div class="caption">
-													<h4 class="pull-right">
-														<h4>
+											<div class="card">
+												<div class="card-body">
+													<div>
+														<h4 class="card-title">
 															<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
 														</h4>
 														<p class="text-muted small mb-0">Tache créer par :
 															{{ task.user.username}}</p>
-														<br>
-														<p>{{ task.content }}</p>
-													</h4>
+													</div>
+													<p class="card-text">{{ task.content }}</p>
 												</div>
 											</div>
-											<hr></li>
+										</li>
+
 									{% endif %}
 								{% endfor %}
-								<li id="hidden" style="display: none">
+								<div id="hidden" style="display: none">
 									<div>
 										<div data-action="ajout" class="Card Zone-Ajout"></div>
 									</div>
-									<div class="card-body">
-										{{ form_start(form, {'action' : path('task_create')}) }}
-										<h4 class="card-title">
-											{{form_row(form.title) }}</h4>
-										<p class="card-text">{{form_row(form.content) }}</p>
-										<button type="submit" class="btn btn-success pull-right">Ajouter</button>
-										{{ form_end(form) }}
-									</div>
-									<hr>
-								</li>
-								{# -----------------------Fin de boucle------------------------------------------------------- #}
+									<div class="card">
+										<div class="card-body">
+											{{ form_start(form, {'action' : path('task_create')}) }}
+											<div class="form-group row">
+												<div class="col-5">
+													<h6>Nom de la tache :
+													</h6>
+												</div>
+												<div class="col-7">
+													{{ form_widget(form.title) }}
+												</div>
+												<div class="form-group">
+													<h6>Détails
+													</h6>
+													{{form_widget(form.content) }}
+												</div>
+												<button type="submit" class="btn btn-success pull-right">Ajouter</button>
+												{{ form_end(form) }}
+											</div>
+										</div>
+										<hr>
+									</li>
+									{# -----------------------Fin de boucle------------------------------------------------------- #}
+								</div>
 							</ul>
-							{# -----------------------AJOUT DE TACHE------------------------------------------------ #}
-							<button id="btnaddtask" class="btn btn-danger btn-sm pull-right">+</button>
 
-							{# -----------------------FIN AJOUT------------------------------------------------ #}
+
 						</div>
+						{# -----------------------AJOUT DE TACHE------------------------------------------------ #}
+						<button id="btnaddtask" class="btn btn-danger btn-sm pull-right">Créer une tache</button>
+
+						{# -----------------------FIN AJOUT------------------------------------------------ #}
 					</div>
 				</div>
 			</div>
@@ -72,28 +85,26 @@
 				<div class="col s12 m12">
 					<div class="card green">
 						<div class="card-content white-text">
-							<span class="card-title center">DONE</span>
+							<span class="card-title center">Faites</span>
 						</div>
-						<div class="hidden"></div>
 						<div class="center white plus_jobs">
-							<ul class="collection sorted-list" id="done" data-info="sortable">
+							<ul class="collection sorted-list" id="done">
 								{% for task in tasks %}
 									{% if task.isDone %}
 										<li id="task-{{ task.id }}" class="col-12" data-task-id="{{ task.id }}">
-											<div class="thumbnail">
-												<div class="caption">
-													<h4 class="pull-right">
-														<h4>
+											<div class="card">
+												<div class="card-body">
+													<div>
+														<h4 class="card-title">
 															<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>
 														</h4>
 														<p class="text-muted small mb-0">Tache créer par :
 															{{ task.user.username}}</p>
-														<br>
-														<p>{{ task.content }}</p>
-													</h4>
+													</div>
+													<p class=" card-text">{{ task.content }}</p>
 												</div>
 											</div>
-											<hr></li>
+										</li>
 									{% endif %}
 								{% endfor %}
 							</ul>
@@ -104,21 +115,18 @@
 			{# ---------------------------------------------------------------------------------------- #}
 		{# peut etre in progress #}
 			{# ---------------------------------------------------------------------------------------- #}
-
 		</div>
 	</div>
 {% endblock %}
 {% block javascripts %}
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
 	<script type="text/javascript" src="{{ asset('js/jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>
 {% endblock %}
-
 {# <div> <button type="button" class="btn btn-success btn-sm pull-right">
-{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
-{% endif %}
-</button>
-</div>
-<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
-</div> #}
+																																																																																												{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+																																																																																												{% endif %}
+																																																																																												</button>
+																																																																																												</div>
+																																																																																												<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+																																																																																												</div> #}
