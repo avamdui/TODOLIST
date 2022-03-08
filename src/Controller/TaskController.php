@@ -125,6 +125,7 @@ class TaskController extends AbstractController
      */
     public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
+        
         $task->toggle(!$task->isDone());
         $entityManager->flush();
 
