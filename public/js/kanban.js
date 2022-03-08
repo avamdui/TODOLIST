@@ -1,24 +1,3 @@
-// $(document).ready(function () {
-
-//     $('#btnToggleTask').on('click', function () {
-//         alert('coucou');
-//         let id = $(this).attr('data-task-id');
-//         // $.getJSON('/tasks/' + id + '/toggle').then(function (rep) { alert(rep); });
-//         $(this).load('/tasks/' + id + '/toggle');
-//     });
-
-//     $('#btnDeleteTask').on('click', function () {
-//         let id = $(this).attr('data-task-id');
-//         $.getJSON('/tasks/' + id + '/delete')
-//             .then(function (rep) {
-//                 if (rep == 'ok') {
-//                     $('#task-' + id).remove();
-//                 }
-//             });
-//     });
-
-// });
-
 $(function () {
     $('.sorted-list').sortable({
         receive: function (event, ui) {
@@ -31,15 +10,12 @@ $(function () {
 
     }).disableSelection();
 });
-
-
-
-
+//----------------------------------------------------------------------------------
 $(document).ready(function () {
     $('#btnaddtask').on('click', function () {
         $('#hidden').toggle();
     });
-
+    //-------------------------------------------------------------------------------
     $('.btndelete').on('click', function () {
         let id = $(this).attr('data-task-id');
         $.getJSON('/tasks/' + id + '/delete')
@@ -49,5 +25,13 @@ $(document).ready(function () {
                 }
             });
     });
-    var num = $("#mylist").find("li").length;
+    //-------------------------------------------------------------------------------
+    $('.btnedittask').on('click', function () {
+        let id = $(this).attr('data-task-id');
+        $.getJSON('/tasks/' + id + '/edit')
+            .then(function (rep) {
+                $('#task-' + id).appendTo();
+            });
+    });
+    //-------------------------------------------------------------------------------
 });
