@@ -29,4 +29,5 @@ return [
     'task_edit' => [['id'], ['_controller' => 'App\\Controller\\TaskController::editAction'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'task_toggle' => [['id'], ['_controller' => 'App\\Controller\\TaskController::toggleTaskAction'], [], [['text', '/toggle'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'task_delete' => [['id'], ['_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
+    'taskdone' => [['id'], ['_controller' => 'App\\Controller\\TaskController::setDone'], [], [['text', '/setdone'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
 ];

@@ -125,17 +125,15 @@ class TaskController extends AbstractController
      */
     public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
-        
+
         $task->toggle(!$task->isDone());
         $entityManager->flush();
-
-        return $this->render('task/btntoggle.html.twig', [
-            'task' => $task,
-        ]);
-        // $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
-
-        //   return $this->redirectToRoute('task_list');
+        return $this->json('ok');
+        // return $this->render('task/btntoggle.html.twig', [
+        //     'task' => $task,
+        // ]);
     }
+
 
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
@@ -146,5 +144,21 @@ class TaskController extends AbstractController
         $entityManager->remove($task);
         $entityManager->flush();
         return $this->json('ok');
+    }
+
+    /**
+     * @Route("/tasks/{id}/setdone", name="taskdone")
+     */
+    public function setDone(Task $task, EntityManagerInterface $entityManager)
+    {
+
+        if ($task->isDone() == !'done') {
+            $task->setIsDone('done');
+        }
+        $entityManager->flush();
+
+        return $this->render('task/btntoggle.html.twig', [
+            'task' => $task,
+        ]);
     }
 }
