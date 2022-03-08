@@ -104,46 +104,49 @@
 							<ul class="collection sorted-list" id="done">
 								{% for task in tasks %}
 									{% if task.isDone %}
-										<div class="card">
-											<div class="row card-header">
-												<h4 class="card-title col-6">{{ task.title }}
-												</h4>
-												<p class="text-muted small mb-0 col-6">par :
-													{{ task.user.username}}</p>
+										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }} ">
+											<div class="card">
+												<div class="row card-header">
+													<h4 class="card-title col-6">{{ task.title }}
+													</h4>
+													<p class="text-muted small mb-0 col-6">par :
+														{{ task.user.username}}</p>
+												</div>
+												<div class="card-body">
+													<p class="card-text">{{ task.content }}</p>
+												</div>
+												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
+														<i class="fa-solid fa-trash-can"></i>
+													</a>
+													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
+														<i class="fa-solid fa-pen-to-square"></i>
+													</a>
+												</div>
 											</div>
-											<div class="card-body">
-
-												<p class="card-text">{{ task.content }}</p>
-											</div>
-											<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-												<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
-													<i class="fa-solid fa-trash-can"></i>
-												</a>
-
-												<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
-													<i class="fa-solid fa-pen-to-square"></i>
-												</a>
-											</div>
-										</div>
-									</li>
-								{% endif %}
-							{% endfor %}
-						</ul>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
+			{# ---------------------------------------------------------------------------------------- #}
+		{# peut etre in progress #}
+			{# ---------------------------------------------------------------------------------------- #}
 		</div>
-		{# ---------------------------------------------------------------------------------------- #}
-	{# peut etre in progress #}
-		{# ---------------------------------------------------------------------------------------- #}
 	</div>
-</div>{% endblock %}{% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="{{ asset('js/jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>{% endblock %}{# <div> <button type="button" class="btn btn-success btn-sm pull-right">
-																																																																																																							{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
-																																																																																																							{% endif %}
-																																																																																																							</button>
-																																																																																																							</div>
-																																																																																																							<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
-																																																																																																							</div> #}
+{% endblock %}
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>
+{% endblock %}
+{# <div> <button type="button" class="btn btn-success btn-sm pull-right">
+																																																																																																								{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée
+																																																																																																								{% endif %}
+																																																																																																								</button>
+																																																																																																								</div>
+																																																																																																								<button id="btnDeleteTask" data-task-id="{{ task.id }}" class="btn btn-danger btn-sm pull-right">Supprimer</button>
+																																																																																																								</div> #}
