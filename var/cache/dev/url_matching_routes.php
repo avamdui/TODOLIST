@@ -47,7 +47,10 @@ return [
                         .'|edit(*:202)'
                         .'|toggle(*:216)'
                         .'|delete(*:230)'
-                        .'|setdone(*:245)'
+                        .'|set(?'
+                            .'|done(*:248)'
+                            .'|todo(*:260)'
+                        .')'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -64,8 +67,9 @@ return [
         202 => [[['_route' => 'task_edit', '_controller' => 'App\\Controller\\TaskController::editAction'], ['id'], null, null, false, false, null]],
         216 => [[['_route' => 'task_toggle', '_controller' => 'App\\Controller\\TaskController::toggleTaskAction'], ['id'], null, null, false, false, null]],
         230 => [[['_route' => 'task_delete', '_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], ['id'], null, null, false, false, null]],
-        245 => [
-            [['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null],
+        248 => [[['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null]],
+        260 => [
+            [['_route' => 'tasktodo', '_controller' => 'App\\Controller\\TaskController::setTodo'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

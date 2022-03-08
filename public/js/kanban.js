@@ -21,17 +21,18 @@
 
 $(function () {
     $('.sorted-list').sortable({
-        stop: function (event, ui) {
-            if (!ui.sender) { }
-        },
         receive: function (event, ui) {
+            let ouonest = event.target.id;
             let id = $(ui.item).attr('data-task-id');
-            $.getJSON('/tasks/' + id + '/toggle');
+            $.getJSON('/tasks/' + id + '/' + ouonest);
         },
         connectWith: ".sorted-list",
         appendTo: 'body',
     }).disableSelection();
 });
+
+
+
 
 $(document).ready(function () {
     $('#btnaddtask').on('click', function () {

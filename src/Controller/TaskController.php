@@ -157,8 +157,19 @@ class TaskController extends AbstractController
         }
         $entityManager->flush();
 
-        return $this->render('task/btntoggle.html.twig', [
-            'task' => $task,
-        ]);
+        return $this->json('ok');
+    }
+    /**
+     * @Route("/tasks/{id}/settodo", name="tasktodo")
+     */
+    public function setTodo(Task $task, EntityManagerInterface $entityManager)
+    {
+
+        if ($task->isDone() == !'todo') {
+            $task->setIsDone('todo');
+        }
+        $entityManager->flush();
+
+        return $this->json('ok');
     }
 }
