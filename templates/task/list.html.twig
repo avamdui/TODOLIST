@@ -15,7 +15,8 @@
 	<section class="container">
 		<div class="row boards">
 			<h1>
-				<i class="fa fa-th text-blue"></i>Mes taches</h1>
+				<i class="fa fa-th text-blue"></i>
+				Mes taches</h1>
 			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col 6">
 				<div class="col s12 m12">
@@ -40,9 +41,9 @@
 													<p class="card-text">{{ task.content }}</p>
 												</div>
 												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
+													<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
 														<i class="fa-solid fa-trash-can"></i>
-													</a>
+													</button>
 													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
 														<i class="fa-solid fa-pen-to-square"></i>
 													</a>
@@ -116,9 +117,9 @@
 													<p class="card-text">{{ task.content }}</p>
 												</div>
 												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
+													<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
 														<i class="fa-solid fa-trash-can"></i>
-													</a>
+													</button>
 													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
 														<i class="fa-solid fa-pen-to-square"></i>
 													</a>

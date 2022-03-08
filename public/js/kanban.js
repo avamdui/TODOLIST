@@ -37,4 +37,14 @@ $(document).ready(function () {
     $('#btnaddtask').on('click', function () {
         $('#hidden').toggle();
     });
+
+    $('.btndelete').on('click', function () {
+        let id = $(this).attr('data-task-id');
+        $.getJSON('/tasks/' + id + '/delete')
+            .then(function (rep) {
+                if (rep == 'ok') {
+                    $('#task-' + id).remove();
+                }
+            });
+    });
 });
