@@ -36,9 +36,9 @@ class Task
     private $content;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string")
      */
-    private $isDone = false;
+    private $statut = 'todo';
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="task")
@@ -97,20 +97,15 @@ class Task
         $this->content = $content;
     }
 
-    public function isDone(): bool
+    public function getStatut()
     {
-        return $this->isDone;
+        return $this->statut;
     }
 
-    public function setIsDone(bool $isDone): self
+    public function setStatut($statut)
     {
-        $this->isDone = $isDone;
+        $this->statut = $statut;
 
         return $this;
-    }
-
-    public function toggle($flag)
-    {
-        $this->isDone = $flag;
     }
 }

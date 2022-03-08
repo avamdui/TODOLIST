@@ -31,7 +31,7 @@
     text-transform: uppercase;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	background-color: rgb(7,38,82);
+	background-color: #0dcaf0;
 	color: white;
 	padding: 6px 10px;
     font-family: var(--bs-body-font-family);

@@ -22,7 +22,6 @@ return [
         '/tasks/create' => [[['_route' => 'task_create', '_controller' => 'App\\Controller\\TaskController::createAction'], null, null, null, false, false, null]],
         '/tasks' => [[['_route' => 'task_list', '_controller' => 'App\\Controller\\TaskController::listAction'], null, null, null, false, false, null]],
         '/taskskanban' => [[['_route' => 'task_list_kanban', '_controller' => 'App\\Controller\\TaskController::listKanbanAction'], null, null, null, false, false, null]],
-        '/tasksDone' => [[['_route' => 'task_done', '_controller' => 'App\\Controller\\TaskController::listActionDone'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -45,11 +44,11 @@ return [
                     .'|(*:186)'
                     .'|/(?'
                         .'|edit(*:202)'
-                        .'|toggle(*:216)'
-                        .'|delete(*:230)'
+                        .'|delete(*:216)'
                         .'|set(?'
-                            .'|done(*:248)'
-                            .'|todo(*:260)'
+                            .'|done(*:234)'
+                            .'|todo(*:246)'
+                            .'|inprogress(*:264)'
                         .')'
                     .')'
                 .')'
@@ -65,11 +64,11 @@ return [
         159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
         186 => [[['_route' => 'task_user_list', '_controller' => 'App\\Controller\\TaskController::listActionUser'], ['id'], null, null, false, true, null]],
         202 => [[['_route' => 'task_edit', '_controller' => 'App\\Controller\\TaskController::editAction'], ['id'], null, null, false, false, null]],
-        216 => [[['_route' => 'task_toggle', '_controller' => 'App\\Controller\\TaskController::toggleTaskAction'], ['id'], null, null, false, false, null]],
-        230 => [[['_route' => 'task_delete', '_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], ['id'], null, null, false, false, null]],
-        248 => [[['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null]],
-        260 => [
-            [['_route' => 'tasktodo', '_controller' => 'App\\Controller\\TaskController::setTodo'], ['id'], null, null, false, false, null],
+        216 => [[['_route' => 'task_delete', '_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], ['id'], null, null, false, false, null]],
+        234 => [[['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null]],
+        246 => [[['_route' => 'tasktodo', '_controller' => 'App\\Controller\\TaskController::setTodo'], ['id'], null, null, false, false, null]],
+        264 => [
+            [['_route' => 'taskinprogress', '_controller' => 'App\\Controller\\TaskController::setInProgress'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

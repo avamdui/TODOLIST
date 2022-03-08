@@ -71,16 +71,16 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasksDone", name="task_done")
      */
-    public function listActionDone(TaskRepository $repo)
-    {
-        $tasks = $repo->findBy(['isDone' =>  true]);
-        return $this->render(
-            'task/done.html.twig',
-            [
-                'tasks' => $tasks
-            ]
-        );
-    }
+    // public function listActionDone(TaskRepository $repo)
+    // {
+    //     $tasks = $repo->findBy(['isDone' =>  true]);
+    //     return $this->render(
+    //         'task/done.html.twig',
+    //         [
+    //             'tasks' => $tasks
+    //         ]
+    //     );
+    // }
 
     /**
      * @Route("/tasks/{id}", name="task_user_list")
@@ -123,16 +123,16 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
-    {
+    // public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
+    // {
 
-        $task->toggle(!$task->isDone());
-        $entityManager->flush();
-        return $this->json('ok');
-        // return $this->render('task/btntoggle.html.twig', [
-        //     'task' => $task,
-        // ]);
-    }
+    //     $task->toggle(!$task->isDone());
+    //     $entityManager->flush();
+    //     return $this->json('ok');
+    // return $this->render('task/btntoggle.html.twig', [
+    //     'task' => $task,
+    // ]);
+    // }
 
 
     /**
@@ -152,8 +152,8 @@ class TaskController extends AbstractController
     public function setDone(Task $task, EntityManagerInterface $entityManager)
     {
 
-        if ($task->isDone() == !'done') {
-            $task->setIsDone('done');
+        if ($task->getStatut() !== 'done') {
+            $task->setStatut('done');
         }
         $entityManager->flush();
 
@@ -165,11 +165,23 @@ class TaskController extends AbstractController
     public function setTodo(Task $task, EntityManagerInterface $entityManager)
     {
 
-        if ($task->isDone() == !'todo') {
-            $task->setIsDone('todo');
+        if ($task->getStatut() !== 'todo') {
+            $task->setStatut('todo');
         }
         $entityManager->flush();
 
+        return $this->json('ok');
+    }
+    /**
+     * @Route("/tasks/{id}/setinprogress", name="taskinprogress")
+     */
+    public function setInProgress(Task $task, EntityManagerInterface $entityManager)
+    {
+
+        if ($task->getStatut() !== 'inprogress') {
+            $task->setStatut('inprogress');
+        }
+        $entityManager->flush();
         return $this->json('ok');
     }
 }

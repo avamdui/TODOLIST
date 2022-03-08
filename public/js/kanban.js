@@ -28,6 +28,7 @@ $(function () {
         },
         connectWith: ".sorted-list",
         appendTo: 'body',
+
     }).disableSelection();
 });
 
@@ -48,4 +49,5 @@ $(document).ready(function () {
                 }
             });
     });
+    var num = $("#mylist").find("li").length;
 });

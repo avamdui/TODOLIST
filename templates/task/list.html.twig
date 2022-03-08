@@ -22,12 +22,12 @@
 				<div class="col s12 m12">
 					<div class="card red">
 						<div class="card-content white-text">
-							<span class="card-title center">En cours</span>
+							<span class="card-title center">A faire</span>
 						</div>
 						<div class="center white plus_jobs">
 							<ul class="collection sorted-list list-group" id="settodo">
 								{% for task in tasks %}
-									{% if task.isDone =='0' %}
+									{% if task.statut == 'todo'  %}
 										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="settodo">
 											<div class="card">
 												<div class="row card-header">
@@ -97,6 +97,46 @@
 			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col 4">
 				<div class="col s12 m12">
+					<div class="card blue">
+						<div class="card-content white-text">
+							<span class="card-title center">En cours</span>
+						</div>
+						<div class="center white plus_jobs">
+							<ul class="collection sorted-list" id="setinprogress">
+								{% for task in tasks %}
+									{% if task.statut == 'inprogress' %}
+										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
+											<div class="card">
+												<div class="row card-header">
+													<h4 class="card-title col-6">{{ task.title }}
+													</h4>
+													<p class="text-muted small mb-0 col-6">par :
+														{{ task.user.username}}</p>
+												</div>
+												<div class="card-body">
+													<p class="card-text">{{ task.content }}</p>
+												</div>
+												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+													<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+														<i class="fa-solid fa-trash-can"></i>
+													</button>
+													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
+														<i class="fa-solid fa-pen-to-square"></i>
+													</a>
+												</div>
+											</div>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			{# ---------------------------------------------------------------------------------------- #}
+			{# ---------------------------------------------------------------------------------------- #}
+			<div class="col 4">
+				<div class="col s12 m12">
 					<div class="card green">
 						<div class="card-content white-text">
 							<span class="card-title center">Faites</span>
@@ -104,7 +144,7 @@
 						<div class="center white plus_jobs">
 							<ul class="collection sorted-list" id="setdone">
 								{% for task in tasks %}
-									{% if task.isDone %}
+									{% if task.statut == 'done'  %}
 										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
 											<div class="card">
 												<div class="row card-header">
@@ -134,46 +174,7 @@
 				</div>
 			</div>
 			{# ---------------------------------------------------------------------------------------- #}
-			{# peut etre in progress #}
-			<div class="col 4">
-				<div class="col s12 m12">
-					<div class="card blue">
-						<div class="card-content white-text">
-							<span class="card-title center">In progress</span>
-						</div>
-						<div class="center white plus_jobs">
-							<ul class="collection sorted-list" id="setinprogress">
-								{% for task in tasks %}
-									{% if task.isDone %}
-										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
-											<div class="card">
-												<div class="row card-header">
-													<h4 class="card-title col-6">{{ task.title }}
-													</h4>
-													<p class="text-muted small mb-0 col-6">par :
-														{{ task.user.username}}</p>
-												</div>
-												<div class="card-body">
-													<p class="card-text">{{ task.content }}</p>
-												</div>
-												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
-														<i class="fa-solid fa-trash-can"></i>
-													</button>
-													<a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-danger">
-														<i class="fa-solid fa-pen-to-square"></i>
-													</a>
-												</div>
-											</div>
-										</li>
-									{% endif %}
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			{# ---------------------------------------------------------------------------------------- #}
+
 		</div>
 	</div>
 {% endblock %}
