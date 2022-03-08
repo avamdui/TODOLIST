@@ -1,15 +1,9 @@
-.collection {
-    background-color: #FFFF;
-    padding: 16px;
-    width: 99%;
-    border-style: none;
- margin: 5px;
-    font-weight: 600;
-    font-size: 16px;
-}
-.highlight{
-    background-color: green;
-  }
+
+.slide-image{
+    max-height: 263px;
+    max-width: 1048px;
+    align-self: center;
+    }
 
 .card-text{
     color: #434343;
@@ -20,29 +14,48 @@
     background: #E9E9E9;
 }
 
-html{
-    font-family: "Nunito";
-    --scrollbarBG: #1B1C28;
-    --thumbBG: #ffff;
-
-}
-
 
 .boards {
-    display: inline-flex;
-    flex: 1;
-    height: 100%;
-    width: 100%;
-    border-top: 1px solid rgb(212, 212, 212);
+	background-color: rgb(241,243,245);
+	border-radius: 6px;
+	padding-bottom: 10px;
+	box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.boards h1{
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	background-color: rgb(7,38,82);
+	color: white;
+	padding: 6px 10px;
+	font-size: 20px;
+	margin: 0;
 }
 
-.board {
-    background: #F5F5F5;
-    margin: 0 .5rem;
-    padding: 0px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+
+.plus_jobs{
+	background-color: rgb(241,243,245) !important;
+    border-style: none !important;
+}
+.sorted-list{
+	background-color: rgb(241,243,245);
+	border-style: none !important;
+	box-shadow: 0 1px 4px rgba(0,0,0,.2);
+	margin: 10px;
+	font-size: 12px;
+}
+.text-muted { text-align: right;}
+
+
+.icon{
+
+    position: absolute;
+    
+}
+
+.card-title{
+	font-weight: bold !important;
+    text-align: left;
+ 
 }
 
 .board h3 {

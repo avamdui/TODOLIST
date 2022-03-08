@@ -57,30 +57,31 @@
 			</div>
 		</nav>
 
-		<!-- flash_message -->
-		<div class="row">
-			<div class="col-md-12">
-				{% for flash_message in app.session.flashBag.get('success') %}
-					<div class="alert alert-success" role="alert">
-						<strong>Superbe !</strong>
-						{{ flash_message }}
-					</div>
-				{% endfor %}
-				{% for flash_message in app.session.flashBag.get('error') %}
-					<div class="alert alert-danger" role="alert">
-						<strong>Oops !</strong>
-						{{ flash_message }}
-					</div>
-				{% endfor %}
-			</div>
-		</div>
 		<!-- Page Content -->
 		{% block header_title %}{% endblock %}
-		<br>
+
 		{% block header_img %}
 			<div class="container"><img class="slide-image" src="{{ asset('img/todolist_homepage.jpg') }}" alt="todo list"></div>
+			<!-- flash_message -->
+			<div class="row">
+				<div class="col-md-12">
+					{% for flash_message in app.session.flashBag.get('success') %}
+						<div class="alert alert-success" role="alert">
+							<strong>Superbe !</strong>
+							{{ flash_message }}
+						</div>
+					{% endfor %}
+					{% for flash_message in app.session.flashBag.get('error') %}
+						<div class="alert alert-danger" role="alert">
+							<strong>Oops !</strong>
+							{{ flash_message }}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
 		{% endblock %}
-		<br>
+
 		{% block body %}{% endblock %}
 		<br>
 		<footer class="footer mt-auto navbar navbar-dark bg-dark text-white justify-content-center">
