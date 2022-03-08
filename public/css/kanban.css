@@ -13,7 +13,9 @@
 .over{
     background: #E9E9E9;
 }
-
+ul{
+    list-style-type: none;
+}
 
 .boards {
 	background-color: rgb(241,243,245);
@@ -58,7 +60,7 @@
  
 }
 
-.board h3 {
+.boards h3 {
     padding: 16px!important;
     min-width: 300px;
     width: 100%;
