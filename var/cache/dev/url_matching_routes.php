@@ -22,6 +22,7 @@ return [
         '/tasks/create' => [[['_route' => 'task_create', '_controller' => 'App\\Controller\\TaskController::createAction'], null, null, null, false, false, null]],
         '/tasks' => [[['_route' => 'task_list', '_controller' => 'App\\Controller\\TaskController::listAction'], null, null, null, false, false, null]],
         '/taskskanban' => [[['_route' => 'task_list_kanban', '_controller' => 'App\\Controller\\TaskController::listKanbanAction'], null, null, null, false, false, null]],
+        '/tasksDone' => [[['_route' => 'task_done', '_controller' => 'App\\Controller\\TaskController::listActionDone'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
