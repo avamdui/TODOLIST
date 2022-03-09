@@ -43,24 +43,39 @@
 	background-color: rgb(241,243,245) !important;
     border-style: none !important;
 }
-.sorted-list{
-    list-style-type: none !important;;
+
+.sorted-list  {
+    list-style-type: none !important;
 	background-color: rgb(241,243,245);
     border-left: red;
     border-left-width: 10px;
 	border-style: none !important;
-	box-shadow: 0 1px 4px rgba(0,0,0,.2);
 	margin: 10px;
+    padding: none;
 	font-size: 12px;
+}
+#hidden{
+    border-style: none !important;
+    padding: none;
+    margin: none;
 }
 .text-muted { text-align: right;
     }
-
 
 .icon{
 
     position: absolute;
     
+}
+.card-task {    margin: none !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+
 }
 
 .card-title{
@@ -77,7 +92,7 @@
     background-color: #FFFF;
     font-weight: bold;
     font-size: 18px;
-    color: #1C1C2E;
+    color: #333333;
 }
 
 .dropzone {
@@ -86,4 +101,34 @@
     min-height: 200px;
     justify-content: center;
     height: 100%;
+}
+.ui-tabs .ui-tabs-panel {    
+    margin: 1px 0 0 0 !important;
+    border: none !important;
+    padding:1px 0 0 0 !important;}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: none;
+    background: none;
+    font-weight: normal;
+    color: #ffffff;
+}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+    color: #ffffff;
+    text-decoration: none;
+}
+.tabs .ui-tabs .ui-tabs-panel .ui-tabs-panel .ui-corner-bottom .ui-widget-content {
+    margin: none !important;
+    border: none !important;
+    padding: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #ffffff;
+    color: #333333;
+}
+.list-group-item-action{
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border: none !important;
+    color: #333333;
 }
