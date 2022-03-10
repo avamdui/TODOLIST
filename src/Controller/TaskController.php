@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class TaskController extends AbstractController
 {
+    //-------------------------------------------------CREATION DE TACHES ------------------------------------------------------------------ 
     /**
      * @Route("/tasks/create", name="task_create")
      * @param User $user
@@ -37,7 +38,7 @@ class TaskController extends AbstractController
 
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
-
+    //-------------------------------------------AFFICHAGE DES TACHES ------------------------------------------------
     /**
      * @Route("/tasks", name="task_list")
      */
@@ -54,20 +55,6 @@ class TaskController extends AbstractController
                 'tasks' => $tasks,
                 'form' => $form->createView(),
                 'task_user_list' => $task_user_list
-            ]
-        );
-    }
-
-    /**
-     * @Route("/tasksDone", name="task_done")
-     */
-    public function listActionDone(TaskRepository $repo)
-    {
-        $tasks = $repo->findBy(['isDone' =>  true]);
-        return $this->render(
-            'task/done.html.twig',
-            [
-                'tasks' => $tasks
             ]
         );
     }
@@ -96,6 +83,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
     }
 
+    //---------------------------------EDITION DUNE TACHE ---------------------------------------------------
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
@@ -123,7 +111,7 @@ class TaskController extends AbstractController
             ]);
         }
     }
-
+    //--------------------------------------Suppresion d'une tache------------------------------------------------------------
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
@@ -137,7 +125,7 @@ class TaskController extends AbstractController
         }
         return $this->json('Modification interdite');
     }
-
+    //--------------------------------------CHANGEMENT DE STATUS POUR LES TACHES--------------------------------------------
     /**
      * @Route("/tasks/{id}/setdone", name="taskdone")
      */

@@ -21,7 +21,6 @@ return [
         '/logout' => [[['_route' => 'logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, ['GET' => 0], null, false, false, null]],
         '/tasks/create' => [[['_route' => 'task_create', '_controller' => 'App\\Controller\\TaskController::createAction'], null, null, null, false, false, null]],
         '/tasks' => [[['_route' => 'task_list', '_controller' => 'App\\Controller\\TaskController::listAction'], null, null, null, false, false, null]],
-        '/tasksDone' => [[['_route' => 'task_done', '_controller' => 'App\\Controller\\TaskController::listActionDone'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
