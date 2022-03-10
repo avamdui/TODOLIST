@@ -29,10 +29,7 @@ $(document).ready(function () {
     //-------------------------------------------------------------------------------
     $('.btnedittask').on('click', function () {
         let id = $(this).attr('data-task-id');
-        $.getJSON('/tasks/' + id + '/edit')
-            .then(function (rep) {
-                $('#task-' + id).appendTo();
-            });
+        $.getJSON('/tasks/' + id + '/edit');
     });
     //-------------------------------------------------------------------------------
     $(function () {

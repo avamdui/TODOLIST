@@ -45,12 +45,15 @@ return [
                     .'|(*:186)'
                     .'|/(?'
                         .'|edit(*:202)'
-                        .'|delete(*:216)'
-                        .'|set(?'
-                            .'|done(*:234)'
-                            .'|todo(*:246)'
-                            .'|inprogress(*:264)'
+                        .'|s(?'
+                            .'|howedit(*:221)'
+                            .'|et(?'
+                                .'|done(*:238)'
+                                .'|todo(*:250)'
+                                .'|inprogress(*:268)'
+                            .')'
                         .')'
+                        .'|delete(*:284)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -65,11 +68,12 @@ return [
         159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
         186 => [[['_route' => 'task_user_list', '_controller' => 'App\\Controller\\TaskController::listActionUser'], ['id'], null, null, false, true, null]],
         202 => [[['_route' => 'task_edit', '_controller' => 'App\\Controller\\TaskController::editAction'], ['id'], null, null, false, false, null]],
-        216 => [[['_route' => 'task_delete', '_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], ['id'], null, null, false, false, null]],
-        234 => [[['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null]],
-        246 => [[['_route' => 'tasktodo', '_controller' => 'App\\Controller\\TaskController::setTodo'], ['id'], null, null, false, false, null]],
-        264 => [
-            [['_route' => 'taskinprogress', '_controller' => 'App\\Controller\\TaskController::setInProgress'], ['id'], null, null, false, false, null],
+        221 => [[['_route' => 'show_task_edit', '_controller' => 'App\\Controller\\TaskController::showeditAction'], ['id'], null, null, false, false, null]],
+        238 => [[['_route' => 'taskdone', '_controller' => 'App\\Controller\\TaskController::setDone'], ['id'], null, null, false, false, null]],
+        250 => [[['_route' => 'tasktodo', '_controller' => 'App\\Controller\\TaskController::setTodo'], ['id'], null, null, false, false, null]],
+        268 => [[['_route' => 'taskinprogress', '_controller' => 'App\\Controller\\TaskController::setInProgress'], ['id'], null, null, false, false, null]],
+        284 => [
+            [['_route' => 'task_delete', '_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

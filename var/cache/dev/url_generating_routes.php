@@ -27,6 +27,7 @@ return [
     'task_done' => [[], ['_controller' => 'App\\Controller\\TaskController::listActionDone'], [], [['text', '/tasksDone']], [], [], []],
     'task_user_list' => [['id'], ['_controller' => 'App\\Controller\\TaskController::listActionUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'task_edit' => [['id'], ['_controller' => 'App\\Controller\\TaskController::editAction'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
+    'show_task_edit' => [['id'], ['_controller' => 'App\\Controller\\TaskController::showeditAction'], [], [['text', '/showedit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'task_delete' => [['id'], ['_controller' => 'App\\Controller\\TaskController::deleteTaskAction'], [], [['text', '/delete'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'taskdone' => [['id'], ['_controller' => 'App\\Controller\\TaskController::setDone'], [], [['text', '/setdone'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'tasktodo' => [['id'], ['_controller' => 'App\\Controller\\TaskController::setTodo'], [], [['text', '/settodo'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
