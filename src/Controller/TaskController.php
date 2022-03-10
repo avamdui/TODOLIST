@@ -10,6 +10,7 @@ use App\Repository\TaskRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class TaskController extends AbstractController
 {
@@ -40,30 +41,17 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks", name="task_list")
      */
-    public function listAction(TaskRepository $repo)
+    public function listAction(TaskRepository $repo,  UserInterface $user)
     {
         $tasks = $repo->findAll();
         $task = new Task();
-        $user = $this->getUser();
         $form = $this->createForm(TaskType::class, $task);
         return $this->render(
             'task/list.html.twig',
             [
+                'user' => $user,
                 'tasks' => $tasks,
                 'form' => $form->createView()
-            ]
-        );
-    }
-    /**
-     * @Route("/taskskanban", name="task_list_kanban")
-     */
-    public function listKanbanAction(TaskRepository $repo)
-    {
-        $tasks = $repo->findAll();
-        return $this->render(
-            'task/kanban.html.twig',
-            [
-                'tasks' => $tasks
             ]
         );
     }
@@ -86,14 +74,20 @@ class TaskController extends AbstractController
      * @Route("/tasks/{id}", name="task_user_list")
      * @param User $user
      */
-    public function listActionUser(User $user)
-    {
-        return $this->render(
-            'user/taskslist.html.twig',
-            [
-                'user' => $user
-            ]
-        );
+    public function listActionUser(User $user, TaskRepository $repo)
+    { {
+            $tasks = $repo->findBy(['user' => $this->getUser()]);
+            $task = new Task();
+            $form = $this->createForm(TaskType::class, $task);
+            return $this->render(
+                'task/list.html.twig',
+                [
+                    'user' => $user,
+                    'tasks' => $tasks,
+                    'form' => $form->createView()
+                ]
+            );
+        }
     }
 
 
@@ -102,6 +96,7 @@ class TaskController extends AbstractController
      */
     public function editAction(Task $task, Request $request, EntityManagerInterface $entityManager)
     {
+        $user = $this->getUser();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -116,10 +111,13 @@ class TaskController extends AbstractController
     public function showeditAction(Task $task, Request $request, EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(TaskType::class, $task);
-        return $this->render('task/edit.html.twig', [
-            'form' => $form->createView(),
-            'task' => $task,
-        ]);
+        $user = $this->getUser();
+        if ($task->getUser() == $user) {
+            return $this->render('task/edit.html.twig', [
+                'form' => $form->createView(),
+                'task' => $task,
+            ]);
+        }
     }
 
 
@@ -144,10 +142,13 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
-
-        $entityManager->remove($task);
-        $entityManager->flush();
-        return $this->json('ok');
+        $user = $this->getUser();
+        if ($task->getUser() == $user) {
+            $entityManager->remove($task);
+            $entityManager->flush();
+            return $this->json('ok');
+        }
+        return $this->json('Modification interdite');
     }
 
     /**

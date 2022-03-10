@@ -45,23 +45,25 @@
 														</div>
 													</div>
 												</div>
-												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<ul>
-														<li>
-															<a class="btn btn-danger" role="button" href="#tabs-1">
-																<i class="fa-solid fa-indent"></i>
-															</a>
-														</li>
-														<li>
-															<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
-																<i class="fa-solid fa-pen-to-square"></i>
-															</a>
-														</li>
-														<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
-															<i class="fa-solid fa-trash-can"></i>
-														</button>
-													</ul>
-												</div>
+												{% if app.user.id == task.getUser.getId %}
+													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+														<ul>
+															<li>
+																<a class="btn btn-danger" role="button" href="#tabs-1">
+																	<i class="fa-solid fa-indent"></i>
+																</a>
+															</li>
+															<li>
+																<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+																	<i class="fa-solid fa-pen-to-square"></i>
+																</a>
+															</li>
+															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+																<i class="fa-solid fa-trash-can"></i>
+															</button>
+														</ul>
+													</div>
+												{% endif %}
 											</div>
 										</li>
 									{% endif %}
@@ -133,23 +135,25 @@
 														</div>
 													</div>
 												</div>
-												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<ul>
-														<li>
-															<a class="btn btn-danger" role="button" href="#tabs-1">
-																<i class="fa-solid fa-indent"></i>
-															</a>
-														</li>
-														<li>
-															<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
-																<i class="fa-solid fa-pen-to-square"></i>
-															</a>
-														</li>
-														<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
-															<i class="fa-solid fa-trash-can"></i>
-														</button>
-													</ul>
-												</div>
+												{% if app.user.id == task.getUser.getId %}
+													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+														<ul>
+															<li>
+																<a class="btn btn-danger" role="button" href="#tabs-1">
+																	<i class="fa-solid fa-indent"></i>
+																</a>
+															</li>
+															<li>
+																<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+																	<i class="fa-solid fa-pen-to-square"></i>
+																</a>
+															</li>
+															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+																<i class="fa-solid fa-trash-can"></i>
+															</button>
+														</ul>
+													</div>
+												{% endif %}
 											</div>
 										</li>
 									{% endif %}
@@ -186,23 +190,25 @@
 														</div>
 													</div>
 												</div>
-												<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
-													<ul>
-														<li>
-															<a class="btn btn-danger" role="button" href="#tabs-1">
-																<i class="fa-solid fa-indent"></i>
-															</a>
-														</li>
-														<li>
-															<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
-																<i class="fa-solid fa-pen-to-square"></i>
-															</a>
-														</li>
-														<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
-															<i class="fa-solid fa-trash-can"></i>
-														</button>
-													</ul>
-												</div>
+												{% if app.user.id == task.getUser.getId %}
+													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+														<ul>
+															<li>
+																<a class="btn btn-danger" role="button" href="#tabs-1">
+																	<i class="fa-solid fa-indent"></i>
+																</a>
+															</li>
+															<li>
+																<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+																	<i class="fa-solid fa-pen-to-square"></i>
+																</a>
+															</li>
+															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+																<i class="fa-solid fa-trash-can"></i>
+															</button>
+														</ul>
+													</div>
+												{% endif %}
 											</div>
 										</li>
 									{% endif %}

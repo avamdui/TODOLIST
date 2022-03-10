@@ -7194,16 +7194,24 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.8RfiNjD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="repo" type="service_closure" id="App\Repository\TaskRepository"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator.8RfiNjD.Symfony\Component\Security\Core\User\UserInterface"/>
+      </argument>
+    </service>
     <service id=".service_locator.K8mEeqr" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="repo" type="service_closure" id="App\Repository\TaskRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.ch4Jgvl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.UkG67Q3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="user" type="service_closure" id=".errored..service_locator.ch4Jgvl.App\Entity\User"/>
+        <argument key="repo" type="service_closure" id="App\Repository\TaskRepository"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator.UkG67Q3.App\Entity\User"/>
       </argument>
     </service>
     <service id=".service_locator.MQERK.A" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7213,7 +7221,7 @@
         <argument key="task" type="service_closure" id=".errored..service_locator.MQERK.A.App\Entity\Task"/>
       </argument>
     </service>
-    <service id=".service_locator.NudE1PD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CmFbV1D" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7264,10 +7272,9 @@
         <argument key="App\Controller\TaskController::createAction" type="service_closure" id=".service_locator.HK4bswD"/>
         <argument key="App\Controller\TaskController::deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::editAction" type="service_closure" id=".service_locator.MQERK.A"/>
-        <argument key="App\Controller\TaskController::listAction" type="service_closure" id=".service_locator.K8mEeqr"/>
+        <argument key="App\Controller\TaskController::listAction" type="service_closure" id=".service_locator.8RfiNjD"/>
         <argument key="App\Controller\TaskController::listActionDone" type="service_closure" id=".service_locator.K8mEeqr"/>
-        <argument key="App\Controller\TaskController::listActionUser" type="service_closure" id=".service_locator.ch4Jgvl"/>
-        <argument key="App\Controller\TaskController::listKanbanAction" type="service_closure" id=".service_locator.K8mEeqr"/>
+        <argument key="App\Controller\TaskController::listActionUser" type="service_closure" id=".service_locator.UkG67Q3"/>
         <argument key="App\Controller\TaskController::setDone" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::setInProgress" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::setTodo" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7326,10 +7333,9 @@
         <argument key="App\Controller\TaskController:createAction" type="service_closure" id=".service_locator.HK4bswD"/>
         <argument key="App\Controller\TaskController:deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:editAction" type="service_closure" id=".service_locator.MQERK.A"/>
-        <argument key="App\Controller\TaskController:listAction" type="service_closure" id=".service_locator.K8mEeqr"/>
+        <argument key="App\Controller\TaskController:listAction" type="service_closure" id=".service_locator.8RfiNjD"/>
         <argument key="App\Controller\TaskController:listActionDone" type="service_closure" id=".service_locator.K8mEeqr"/>
-        <argument key="App\Controller\TaskController:listActionUser" type="service_closure" id=".service_locator.ch4Jgvl"/>
-        <argument key="App\Controller\TaskController:listKanbanAction" type="service_closure" id=".service_locator.K8mEeqr"/>
+        <argument key="App\Controller\TaskController:listActionUser" type="service_closure" id=".service_locator.UkG67Q3"/>
         <argument key="App\Controller\TaskController:setDone" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:setInProgress" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:setTodo" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -8054,12 +8060,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.NudE1PD"/>
+      <argument type="service" id=".service_locator.CmFbV1D"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.NudE1PD"/>
+      <argument type="service" id=".service_locator.CmFbV1D"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8104,7 +8110,8 @@
     <service id=".errored..service_locator.bgO__Zr.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto"/>
     <service id=".errored..service_locator.bgO__Zr.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
     <service id=".errored..service_locator.2dc0eaX.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
-    <service id=".errored..service_locator.ch4Jgvl.App\Entity\User" class="App\Entity\User"/>
+    <service id=".errored..service_locator.8RfiNjD.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.UkG67Q3.App\Entity\User" class="App\Entity\User"/>
     <service id=".errored..service_locator.MQERK.A.App\Entity\Task" class="App\Entity\Task"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -9058,7 +9065,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.NudE1PD"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.CmFbV1D"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9088,8 +9095,9 @@
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.Dby0_1s" alias=".service_locator.4u5os03"/>
     <service id=".service_locator._0BW_Ne" alias=".service_locator.HK4bswD"/>
+    <service id=".service_locator.F5suoal" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
-    <service id=".service_locator.PKsEVnS" alias=".service_locator.NudE1PD"/>
+    <service id=".service_locator.OFgybmf" alias=".service_locator.CmFbV1D"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.MyylfZM" alias=".service_locator.R4MAzD_"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9135,8 +9143,9 @@
     <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
     <service id=".service_locator.LzwvCJx" alias=".service_locator.4u5os03"/>
     <service id=".service_locator.KA7Sukb" alias=".service_locator.HK4bswD"/>
+    <service id=".service_locator.iHcfOUN" alias=".service_locator.8RfiNjD"/>
     <service id=".service_locator.kxfFwQY" alias=".service_locator.K8mEeqr"/>
-    <service id=".service_locator.NFoOWn0" alias=".service_locator.ch4Jgvl"/>
+    <service id=".service_locator.5PvqiCU" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.xITMhU1" alias=".service_locator.MQERK.A"/>
     <service id=".service_locator.fw1zngT" alias=".service_locator.wmdtZbW"/>
     <service id=".service_locator.4c8pZyi" alias=".service_locator.SoiLYDQ"/>

@@ -23,7 +23,6 @@ return [
     'logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'task_create' => [[], ['_controller' => 'App\\Controller\\TaskController::createAction'], [], [['text', '/tasks/create']], [], [], []],
     'task_list' => [[], ['_controller' => 'App\\Controller\\TaskController::listAction'], [], [['text', '/tasks']], [], [], []],
-    'task_list_kanban' => [[], ['_controller' => 'App\\Controller\\TaskController::listKanbanAction'], [], [['text', '/taskskanban']], [], [], []],
     'task_done' => [[], ['_controller' => 'App\\Controller\\TaskController::listActionDone'], [], [['text', '/tasksDone']], [], [], []],
     'task_user_list' => [['id'], ['_controller' => 'App\\Controller\\TaskController::listActionUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
     'task_edit' => [['id'], ['_controller' => 'App\\Controller\\TaskController::editAction'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/tasks']], [], [], []],
