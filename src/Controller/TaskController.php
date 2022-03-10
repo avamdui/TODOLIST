@@ -43,6 +43,7 @@ class TaskController extends AbstractController
      */
     public function listAction(TaskRepository $repo,  UserInterface $user)
     {
+        $task_user_list = 0;
         $tasks = $repo->findAll();
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -51,7 +52,8 @@ class TaskController extends AbstractController
             [
                 'user' => $user,
                 'tasks' => $tasks,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'task_user_list' => $task_user_list
             ]
         );
     }
@@ -75,7 +77,9 @@ class TaskController extends AbstractController
      * @param User $user
      */
     public function listActionUser(User $user, TaskRepository $repo)
-    { {
+    {
+        if ($this->getUser() == $user) {
+            $task_user_list = 1;
             $tasks = $repo->findBy(['user' => $this->getUser()]);
             $task = new Task();
             $form = $this->createForm(TaskType::class, $task);
@@ -84,19 +88,19 @@ class TaskController extends AbstractController
                 [
                     'user' => $user,
                     'tasks' => $tasks,
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'task_user_list' => $task_user_list
                 ]
             );
         }
+        return $this->redirectToRoute('task_list');
     }
-
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
     public function editAction(Task $task, Request $request, EntityManagerInterface $entityManager)
     {
-        $user = $this->getUser();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -108,7 +112,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/showedit", name="show_task_edit")
      */
-    public function showeditAction(Task $task, Request $request, EntityManagerInterface $entityManager)
+    public function showeditAction(Task $task)
     {
         $form = $this->createForm(TaskType::class, $task);
         $user = $this->getUser();
@@ -119,23 +123,6 @@ class TaskController extends AbstractController
             ]);
         }
     }
-
-
-
-    /**
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
-     */
-    // public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
-    // {
-
-    //     $task->toggle(!$task->isDone());
-    //     $entityManager->flush();
-    //     return $this->json('ok');
-    // return $this->render('task/btntoggle.html.twig', [
-    //     'task' => $task,
-    // ]);
-    // }
-
 
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")

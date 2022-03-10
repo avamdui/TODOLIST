@@ -18,7 +18,12 @@
 		<div class="row boards">
 			<h1>
 				<i class="fa fa-th text-blue"></i>
-				Mes taches</h1>
+				{% if task_user_list == 1 %}
+					Mes taches
+				{% else  %}
+					Listes des taches
+				{% endif %}
+			</h1>
 			{# ---------------------------------------------------------------------------------------- #}
 			<div class="col 4">
 				<div class="col s12 m12">
@@ -209,6 +214,26 @@
 														</ul>
 													</div>
 												{% endif %}
+												{% if is_granted('ROLE_ADMIN') and task.user.username == 'Anonyme' %}
+													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
+														<ul>
+															<li>
+																<a class="btn btn-danger" role="button" href="#tabs-1">
+																	<i class="fa-solid fa-indent"></i>
+																</a>
+															</li>
+															<li>
+																<a data-task-id="{{ task.id }}" class="btn btn-danger" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+																	<i class="fa-solid fa-pen-to-square"></i>
+																</a>
+															</li>
+															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+																<i class="fa-solid fa-trash-can"></i>
+															</button>
+														</ul>
+													</div>
+												{% endif %}
+
 											</div>
 										</li>
 									{% endif %}

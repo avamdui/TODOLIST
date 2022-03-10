@@ -214,7 +214,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->tasks;
     }
 
-    public function addTrick(Task $task): self
+    public function addTasks(Task $task): self
     {
         if (!$this->tasks->contains($task)) {
             $this->tasks[] = $task;

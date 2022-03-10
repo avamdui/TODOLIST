@@ -30,10 +30,8 @@ class TaskCrudController extends AbstractCrudController
         yield TextField::new('title');
         yield TextareaField::new('content')
             ->onlyOnForms();
-
         yield BooleanField::new('is_done')
             ->renderAsSwitch(false);
-
         yield DateField::new('createdAt')
             ->hideOnForm();
     }
