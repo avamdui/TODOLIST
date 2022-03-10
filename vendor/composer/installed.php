@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '290fdf932fdda994709670b957f0c8fe7354d980',
+        'reference' => 'f39128e24d4cfebf34eec16ee6eca73e921aa726',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '290fdf932fdda994709670b957f0c8fe7354d980',
+            'reference' => 'f39128e24d4cfebf34eec16ee6eca73e921aa726',
             'dev_requirement' => false,
         ),
         'doctrine/annotations' => array(
@@ -224,7 +224,7 @@
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
             'reference' => '210577fe3cf7badcc5814d99455df46564f3c077',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'ocramius/proxy-manager' => array(
             'dev_requirement' => false,
@@ -906,7 +906,7 @@
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
             'reference' => '143024ab0e426285d3d9b7f6a3ce51e12a9d8ec5',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/messenger' => array(
             'pretty_version' => 'v5.4.3',
