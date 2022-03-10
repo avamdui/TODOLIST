@@ -60,21 +60,18 @@ class UserTest extends WebTestCase
         $this->assertSame(['ROLE_USER'], $this->user->getRoles());
     }
 
-    public function testGetAddTask(): void
+
+    public function testTask()
     {
+        $this->user->addTasks($this->task);
+        $this->assertCount(1, $this->user->getTasks());
 
-        $this->user->addTasks(new Task());
-        $this->assertInstanceOf(Task::class, $this->user->getTasks());
+        $tasks = $this->user->getTasks();
+        $this->assertSame($this->user->getTasks(), $tasks);
+
+        $this->user->removeTask($this->task);
+        $this->assertCount(0, $this->user->getTasks());
     }
-
-    // public function testRemoveTask(): void
-    // {
-
-    //     $task = new Task();
-    //     $this->user->addTasks($task);
-    //     $this->user->removeTask($task);
-    //     $this->assertIsArray($task, $this->user->getTasks());
-    // }
 
     public function testCreatedAt(): void
     {
@@ -86,6 +83,6 @@ class UserTest extends WebTestCase
     public function testIsVerified(): void
     {
         $this->user->setIsVerified(true);
-        $this->assertis(true, $this->user->isVerified());
+        $this->assertSame(true, $this->user->isVerified());
     }
 }
