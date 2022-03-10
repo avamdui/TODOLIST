@@ -2,15 +2,8 @@
 
 {% block header_title %}
 	<div class="container">
-		<h1>Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</h1>
+		<h1 class="text-center ">Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</h1>
 	</div>
 {% endblock %}
 
-{% block body %}
-	<div class="container">
-		<div class="row">
-			<a href="{{ path('task_create') }}" class="btn btn-success">Créer une nouvelle tâche</a>
-			<a href="{{ path('task_done') }}" class="btn btn-secondary">Consulter la liste des tâches terminées</a>
-		</div>
-	</div>
-{% endblock %}
+{% block body %}{% endblock %}

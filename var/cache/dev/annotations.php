@@ -184,14 +184,14 @@ return [[
 '[C]App%5CController%5CTaskController%23createAction' => 1,
 'App%5CController%5CTaskController%23listAction' => 5,
 '[C]App%5CController%5CTaskController%23listAction' => 1,
-'App%5CController%5CTaskController%23listKanbanAction' => 6,
-'[C]App%5CController%5CTaskController%23listKanbanAction' => 1,
-'App%5CController%5CTaskController%23listActionDone' => 7,
+'App%5CController%5CTaskController%23listActionDone' => 6,
 '[C]App%5CController%5CTaskController%23listActionDone' => 1,
-'App%5CController%5CTaskController%23listActionUser' => 8,
+'App%5CController%5CTaskController%23listActionUser' => 7,
 '[C]App%5CController%5CTaskController%23listActionUser' => 1,
-'App%5CController%5CTaskController%23editAction' => 9,
+'App%5CController%5CTaskController%23editAction' => 8,
 '[C]App%5CController%5CTaskController%23editAction' => 1,
+'App%5CController%5CTaskController%23showeditAction' => 9,
+'[C]App%5CController%5CTaskController%23showeditAction' => 1,
 'App%5CController%5CTaskController%23deleteTaskAction' => 10,
 '[C]App%5CController%5CTaskController%23deleteTaskAction' => 1,
 'App%5CController%5CTaskController%23setDone' => 11,
@@ -276,8 +276,8 @@ return [[
 '[C]App%5CEntity%5CUser%23setIsVerified' => 1,
 'App%5CEntity%5CUser%23getTasks' => 0,
 '[C]App%5CEntity%5CUser%23getTasks' => 1,
-'App%5CEntity%5CUser%23addTrick' => 0,
-'[C]App%5CEntity%5CUser%23addTrick' => 1,
+'App%5CEntity%5CUser%23addTasks' => 0,
+'[C]App%5CEntity%5CUser%23addTasks' => 1,
 'App%5CEntity%5CUser%23removeTask' => 0,
 '[C]App%5CEntity%5CUser%23removeTask' => 1,
 'App%5CEntity%5CUser%24id' => 22,
@@ -924,7 +924,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1646769838,
+1 => 1646916326,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1027,28 +1027,6 @@ return [[
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/taskskanban',
-                ],
-                'name' => [
-                    'task_list_kanban',
-                ],
-            ],
-        ],
-        [
-            $o[0],
-        ],
-        []
-    );
-},
-7 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
-        ],
-        null,
-        [
-            'Symfony\\Component\\Routing\\Annotation\\Route' => [
-                'path' => [
                     '/tasksDone',
                 ],
                 'name' => [
@@ -1062,7 +1040,7 @@ return [[
         []
     );
 },
-8 => static function () {
+7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
@@ -1084,7 +1062,7 @@ return [[
         []
     );
 },
-9 => static function () {
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
@@ -1097,6 +1075,28 @@ return [[
                 ],
                 'name' => [
                     'task_edit',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+9 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+        ],
+        null,
+        [
+            'Symfony\\Component\\Routing\\Annotation\\Route' => [
+                'path' => [
+                    '/tasks/{id}/showedit',
+                ],
+                'name' => [
+                    'show_task_edit',
                 ],
             ],
         ],
@@ -1281,13 +1281,13 @@ return [[
                 'scale' => [
                     null,
                 ],
-                'message' => [
-                    1 => 'Vous devez saisir un titre.',
-                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
+                ],
+                'message' => [
+                    1 => 'Vous devez saisir un titre.',
                 ],
             ],
         ],
@@ -1316,13 +1316,13 @@ return [[
                 'scale' => [
                     null,
                 ],
-                'message' => [
-                    1 => 'Vous devez saisir du contenu.',
-                ],
                 'groups' => [
                     1 => [
                         'Default',
                     ],
+                ],
+                'message' => [
+                    1 => 'Vous devez saisir du contenu.',
                 ],
             ],
         ],
@@ -1402,6 +1402,14 @@ return [[
                 'repositoryClass' => [
                     1 => 'App\\Repository\\UserRepository',
                 ],
+                'groups' => [
+                    2 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'message' => [
                     2 => 'Nom utilisateur déjà utilisé',
                     'Email déjà utilisé',
@@ -1412,14 +1420,6 @@ return [[
                     ],
                     [
                         'email',
-                    ],
-                ],
-                'groups' => [
-                    2 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
                     ],
                 ],
             ],
@@ -1540,6 +1540,14 @@ return [[
                 'scale' => [
                     null,
                 ],
+                'groups' => [
+                    1 => [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'maxMessage' => [
                     1 => 'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1551,14 +1559,6 @@ return [[
                 ],
                 'min' => [
                     1 => 8,
-                ],
-                'groups' => [
-                    1 => [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
                 ],
                 'message' => [
                     2 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',
@@ -1585,6 +1585,14 @@ return [[
         null,
         [
             'stdClass' => [
+                'groups' => [
+                    [
+                        'Default',
+                    ],
+                    [
+                        'Default',
+                    ],
+                ],
                 'maxMessage' => [
                     'Votre mot de passe ne peut pas contenir plus que {{ limit }} caractères !',
                 ],
@@ -1596,14 +1604,6 @@ return [[
                 ],
                 'min' => [
                     8,
-                ],
-                'groups' => [
-                    [
-                        'Default',
-                    ],
-                    [
-                        'Default',
-                    ],
                 ],
                 'message' => [
                     1 => 'Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial !',

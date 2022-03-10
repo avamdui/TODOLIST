@@ -6,9 +6,12 @@
 
 
  .navbar .nav-link {
+    font-weight: bold;
+    font-size:x-large;
     color: #fff !important;
     font-family: 'Roboto', sans-serif;
   }
+
 body {
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
