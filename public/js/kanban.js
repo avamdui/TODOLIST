@@ -23,6 +23,7 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------
     $('.btndelete').on('click', function () {
+        let id = $(this).attr('data-task-id');
         $.getJSON('/tasks/' + id + '/delete')
             .then(function (rep) {
                 if (rep == 'ok') {
@@ -32,11 +33,9 @@ $(document).ready(function () {
     });
 
     //-------------------------------------------------------------------------------
-    $('.btnedittask').on('click', function () {
-        let id = $(this).attr('data-task-id');
-        $.getJSON('/tasks/' + id + '/edit');
-        id.toggle();
-    });
+
+
+
     //-------------------------------------------------------------------------------
     $(function () {
         $("[data-info=tabs]").tabs({
@@ -49,3 +48,19 @@ $(document).ready(function () {
         });
     });
 });
+
+$('#btnEditClientSubmit').click(function (event) {
+    let id = $(this).attr('data-task-id');
+    var $form = $(this).closest('form');
+    var data = $form.serializeArray();
+    var url = '/tasks/' + id + '/edit ';
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function (response) {
+            window.location.reload();
+        }
+    })
+});
+

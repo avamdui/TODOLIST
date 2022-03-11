@@ -78,7 +78,6 @@
     },
     "scripts": {
         "auto-scripts": {
-            "test": "phpunit",
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },

@@ -24,7 +24,7 @@ class Task
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
      */
     private $title;
@@ -41,7 +41,7 @@ class Task
     private $statut = 'todo';
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="task")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

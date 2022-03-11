@@ -1,7 +1,11 @@
 <div class="row">
-	{{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
+	{{ form_start(form) }}
 	{{ form_widget(form) }}
 
-	<button class="btnedittask btn btn-danger pull-right">Modifier</button>
 	{{ form_end(form) }}
+
+	<button data-task-id="{{ task.id }}" id="btnEditClientSubmit" class="btnedittask btn btn-danger pull-right">Modifier</button>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/kanban.js') }}"></script>
