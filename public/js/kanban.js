@@ -16,8 +16,13 @@ $(document).ready(function () {
         $('#hidden').toggle();
     });
     //-------------------------------------------------------------------------------
+    $('.btntabs').on('click', function () {
+        let id = $(this).attr('data-hide-id');
+        let dataid = '[data-hide-id=' + id + ']';
+        $(dataid).toggle();
+    });
+    //-------------------------------------------------------------------------
     $('.btndelete').on('click', function () {
-        let id = $(this).attr('data-task-id');
         $.getJSON('/tasks/' + id + '/delete')
             .then(function (rep) {
                 if (rep == 'ok') {
@@ -30,6 +35,7 @@ $(document).ready(function () {
     $('.btnedittask').on('click', function () {
         let id = $(this).attr('data-task-id');
         $.getJSON('/tasks/' + id + '/edit');
+        id.toggle();
     });
     //-------------------------------------------------------------------------------
     $(function () {
