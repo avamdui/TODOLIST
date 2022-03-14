@@ -57,7 +57,7 @@ $('#btnEditClientSubmit').click(function (event) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: data,
+        data: $form.data,
         success: function (response) {
             window.location.reload();
         }
