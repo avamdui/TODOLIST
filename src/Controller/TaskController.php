@@ -33,7 +33,12 @@ class TaskController extends AbstractController
             $task->setUser($user);
             $entityManager->persist($task);
             $entityManager->flush();
-            return $this->redirectToRoute('task_user_list');
+            return $this->redirectToRoute(
+                'task_user_list',
+                [
+                    'user' => $user
+                ]
+            );
         }
 
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);

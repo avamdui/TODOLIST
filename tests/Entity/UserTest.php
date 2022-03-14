@@ -28,6 +28,7 @@ class UserTest extends WebTestCase
         $this->assertSame('name', $this->user->getUsername());
     }
 
+
     public function testPassword(): void
     {
         $this->user->setPassword('password');
@@ -38,9 +39,17 @@ class UserTest extends WebTestCase
         $this->user->setPassword('confirm_password');
         $this->assertSame('confirm_password', $this->user->getPassword());
     }
+
     public function testSalt(): void
     {
         $this->assertNull($this->user->getSalt());
+    }
+
+    public function testgetUserIdentifier(): void
+    {
+        $this->user->setEmail('vincent@ndd.fr');
+        $this->assertEquals($this->user->getEmail(), $this->user->getUserIdentifier());
+        // $this->assertSame('vincent@ndd.fr', $this->user->getUserIdentifier());
     }
 
     public function testEraseCredentials(): void
@@ -53,6 +62,7 @@ class UserTest extends WebTestCase
         $this->user->setEmail('vincent@ndd.fr');
         $this->assertSame('vincent@ndd.fr', $this->user->getEmail());
     }
+
 
     public function testRoles(): void
     {
