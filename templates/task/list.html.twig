@@ -96,6 +96,8 @@
 													{{form_widget(form.content) }}
 												</div>
 												<button type="submit" class="btn btn-success pull-right">Ajouter</button>
+												{# <button type='button' data-edit-id="{{ task.id }}" id="btnEditClientSubmit" class="btnedittask btn btn-success pull-right">Ajouter</button> #}
+
 												{{ form_end(form) }}
 											</div>
 										</div>
@@ -108,7 +110,12 @@
 
 						</div>
 						{# -----------------------BOUTON AJOUT DE TACHE------------------------------------------------ #}
-						<button id="btnaddtask" class="btn btn-danger btn-sm pull-right">Créer une tache</button>
+						{% if task_user_list == 1 %}
+							<button id="btnaddtask" class="btn btn-danger btn-sm pull-right">Créer une tache</button>
+
+
+						{% endif %}
+
 
 						{# -----------------------FIN AJOUT------------------------------------------------ #}
 					</div>

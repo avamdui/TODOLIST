@@ -1,7 +1,8 @@
 <div class="row">
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
-	<button type='button' data-edit-id="{{ task.id }}" id="btnEditClientSubmit" class="btnedittask btn btn-danger pull-right">Modifier</button>
+	<button type='button' data-edit-id="{{ task.id }}" id="btnEditClientSubmit" class="btnedittask btn btn-success pull-right">Modifier</button>
+	<button data-edit-id="{{ task.id }}" id="btncancel" class="btnedittask btn btn-danger pull-right" href="#tabs-1">Annuler</button>
 
 	{{ form_end(form) }}
 

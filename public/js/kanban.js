@@ -18,10 +18,15 @@ $(document).ready(function () {
     //-------------------------------------------------------------------------------
     $('.btntabsenter').on('click', function () {
         let id = $(this).attr('data-enter-btn');
-        $('[data-enter-edit=' + id + ']').toggle();
-        $('[data-exit-btn=' + id + ']').toggle();
-    });
+        $('[data-enter-btn=' + id + ']').toggle();
 
+    });
+    //-------------------------------------------------------------------------
+    // $('.btntabsexit').on('click', function () {
+    //     let id = $(this).attr('data-exit-btn');
+    //     $('[data-exit-btn=' + id + ']').toggle();
+    //     $('[data-enter-btn=' + id + ']').toggle();
+    // });
     //-------------------------------------------------------------------------
     $('.btndelete').on('click', function () {
         let id = $(this).attr('data-delete-id');
@@ -55,12 +60,22 @@ $('#btnEditClientSubmit').click(function (event) {
         url: url,
         data: data,
         dataType: 'html',
-        success: function (response) {
+        // success: function (response) {
+        //     let id = $('#btnEditClientSubmit').attr('data-edit-id');
+        //     $('[data-task-id=' + id + '].card-task').html(response);
+        //     $('[data-exit-edit=' + id + ']').click().toggle();
+        //     $('[data-enter-edit=' + id + ']').toggle();
+
+        // }
+    }).done(
+        function (response) {
             let id = $('#btnEditClientSubmit').attr('data-edit-id');
             $('[data-task-id=' + id + '].card-task').html(response);
-            $('[data-exit-edit=' + id + ']').click().toggle();
-            $('[data-enter-edit=' + id + ']').toggle();
+            $('[data-exit-edit=' + id + ']').click();
+            $('[data-enter-btn=' + id + ']').toggle();
+
         }
-    }).disableSelection();
+    )
+
 });
 
