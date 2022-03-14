@@ -38,7 +38,7 @@
 										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
 											<div data-info="tabs">
 												<div id="tabs-1">
-													<div class="card-task">
+													<div class="card-task" data-task-id="{{ task.id }}">
 														<div class="row card-header">
 															<h4 class="card-title col-6">{{ task.title }}
 															</h4>
@@ -53,17 +53,17 @@
 												{% if app.user.id == task.getUser.getId %}
 													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
 														<ul>
-															<li id="{{ task.id }}" class="btntabs" data-hide-id="{{ task.id }}" style="display: none">
-																<a class="btn btn-danger " role="button" href="#tabs-1">
-																	<i class="fa-solid fa-indent"></i>
+															<li class="btntabs btntabsexit" style="display: none" data-exit-btn="{{ task.id }}">
+																<a class="btn btn-danger" data-exit-edit="{{ task.id }}" role="button" href="#tabs-1">
+																	<i data-exit-edit="{{ task.id }}" class="fa-solid fa-indent"></i>
 																</a>
 															</li>
-															<li class="btntabs" data-hide-id="{{ task.id }}">
-																<a data-task-id="{{ task.id }}" class="btn btn-danger btnedit" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+															<li class="btntabs btntabsenter" data-enter-btn="{{ task.id }}">
+																<a class="btn btn-danger btnedit" data-enter-edit="{{ task.id }}" role="button" href="{{ path('show_task_edit', {'id' : task.id }) }}">
 																	<i class="fa-solid fa-pen-to-square"></i>
 																</a>
 															</li>
-															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+															<button data-delete-id="{{ task.id }}" class="btn btn-danger btndelete">
 																<i class="fa-solid fa-trash-can"></i>
 															</button>
 														</ul>
@@ -128,7 +128,7 @@
 										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
 											<div data-info="tabs">
 												<div id="tabs-1">
-													<div class="card-task">
+													<div class="card-task" data-task-id="{{ task.id }}">
 														<div class="row card-header">
 															<h4 class="card-title col-6">{{ task.title }}
 															</h4>
@@ -143,17 +143,17 @@
 												{% if app.user.id == task.getUser.getId %}
 													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
 														<ul>
-															<li id="{{ task.id }}" class="btntabs" data-hide-id="{{ task.id }}" style="display: none">
-																<a class="btn btn-danger " role="button" href="#tabs-1">
-																	<i class="fa-solid fa-indent"></i>
+															<li class="btntabs btntabsexit" style="display: none" data-exit-btn="{{ task.id }}">
+																<a class="btn btn-danger" data-exit-edit="{{ task.id }}" role="button" href="#tabs-1">
+																	<i data-exit-edit="{{ task.id }}" class="fa-solid fa-indent"></i>
 																</a>
 															</li>
-															<li class="btntabs" data-hide-id="{{ task.id }}">
-																<a data-task-id="{{ task.id }}" class="btn btn-danger btnedit" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+															<li class="btntabs btntabsenter" data-enter-btn="{{ task.id }}">
+																<a class="btn btn-danger btnedit" data-enter-edit="{{ task.id }}" role="button" href="{{ path('show_task_edit', {'id' : task.id }) }}">
 																	<i class="fa-solid fa-pen-to-square"></i>
 																</a>
 															</li>
-															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+															<button data-delete-id="{{ task.id }}" class="btn btn-danger btndelete">
 																<i class="fa-solid fa-trash-can"></i>
 															</button>
 														</ul>
@@ -183,7 +183,7 @@
 										<li id="task-{{ task.id }}" class="col-12 list-group-item-action" data-task-id=" {{ task.id }}" data-task-php="setdone">
 											<div data-info="tabs">
 												<div id="tabs-1">
-													<div class="card-task">
+													<div class="card-task" data-task-id="{{ task.id }}">
 														<div class="row card-header">
 															<h4 class="card-title col-6">{{ task.title }}
 															</h4>
@@ -198,17 +198,17 @@
 												{% if app.user.id == task.getUser.getId %}
 													<div class="card-footer bottom-card-todo d-flex flex-row-reverse">
 														<ul>
-															<li id="{{ task.id }}" class="btntabs" data-hide-id="{{ task.id }}" style="display: none">
-																<a class="btn btn-danger " role="button" href="#tabs-1">
-																	<i class="fa-solid fa-indent"></i>
+															<li class="btntabs btntabsexit" style="display: none" data-exit-btn="{{ task.id }}">
+																<a class="btn btn-danger" data-exit-edit="{{ task.id }}" role="button" href="#tabs-1">
+																	<i data-exit-edit="{{ task.id }}" class="fa-solid fa-indent"></i>
 																</a>
 															</li>
-															<li class="btntabs" data-hide-id="{{ task.id }}">
-																<a data-task-id="{{ task.id }}" class="btn btn-danger btnedit" href="{{ path('show_task_edit', {'id' : task.id }) }}">
+															<li class="btntabs btntabsenter" data-enter-btn="{{ task.id }}">
+																<a class="btn btn-danger btnedit" data-enter-edit="{{ task.id }}" role="button" href="{{ path('show_task_edit', {'id' : task.id }) }}">
 																	<i class="fa-solid fa-pen-to-square"></i>
 																</a>
 															</li>
-															<button data-task-id="{{ task.id }}" class="btn btn-danger btndelete">
+															<button data-delete-id="{{ task.id }}" class="btn btn-danger btndelete">
 																<i class="fa-solid fa-trash-can"></i>
 															</button>
 														</ul>

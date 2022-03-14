@@ -94,8 +94,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
         }
-        return $this->render('task/edit.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('task/singleTask.html.twig', [
             'task' => $task,
         ]);
     }

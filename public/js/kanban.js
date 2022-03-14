@@ -16,14 +16,15 @@ $(document).ready(function () {
         $('#hidden').toggle();
     });
     //-------------------------------------------------------------------------------
-    $('.btntabs').on('click', function () {
-        let id = $(this).attr('data-hide-id');
-        let dataid = '[data-hide-id=' + id + ']';
-        $(dataid).toggle();
+    $('.btntabsenter').on('click', function () {
+        let id = $(this).attr('data-enter-btn');
+        $('[data-enter-edit=' + id + ']').toggle();
+        $('[data-exit-btn=' + id + ']').toggle();
     });
+
     //-------------------------------------------------------------------------
     $('.btndelete').on('click', function () {
-        let id = $(this).attr('data-task-id');
+        let id = $(this).attr('data-delete-id');
         $.getJSON('/tasks/' + id + '/delete')
             .then(function (rep) {
                 if (rep == 'ok') {
@@ -31,11 +32,6 @@ $(document).ready(function () {
                 }
             });
     });
-
-    //-------------------------------------------------------------------------------
-
-
-
     //-------------------------------------------------------------------------------
     $(function () {
         $("[data-info=tabs]").tabs({
@@ -50,17 +46,21 @@ $(document).ready(function () {
 });
 
 $('#btnEditClientSubmit').click(function (event) {
-    let id = $(this).attr('data-task-id');
-    var $form = $(this).closest('form');
-    var data = $form.serializeArray();
+    let id = $(this).attr('data-edit-id');
+    var $form = $(this).parent();
+    var data = $form.serialize();
     var url = '/tasks/' + id + '/edit ';
     $.ajax({
         type: 'POST',
         url: url,
-        data: $form.data,
+        data: data,
+        dataType: 'html',
         success: function (response) {
-            window.location.reload();
+            let id = $('#btnEditClientSubmit').attr('data-edit-id');
+            $('[data-task-id=' + id + '].card-task').html(response);
+            $('[data-exit-edit=' + id + ']').click().toggle();
+            $('[data-enter-edit=' + id + ']').toggle();
         }
-    })
+    }).disableSelection();
 });
 
