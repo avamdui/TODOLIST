@@ -367,14 +367,6 @@
         <argument type="service" id=".service_locator.wmdtZbW.App\Controller\Admin\DashboardController"/>
       </call>
     </service>
-    <service id="App\Controller\Admin\TaskCrudController" class="App\Controller\Admin\TaskCrudController" public="true" autowire="true" autoconfigure="true">
-      <tag name="ea.crud_controller"/>
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.SoiLYDQ.App\Controller\Admin\TaskCrudController"/>
-      </call>
-    </service>
     <service id="App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.crud_controller"/>
       <tag name="controller.service_arguments"/>
@@ -388,13 +380,6 @@
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.GNc8e5B.App\Controller\DefaultController"/>
-      </call>
-    </service>
-    <service id="App\Controller\LoginController" class="App\Controller\LoginController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\LoginController"/>
       </call>
     </service>
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
@@ -6684,10 +6669,6 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\TaskCrudController" class="App\Controller\Admin\TaskCrudController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\TaskCrudController" class="App\Controller\Admin\TaskCrudController" autowire="true" abstract="true"/>
-    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\TaskCrudController" class="App\Controller\Admin\TaskCrudController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\Admin\TaskCrudController" class="App\Controller\Admin\TaskCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\UserCrudController" class="App\Controller\Admin\UserCrudController" autowire="true" abstract="true"/>
@@ -6695,9 +6676,6 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\LoginController" class="App\Controller\LoginController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7176,17 +7154,24 @@
         <argument key="responseParameters" type="service_closure" id=".errored..service_locator.2dc0eaX.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
       </argument>
     </service>
-    <service id=".service_locator.UDgw6Ol" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
-      </argument>
-    </service>
     <service id=".service_locator.4u5os03" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.YZZYH8t" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="verifyEmailHelper" type="service_closure" id="symfonycasts.verify_email.helper"/>
+      </argument>
+    </service>
+    <service id=".service_locator.UDgw6Ol" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
     <service id=".service_locator.HK4bswD" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7222,31 +7207,10 @@
         <argument key="task" type="service_closure" id=".errored..service_locator.TfvLzuL.App\Entity\Task"/>
       </argument>
     </service>
-    <service id=".service_locator.pZoXagR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.9KiJ_bI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
-        <argument key="App\Controller\Admin\TaskCrudController::autocomplete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::batchDelete" type="service_closure" id=".service_locator.Olybskb"/>
-        <argument key="App\Controller\Admin\TaskCrudController::configureActions" type="service_closure" id=".service_locator.CKlWSja"/>
-        <argument key="App\Controller\Admin\TaskCrudController::configureAssets" type="service_closure" id=".service_locator.U4Bbnsn"/>
-        <argument key="App\Controller\Admin\TaskCrudController::configureCrud" type="service_closure" id=".service_locator.4C0Bh8j"/>
-        <argument key="App\Controller\Admin\TaskCrudController::configureFilters" type="service_closure" id=".service_locator.Nt.ogDb"/>
-        <argument key="App\Controller\Admin\TaskCrudController::configureResponseParameters" type="service_closure" id=".service_locator.2dc0eaX"/>
-        <argument key="App\Controller\Admin\TaskCrudController::createEditForm" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.3on9uHL"/>
-        <argument key="App\Controller\Admin\TaskCrudController::createNewForm" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController::delete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::deleteEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\Admin\TaskCrudController::detail" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::edit" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::index" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::new" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\Admin\TaskCrudController::renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController::updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController::autocomplete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::batchDelete" type="service_closure" id=".service_locator.Olybskb"/>
         <argument key="App\Controller\Admin\UserCrudController::configureActions" type="service_closure" id=".service_locator.CKlWSja"/>
@@ -7268,8 +7232,9 @@
         <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\LoginController::index" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.4u5os03"/>
+        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
+        <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\TaskController::createAction" type="service_closure" id=".service_locator.HK4bswD"/>
         <argument key="App\Controller\TaskController::deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::editAction" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7286,27 +7251,6 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
-        <argument key="App\Controller\Admin\TaskCrudController:autocomplete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:batchDelete" type="service_closure" id=".service_locator.Olybskb"/>
-        <argument key="App\Controller\Admin\TaskCrudController:configureActions" type="service_closure" id=".service_locator.CKlWSja"/>
-        <argument key="App\Controller\Admin\TaskCrudController:configureAssets" type="service_closure" id=".service_locator.U4Bbnsn"/>
-        <argument key="App\Controller\Admin\TaskCrudController:configureCrud" type="service_closure" id=".service_locator.4C0Bh8j"/>
-        <argument key="App\Controller\Admin\TaskCrudController:configureFilters" type="service_closure" id=".service_locator.Nt.ogDb"/>
-        <argument key="App\Controller\Admin\TaskCrudController:configureResponseParameters" type="service_closure" id=".service_locator.2dc0eaX"/>
-        <argument key="App\Controller\Admin\TaskCrudController:createEditForm" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.3on9uHL"/>
-        <argument key="App\Controller\Admin\TaskCrudController:createNewForm" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.bgO__Zr"/>
-        <argument key="App\Controller\Admin\TaskCrudController:delete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:deleteEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\Admin\TaskCrudController:detail" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:edit" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:index" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:new" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\Admin\TaskCrudController:renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
-        <argument key="App\Controller\Admin\TaskCrudController:updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController:autocomplete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:batchDelete" type="service_closure" id=".service_locator.Olybskb"/>
         <argument key="App\Controller\Admin\UserCrudController:configureActions" type="service_closure" id=".service_locator.CKlWSja"/>
@@ -7328,8 +7272,9 @@
         <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
-        <argument key="App\Controller\LoginController:index" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.4u5os03"/>
+        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
+        <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\TaskController:createAction" type="service_closure" id=".service_locator.HK4bswD"/>
         <argument key="App\Controller\TaskController:deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:editAction" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7740,7 +7685,6 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
       <argument>%env(APP_SECRET)%</argument>
       <argument type="collection">
-        <argument>App\Controller\Admin\TaskCrudController</argument>
         <argument>App\Controller\Admin\UserCrudController</argument>
       </argument>
     </service>
@@ -7817,12 +7761,6 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id=".service_locator.SoiLYDQ.App\Controller\Admin\TaskCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\Admin\TaskCrudController"/>
-      <argument>App\Controller\Admin\TaskCrudController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.SoiLYDQ" method="withContext"/>
-    </service>
     <service id=".service_locator.SoiLYDQ.App\Controller\Admin\UserCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\UserCrudController"/>
       <argument>App\Controller\Admin\UserCrudController</argument>
@@ -7851,12 +7789,6 @@
     <service id=".service_locator.GNc8e5B.App\Controller\DefaultController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\DefaultController"/>
       <argument>App\Controller\DefaultController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.GNc8e5B" method="withContext"/>
-    </service>
-    <service id=".service_locator.GNc8e5B.App\Controller\LoginController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\LoginController"/>
-      <argument>App\Controller\LoginController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.GNc8e5B" method="withContext"/>
     </service>
@@ -8059,12 +7991,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.pZoXagR"/>
+      <argument type="service" id=".service_locator.9KiJ_bI"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.pZoXagR"/>
+      <argument type="service" id=".service_locator.9KiJ_bI"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9065,7 +8997,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.pZoXagR"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.9KiJ_bI"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9094,10 +9026,11 @@
     <service id=".service_locator.rAlqQ78" alias=".service_locator.3on9uHL"/>
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.Dby0_1s" alias=".service_locator.4u5os03"/>
+    <service id=".service_locator.EeodFiw" alias=".service_locator.YZZYH8t"/>
     <service id=".service_locator._0BW_Ne" alias=".service_locator.HK4bswD"/>
     <service id=".service_locator.F5suoal" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
-    <service id=".service_locator.hylGxgA" alias=".service_locator.pZoXagR"/>
+    <service id=".service_locator.3VTHyB." alias=".service_locator.9KiJ_bI"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.MyylfZM" alias=".service_locator.R4MAzD_"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9140,8 +9073,9 @@
     <service id=".service_locator.Er0_7SX" alias=".service_locator.l2QwsaZ"/>
     <service id=".service_locator.1tlLxRd" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.6KoT76J" alias=".service_locator.2dc0eaX"/>
-    <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
     <service id=".service_locator.LzwvCJx" alias=".service_locator.4u5os03"/>
+    <service id=".service_locator.8wvPAfM" alias=".service_locator.YZZYH8t"/>
+    <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
     <service id=".service_locator.KA7Sukb" alias=".service_locator.HK4bswD"/>
     <service id=".service_locator.iHcfOUN" alias=".service_locator.8RfiNjD"/>
     <service id=".service_locator.5PvqiCU" alias=".service_locator.UkG67Q3"/>

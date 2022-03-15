@@ -49,18 +49,5 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Create User', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Users', 'fas fa-eye', User::class)
         ]);
-
-        // yield MenuItem::section('Taches');
-
-        // yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-        //     MenuItem::linkToCrud('Create Tasks', 'fas fa-plus', Task::class)->setAction(Crud::PAGE_NEW),
-        //     MenuItem::linkToCrud('Show Tasks', 'fas fa-eye', Task::class)
-        // ]);
-
-
-
-
-        //  yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
