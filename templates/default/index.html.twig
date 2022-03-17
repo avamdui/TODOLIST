@@ -2,7 +2,9 @@
 
 {% block header_title %}
 	<div class="container">
-		<h1 class="text-center ">Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</h1>
+		<h1 class="text-center ">Bienvenue
+			{{user.username}}
+			sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</h1>
 	</div>
 {% endblock %}
 

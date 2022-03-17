@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
     {
 
         if ($this->getUser()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('homepage');
         }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -29,6 +29,7 @@ class SecurityController extends AbstractController
     }
     /**
      * @Route("/logout", name="logout", methods={"GET"})
+     * @codeCoverageIgnore
      */
     public function logout(): void
     {
