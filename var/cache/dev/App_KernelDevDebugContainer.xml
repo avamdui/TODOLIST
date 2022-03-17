@@ -7174,17 +7174,17 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.HK4bswD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.k9Qlhvk" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator.k9Qlhvk.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.8RfiNjD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.K8mEeqr" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="repo" type="service_closure" id="App\Repository\TaskRepository"/>
-        <argument key="user" type="service_closure" id=".errored..service_locator.8RfiNjD.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
     <service id=".service_locator.UkG67Q3" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7207,7 +7207,7 @@
         <argument key="task" type="service_closure" id=".errored..service_locator.TfvLzuL.App\Entity\Task"/>
       </argument>
     </service>
-    <service id=".service_locator.9KiJ_bI" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.GS3LMjk" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7235,10 +7235,10 @@
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.4u5os03"/>
         <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.UDgw6Ol"/>
-        <argument key="App\Controller\TaskController::createAction" type="service_closure" id=".service_locator.HK4bswD"/>
+        <argument key="App\Controller\TaskController::createAction" type="service_closure" id=".service_locator.k9Qlhvk"/>
         <argument key="App\Controller\TaskController::deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::editAction" type="service_closure" id=".service_locator.MQERK.A"/>
-        <argument key="App\Controller\TaskController::listAction" type="service_closure" id=".service_locator.8RfiNjD"/>
+        <argument key="App\Controller\TaskController::listAction" type="service_closure" id=".service_locator.K8mEeqr"/>
         <argument key="App\Controller\TaskController::listActionUser" type="service_closure" id=".service_locator.UkG67Q3"/>
         <argument key="App\Controller\TaskController::setDone" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController::setInProgress" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7275,10 +7275,10 @@
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.4u5os03"/>
         <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.UDgw6Ol"/>
-        <argument key="App\Controller\TaskController:createAction" type="service_closure" id=".service_locator.HK4bswD"/>
+        <argument key="App\Controller\TaskController:createAction" type="service_closure" id=".service_locator.k9Qlhvk"/>
         <argument key="App\Controller\TaskController:deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:editAction" type="service_closure" id=".service_locator.MQERK.A"/>
-        <argument key="App\Controller\TaskController:listAction" type="service_closure" id=".service_locator.8RfiNjD"/>
+        <argument key="App\Controller\TaskController:listAction" type="service_closure" id=".service_locator.K8mEeqr"/>
         <argument key="App\Controller\TaskController:listActionUser" type="service_closure" id=".service_locator.UkG67Q3"/>
         <argument key="App\Controller\TaskController:setDone" type="service_closure" id=".service_locator.MQERK.A"/>
         <argument key="App\Controller\TaskController:setInProgress" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7991,12 +7991,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.9KiJ_bI"/>
+      <argument type="service" id=".service_locator.GS3LMjk"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.9KiJ_bI"/>
+      <argument type="service" id=".service_locator.GS3LMjk"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8041,7 +8041,7 @@
     <service id=".errored..service_locator.bgO__Zr.EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto"/>
     <service id=".errored..service_locator.bgO__Zr.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
     <service id=".errored..service_locator.2dc0eaX.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
-    <service id=".errored..service_locator.8RfiNjD.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.k9Qlhvk.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.UkG67Q3.App\Entity\User" class="App\Entity\User"/>
     <service id=".errored..service_locator.MQERK.A.App\Entity\Task" class="App\Entity\Task"/>
     <service id=".errored..service_locator.TfvLzuL.App\Entity\Task" class="App\Entity\Task"/>
@@ -8997,7 +8997,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.9KiJ_bI"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.GS3LMjk"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9027,10 +9027,10 @@
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.Dby0_1s" alias=".service_locator.4u5os03"/>
     <service id=".service_locator.EeodFiw" alias=".service_locator.YZZYH8t"/>
-    <service id=".service_locator._0BW_Ne" alias=".service_locator.HK4bswD"/>
+    <service id=".service_locator.LGIn_mq" alias=".service_locator.k9Qlhvk"/>
     <service id=".service_locator.F5suoal" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
-    <service id=".service_locator.3VTHyB." alias=".service_locator.9KiJ_bI"/>
+    <service id=".service_locator.Anpq6Ud" alias=".service_locator.GS3LMjk"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.MyylfZM" alias=".service_locator.R4MAzD_"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9076,8 +9076,8 @@
     <service id=".service_locator.LzwvCJx" alias=".service_locator.4u5os03"/>
     <service id=".service_locator.8wvPAfM" alias=".service_locator.YZZYH8t"/>
     <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
-    <service id=".service_locator.KA7Sukb" alias=".service_locator.HK4bswD"/>
-    <service id=".service_locator.iHcfOUN" alias=".service_locator.8RfiNjD"/>
+    <service id=".service_locator.n_CDrYD" alias=".service_locator.k9Qlhvk"/>
+    <service id=".service_locator.kxfFwQY" alias=".service_locator.K8mEeqr"/>
     <service id=".service_locator.5PvqiCU" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.xITMhU1" alias=".service_locator.MQERK.A"/>
     <service id=".service_locator.km268i_" alias=".service_locator.TfvLzuL"/>

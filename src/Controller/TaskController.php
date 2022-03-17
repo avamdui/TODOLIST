@@ -19,7 +19,7 @@ class TaskController extends AbstractController
      * @Route("/tasks/create", name="task_create")
      * @param User $user
      */
-    public function createAction(Task $task = null, Request $request, EntityManagerInterface $entityManager)
+    public function createAction(Task $task = null, Request $request, EntityManagerInterface $entityManager, UserInterface $user)
     {
         $user = $this->getUser();
         $task = new Task();
@@ -36,32 +36,35 @@ class TaskController extends AbstractController
             return $this->redirectToRoute(
                 'task_user_list',
                 [
-                    'user' => $user
+                    'id' => $task->getUser()->getId()
                 ]
             );
         }
-
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->redirectToRoute('task_user_list');
     }
     //-------------------------------------------AFFICHAGE DES TACHES ------------------------------------------------
     /**
      * @Route("/tasks", name="task_list")
      */
-    public function listAction(TaskRepository $repo,  UserInterface $user)
+    public function listAction(TaskRepository $repo)
     {
-        $task_user_list = 0;
-        $tasks = $repo->findAll();
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
-        return $this->render(
-            'task/list.html.twig',
-            [
-                'user' => $user,
-                'tasks' => $tasks,
-                'form' => $form->createView(),
-                'task_user_list' => $task_user_list
-            ]
-        );
+        if ($this->getUser()) {
+            $user = $this->getUser();
+            $task_user_list = 0;
+            $tasks = $repo->findAll();
+            $task = new Task();
+            $form = $this->createForm(TaskType::class, $task);
+            return $this->render(
+                'task/list.html.twig',
+                [
+                    'user' => $user,
+                    'tasks' => $tasks,
+                    'form' => $form->createView(),
+                    'task_user_list' => $task_user_list
+                ]
+            );
+        }
+        return $this->redirectToRoute('login');
     }
 
     /**

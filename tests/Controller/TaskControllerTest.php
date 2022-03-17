@@ -21,10 +21,8 @@ class TaskControllerTest extends WebTestCase
         //test si non connecté
         $this->client->request('GET', '/tasks/3');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-
         $this->client->followRedirect();
-        static::assertSame(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSelectorExists('h1', "LISTES DES TACHES");
+        $this->assertRouteSame('login');
     }
 
     public function testListActionUserConnected()
@@ -41,6 +39,9 @@ class TaskControllerTest extends WebTestCase
 
     public function testListAction()
     {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
         $this->client->request('GET', '/tasks');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertSelectorExists('h1', "LISTES DES TACHES");
