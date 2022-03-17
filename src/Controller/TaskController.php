@@ -88,7 +88,7 @@ class TaskController extends AbstractController
                 ]
             );
         }
-        return $this->redirectToRoute('task_list');
+        return $this->redirectToRoute('login');
     }
 
     //---------------------------------EDITION DUNE TACHE ---------------------------------------------------

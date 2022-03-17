@@ -15,19 +15,15 @@ class TaskControllerTest extends WebTestCase
         $this->client = static::createClient();
     }
 
-    public function testListActionUserAnonymous()
+    public function testListActionUser()
 
     {
         //test si non connecté
         $this->client->request('GET', '/tasks/3');
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->client->followRedirect();
-        $this->assertRouteSame('login');
-    }
 
-    public function testListActionUserConnected()
-
-    {
+        $this->assertSelectorTextContains('h1', "Connexion");
         //test si  connecté
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
@@ -39,6 +35,10 @@ class TaskControllerTest extends WebTestCase
 
     public function testListAction()
     {
+        $this->client->request('GET', '/tasks');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('h1', "Connexion");
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
         $this->client->loginUser($userTest);
