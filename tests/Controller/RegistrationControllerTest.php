@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Tests\Controller;
-
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use SymfonyCasts\Bundle\VerifyEmail\Model\VerifyEmailSignatureComponents;
@@ -24,13 +22,12 @@ class RegistrationControllerTest extends WebTestCase
         $buttonCrawlerNode = $crawler->selectButton("S'incrire");
         $form = $buttonCrawlerNode->form();
         $form['registration_form[email]'] = 'test@test.fr';
-        $form['registration_form[username]'] = 'test@test.fr';
+        $form['registration_form[username]'] = 'test';
         $form['registration_form[plainPassword]'] = 'Test007';
         $form['registration_form[plainPassword_confirm]'] = 'Test007';
         $form['registration_form[email]'] = 'test@test.fr';
         $form['registration_form[agreeTerms]']->tick();
         $this->client->submit($form);
-        $crawler = $this->client->followRedirect();
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
 }

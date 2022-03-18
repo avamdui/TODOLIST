@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Tests\Controller;
-
 use App\Repository\UserRepository;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -55,36 +53,61 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
-        // $crawler = $this->client->request('GET', '/');
-        // $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
 
-        // $link = $crawler->selectLink('Créer une nouvelle tâche')->link();
-        // $crawler = $this->client->click($link);
-        // $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->request('GET', '/tasks/3');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        // $form = $crawler->selectButton('Ajouter')->form();
-        // $form['task[title]'] = 'Ma tâche de test';
-        // $form['task[content]'] = 'Plat de pâtes';
-        // $this->client->submit($form);
+        $buttonCrawlerNode = $crawler->selectButton("Ajouter");
+        $form = $buttonCrawlerNode->form();
+        $form['task[title]'] = 'PHPUNIT';
+        $form['task[content]'] = 'Faire les test unitaires';
+        $this->client->submit($form);
 
-        // $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-
-        // $this->assertTrue($this->client->getResponse()->isRedirect());
-        // $crawler = $this->client->followRedirect();
-
-        // $this->assertSame(1, $crawler->filter('div.alert.alert-success')->count());
-        // echo $this->client->getResponse()->getContent();
+        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
     public function testDeleteTaskAction()
     {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', '/tasks/49/delete');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
-    public function testSetAction()
+    public function testSettodo()
 
     {
-        // $task->setStatut('done');
-        // $task->setStatut('todo');
-        // $task->setStatut('inprogress');
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
+
+        $this->client->request('GET', 'tasks/15/settodo');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    public function testSetdone()
+
+    {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', 'tasks/15/setdone');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    public function testSetinprogress()
+
+    {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', 'tasks/15/setinprogress');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 }

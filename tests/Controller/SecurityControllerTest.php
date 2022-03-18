@@ -50,4 +50,19 @@ class SecurityControllerTest extends WebTestCase
         $this->client->request('GET', '/login');
         $this->assertEquals(true, $this->client->getResponse()->isRedirect('/'));
     }
+
+    public function testAdmin()
+
+    {
+        // Vérification redirection si déja connecté
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        // retrieve the test user
+        $testUser = $userRepository->findOneByEmail('avamdui@gmail.com');
+        // simulate $testUser being logged in
+        $this->client->loginUser($testUser);
+        // test e.g. the profile page
+        $this->client->request('GET', '/admin');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSelectorExists('h1', "User");
+    }
 }
