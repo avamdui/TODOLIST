@@ -15,9 +15,11 @@
 
 			{{ form_start(registrationForm, {"attr": {'class': 'form_group'}}) }}
 			{{ form_row(registrationForm.username, {
+                
                 "label": "Nom utilisateur",
                 "attr": {
                     "placeholder": "Nom utilisateur",
+                    "name": "UsernameTEST",
                     'class': 'form-control'
                 },
                 "label_attr": {
@@ -65,7 +67,7 @@
                 }
             }) }}
 
-			<button class="btn btn-dark">Envoyer</button>
+			<button type="submit" class="btn btn-dark">S'incrire</input>
 			{{ form_end(registrationForm) }}
 		</section>
 	</main>
