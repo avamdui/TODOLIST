@@ -23,11 +23,11 @@ class DefaultControllerTest extends WebTestCase
 
         $userRepository = static::getContainer()->get(UserRepository::class);
         // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $testUser = $userRepository->findOneByEmail('test@test.fr');
         // simulate $testUser being logged in
         $this->client->loginUser($testUser);
         // test e.g. the profile page
         $this->client->request('GET', '/');
-        $this->assertSelectorTextContains('h1', "Bienvenue avamdui");
+        $this->assertSelectorTextContains('h1', "Bienvenue test");
     }
 }

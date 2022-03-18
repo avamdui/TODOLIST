@@ -21,11 +21,10 @@ class RegistrationControllerTest extends WebTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $buttonCrawlerNode = $crawler->selectButton("S'incrire");
         $form = $buttonCrawlerNode->form();
-        $form['registration_form[email]'] = 'test@test.fr';
-        $form['registration_form[username]'] = 'test';
+        $form['registration_form[email]'] = 'test2@test.fr';
+        $form['registration_form[username]'] = 'test2';
         $form['registration_form[plainPassword]'] = 'Test007';
         $form['registration_form[plainPassword_confirm]'] = 'Test007';
-        $form['registration_form[email]'] = 'test@test.fr';
         $form['registration_form[agreeTerms]']->tick();
         $this->client->submit($form);
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());

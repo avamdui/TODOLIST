@@ -26,8 +26,8 @@ class SecurityControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         // set values on a form object
-        $form['_username'] = 'avamdui@gmail.com';
-        $form['_password'] = 'Vince007';
+        $form['_username'] = 'test@test.fr';
+        $form['_password'] = 'Test007';
 
         // submit the Form object
         $this->client->submit($form);
@@ -35,7 +35,7 @@ class SecurityControllerTest extends WebTestCase
         // redirection après login
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSelectorExists('h1', "avamdui");
+        $this->assertSelectorExists('h1', "test");
     }
 
     public function testLoginAfterBeingLogged()
@@ -43,7 +43,7 @@ class SecurityControllerTest extends WebTestCase
         // Vérification redirection si déja connecté
         $userRepository = static::getContainer()->get(UserRepository::class);
         // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $testUser = $userRepository->findOneByEmail('test@test.fr');
         // simulate $testUser being logged in
         $this->client->loginUser($testUser);
         // test e.g. the profile page
@@ -57,12 +57,12 @@ class SecurityControllerTest extends WebTestCase
         // Vérification redirection si déja connecté
         $userRepository = static::getContainer()->get(UserRepository::class);
         // retrieve the test user
-        $testUser = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $testUser = $userRepository->findOneByEmail('test@test.fr');
         // simulate $testUser being logged in
         $this->client->loginUser($testUser);
         // test e.g. the profile page
         $this->client->request('GET', '/admin');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSelectorExists('h1', "User");
+        $this->assertSelectorExists('h1', "test");
     }
 }

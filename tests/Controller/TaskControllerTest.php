@@ -13,51 +13,14 @@ class TaskControllerTest extends WebTestCase
         $this->client = static::createClient();
     }
 
-    public function testListActionUser()
-
-    {
-        //test si non connecté
-        $this->client->request('GET', '/tasks/3');
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->followRedirect();
-
-        $this->assertSelectorTextContains('h1', "Connexion");
-        //test si  connecté
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
-        $this->client->loginUser($userTest);
-        $this->client->request('GET', '/tasks/3');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSelectorExists('h1', "MES TACHES");
-    }
-
-    public function testListAction()
-    {
-        $this->client->request('GET', '/tasks');
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->followRedirect();
-        $this->assertSelectorTextContains('h1', "Connexion");
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
-        $this->client->loginUser($userTest);
-        $this->client->request('GET', '/tasks');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSelectorExists('h1', "LISTES DES TACHES");
-    }
-
-    public function testeEditAction()
-    {
-    }
-
-
 
     public function testCreateAction()
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
 
-        $crawler = $this->client->request('GET', '/tasks/3');
+        $crawler = $this->client->request('GET', '/tasks/1');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $buttonCrawlerNode = $crawler->selectButton("Ajouter");
@@ -71,14 +34,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
-    public function testDeleteTaskAction()
-    {
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
-        $this->client->loginUser($userTest);
-        $this->client->request('GET', '/tasks/49/delete');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
+
 
     public function testSettodo()
 
@@ -87,7 +43,7 @@ class TaskControllerTest extends WebTestCase
         $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
         $this->client->loginUser($userTest);
 
-        $this->client->request('GET', 'tasks/15/settodo');
+        $this->client->request('GET', 'tasks/2/settodo');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
@@ -97,7 +53,7 @@ class TaskControllerTest extends WebTestCase
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
         $this->client->loginUser($userTest);
-        $this->client->request('GET', 'tasks/15/setdone');
+        $this->client->request('GET', 'tasks/2/setdone');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
@@ -107,7 +63,49 @@ class TaskControllerTest extends WebTestCase
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
         $this->client->loginUser($userTest);
-        $this->client->request('GET', 'tasks/15/setinprogress');
+        $this->client->request('GET', 'tasks/2/setinprogress');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    public function testDeleteTaskAction()
+    {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', '/tasks/3/delete');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+
+    public function testListActionUser()
+
+    {
+        //test si non connecté
+        $this->client->request('GET', '/tasks/1');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('h1', "Connexion");
+        //test si  connecté
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', '/tasks/1');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSelectorExists('h1', "MES TACHES");
+    }
+
+    public function testListAction()
+    {
+        $this->client->request('GET', '/tasks');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->client->followRedirect();
+        $this->assertSelectorTextContains('h1', "Connexion");
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', '/tasks');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSelectorExists('h1', "LISTES DES TACHES");
     }
 }

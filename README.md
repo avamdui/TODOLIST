@@ -6,4 +6,7 @@
   * Use MakerBundle's make:test command as a shortcut!
   * Run the tests with php bin/phpunit
 
+  
+ php bin/console doctrine:schema:create --env=test  
    vendor/bin/phpunit --coverage-html web/test-coverage
+    php bin/console doctrine:migrations:migrate --env=test 
