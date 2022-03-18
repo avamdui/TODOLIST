@@ -62,7 +62,8 @@ class SecurityControllerTest extends WebTestCase
         $this->client->loginUser($testUser);
         // test e.g. the profile page
         $this->client->request('GET', '/admin');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->client->followRedirect();
         $this->assertSelectorExists('h1', "test");
     }
 }

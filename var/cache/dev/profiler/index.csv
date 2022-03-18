@@ -1349,3 +1349,6 @@ e1cec6,127.0.0.1,GET,https://127.0.0.1:8000/tasks/3,1647610948,,200
 a096b4,127.0.0.1,GET,https://127.0.0.1:8000/admin,1647611755,,302
 c6237f,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&signature=DGDC18bbIKpvaBesYSM3IgMNo9GK_CkFFbwQzqi2ir8,1647611756,,200
 abb769,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&menuIndex=1&signature=goJy00FJZI2Ms_FmGrrJ5CKA1IlQK45vnsSFMEsenlY&submenuIndex=0,1647611844,,200
+bd38f4,127.0.0.1,GET,https://127.0.0.1:8000/admin,1647614263,,302
+bf9d5c,127.0.0.1,GET,https://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&signature=DGDC18bbIKpvaBesYSM3IgMNo9GK_CkFFbwQzqi2ir8,1647614265,,200
+78bb10,127.0.0.1,GET,https://127.0.0.1:8000/tasks/3,1647614605,,200

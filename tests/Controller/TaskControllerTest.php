@@ -35,35 +35,35 @@ class TaskControllerTest extends WebTestCase
     }
 
 
+    public function testSetdone()
+
+    {
+        $userRepository = static::getContainer()->get(UserRepository::class);
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
+        $this->client->loginUser($userTest);
+        $this->client->request('GET', 'tasks/1/setdone');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
 
     public function testSettodo()
 
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
 
-        $this->client->request('GET', 'tasks/2/settodo');
+        $this->client->request('GET', 'tasks/1/settodo');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
-    public function testSetdone()
-
-    {
-        $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
-        $this->client->loginUser($userTest);
-        $this->client->request('GET', 'tasks/2/setdone');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
 
     public function testSetinprogress()
 
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
-        $this->client->request('GET', 'tasks/2/setinprogress');
+        $this->client->request('GET', 'tasks/1/setinprogress');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
@@ -72,7 +72,7 @@ class TaskControllerTest extends WebTestCase
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
-        $this->client->request('GET', '/tasks/3/delete');
+        $this->client->request('GET', '/tasks/2/delete');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 
@@ -88,7 +88,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', "Connexion");
         //test si  connecté
         $userRepository = static::getContainer()->get(UserRepository::class);
-        $userTest = $userRepository->findOneByEmail('avamdui@gmail.com');
+        $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
         $this->client->request('GET', '/tasks/1');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
