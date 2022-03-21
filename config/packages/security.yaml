@@ -1,9 +1,14 @@
 security: 
     enable_authenticator_manager: true
 
-    encoders:
-        App\Entity\User:
-            algorithm: auto 
+    password_hashers:
+        # auto hasher with default options for the User class (and children)
+        App\Entity\User: 'auto'
+
+        # auto hasher with custom options for all PasswordAuthenticatedUserInterface instances
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            algorithm: 'auto'
+            cost:      15
     providers:
         users:
             entity: 

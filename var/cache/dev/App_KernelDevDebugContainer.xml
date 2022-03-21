@@ -5330,6 +5330,18 @@
           <argument key="memory_cost">null</argument>
           <argument key="time_cost">null</argument>
         </argument>
+        <argument key="Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface" type="collection">
+          <argument key="algorithm">auto</argument>
+          <argument key="cost">15</argument>
+          <argument key="migrate_from" type="collection"/>
+          <argument key="hash_algorithm">sha512</argument>
+          <argument key="key_length">40</argument>
+          <argument key="ignore_case">false</argument>
+          <argument key="encode_as_base64">true</argument>
+          <argument key="iterations">5000</argument>
+          <argument key="memory_cost">null</argument>
+          <argument key="time_cost">null</argument>
+        </argument>
       </argument>
       <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use "security.password_hasher_factory" instead.</deprecated>
     </service>
@@ -5456,6 +5468,18 @@
           <argument key="encode_as_base64">true</argument>
           <argument key="iterations">5000</argument>
           <argument key="cost">null</argument>
+          <argument key="memory_cost">null</argument>
+          <argument key="time_cost">null</argument>
+        </argument>
+        <argument key="Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface" type="collection">
+          <argument key="algorithm">auto</argument>
+          <argument key="cost">15</argument>
+          <argument key="migrate_from" type="collection"/>
+          <argument key="hash_algorithm">sha512</argument>
+          <argument key="key_length">40</argument>
+          <argument key="ignore_case">false</argument>
+          <argument key="encode_as_base64">true</argument>
+          <argument key="iterations">5000</argument>
           <argument key="memory_cost">null</argument>
           <argument key="time_cost">null</argument>
         </argument>
@@ -6099,6 +6123,7 @@
       <argument type="service" id="security.encoder_factory.generic"/>
       <argument type="collection">
         <argument>App\Entity\User</argument>
+        <argument>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</argument>
       </argument>
       <call method="setName">
         <argument>security:encode-password</argument>
@@ -6114,6 +6139,7 @@
       <argument type="service" id="security.password_hasher_factory"/>
       <argument type="collection">
         <argument>App\Entity\User</argument>
+        <argument>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</argument>
       </argument>
       <call method="setName">
         <argument>security:hash-password</argument>
