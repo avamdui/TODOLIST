@@ -16,19 +16,24 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateAction()
     {
+        // Login grace a la fonction loginuser()
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
-
+        // Nous accèdons à la page "mes taches" de l'user ayant l'ID 1
         $crawler = $this->client->request('GET', '/tasks/1');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
+        //Recherche du bouton "ajouter"
         $buttonCrawlerNode = $crawler->selectButton("Ajouter");
+        // Selection du formulaire associé a ce bouton
         $form = $buttonCrawlerNode->form();
+        // On remplis le formulaire
         $form['task[title]'] = 'PHPUNIT';
         $form['task[content]'] = 'Faire les test unitaires';
+        //On soumt le formulaire
         $this->client->submit($form);
-
+        // Vérification de la redictection et du code retour 200
         $this->assertTrue($this->client->getResponse()->isRedirect());
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '34eef9553ee4d9eb8daad7b2c9d322cce415a924',
+        'reference' => '938d33feb4049507a85cdf8063379fe095da6d1d',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '34eef9553ee4d9eb8daad7b2c9d322cce415a924',
+            'reference' => '938d33feb4049507a85cdf8063379fe095da6d1d',
             'dev_requirement' => false,
         ),
         'doctrine/annotations' => array(
@@ -56,12 +56,12 @@
             'dev_requirement' => false,
         ),
         'doctrine/dbal' => array(
-            'pretty_version' => '3.3.3',
-            'version' => '3.3.3.0',
+            'pretty_version' => '3.3.4',
+            'version' => '3.3.4.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/dbal',
             'aliases' => array(),
-            'reference' => '82331b861727c15b1f457ef05a8729e508e7ead5',
+            'reference' => '83f779beaea1893c0bece093ab2104c6d15a7f26',
             'dev_requirement' => false,
         ),
         'doctrine/deprecations' => array(
@@ -439,8 +439,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0',
+                0 => '1.0|2.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache-implementation' => array(
