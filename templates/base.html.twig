@@ -63,23 +63,6 @@
 
 		{% block header_img %}
 			<div class="container"><img class="slide-image" src="{{ asset('img/kanban.png') }}" alt="todo list"></div>
-			<!-- flash_message -->
-			<div class="row">
-				<div class="col-md-12">
-					{% for flash_message in app.session.flashBag.get('success') %}
-						<div class="alert alert-success" role="alert">
-							<strong>Superbe !</strong>
-							{{ flash_message }}
-						</div>
-					{% endfor %}
-					{% for flash_message in app.session.flashBag.get('error') %}
-						<div class="alert alert-danger" role="alert">
-							<strong>Oops !</strong>
-							{{ flash_message }}
-						</div>
-					{% endfor %}
-				</div>
-			</div>
 
 		{% endblock %}
 

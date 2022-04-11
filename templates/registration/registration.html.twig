@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block header_title %}{% endblock %}
+
+{% block body %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+	{% for message in app.flashes('success') %}
+		<br>
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+		<br>
+	{% endfor %}
+	<div class="container">
+		<h1 class="text-center ">Bienvenue
+											
+												sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</h1>
+	</div>
+{% endblock %}

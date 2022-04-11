@@ -389,7 +389,8 @@
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
-      <argument type="service" id="App\Security\EmailVerifier"/>
+      <argument type="service" id="symfonycasts.verify_email.helper"/>
+      <argument type="service" id="mailer.mailer"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.GNc8e5B.App\Controller\RegistrationController"/>
       </call>
@@ -421,11 +422,6 @@
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Security\EmailVerifier" class="App\Security\EmailVerifier" autowire="true" autoconfigure="true">
-      <argument type="service" id="symfonycasts.verify_email.helper"/>
-      <argument type="service" id="mailer.mailer"/>
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="response_listener" class="Symfony\Component\HttpKernel\EventListener\ResponseListener">
@@ -5510,20 +5506,6 @@
         </argument>
         <argument>null</argument>
       </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.eKXDm4f"/>
-        <argument type="collection">
-          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.wCCGb77"/>
-        <argument type="collection">
-          <argument>PUBLIC_ACCESS</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
     </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener">
       <tag name="monolog.logger" channel="security"/>
@@ -5665,7 +5647,6 @@
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager">
       <argument type="iterator">
         <argument type="service" id="security.authentication.provider.dao.main"/>
-        <argument type="service" id="security.authentication.provider.rememberme.main"/>
       </argument>
       <argument>true</argument>
       <call method="setEventDispatcher">
@@ -5888,7 +5869,6 @@
       <argument>null</argument>
       <argument type="collection">
         <argument>form_login</argument>
-        <argument>remember_me</argument>
       </argument>
       <argument>null</argument>
     </service>
@@ -5913,14 +5893,6 @@
       <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
         <argument type="collection">
-          <argument type="service_closure" id="security.logout.listener.remember_me.main"/>
-          <argument>onLogout</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
-        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
-        <argument type="collection">
           <argument type="service_closure" id="security.logout.listener.csrf_token_clearing"/>
           <argument>onLogout</argument>
         </argument>
@@ -5928,7 +5900,6 @@
       </call>
     </service>
     <service id="security.context_listener.0" class="Symfony\Component\Security\Http\Firewall\ContextListener">
-      <tag name="security.remember_me_aware" id="main" provider="none"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
         <argument type="service" id="security.user.provider.concrete.users"/>
@@ -5941,9 +5912,6 @@
         <argument type="service" id="security.token_storage"/>
         <argument>enableUsageTracking</argument>
       </argument>
-      <call method="setRememberMeServices">
-        <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
-      </call>
     </service>
     <service id="security.logout_listener.main" class="Symfony\Component\Security\Http\Firewall\LogoutListener">
       <argument type="service" id="security.token_storage"/>
@@ -6026,9 +5994,6 @@
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
       <argument>null</argument>
-      <call method="setRememberMeServices">
-        <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
-      </call>
       <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use the new authenticator system instead.</deprecated>
     </service>
     <service id="security.authentication.form_entry_point.main" class="Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint">
@@ -6036,45 +6001,6 @@
       <argument type="service" id="security.http_utils"/>
       <argument>login</argument>
       <argument>false</argument>
-    </service>
-    <service id="security.authentication.provider.rememberme.main" class="Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider">
-      <argument type="service" id="security.user_checker"/>
-      <argument>%env(APP_SECRET)%</argument>
-      <argument>main</argument>
-      <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use the new authenticator system instead.</deprecated>
-    </service>
-    <service id="security.authentication.rememberme.services.simplehash.main" class="Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices">
-      <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users"/>
-      </argument>
-      <argument>%env(APP_SECRET)%</argument>
-      <argument>main</argument>
-      <argument type="collection">
-        <argument key="lifetime">86400</argument>
-        <argument key="path">/</argument>
-        <argument key="name">REMEMBERME</argument>
-        <argument key="domain">null</argument>
-        <argument key="secure">null</argument>
-        <argument key="httponly">true</argument>
-        <argument key="samesite">lax</argument>
-        <argument key="always_remember_me">false</argument>
-        <argument key="remember_me_parameter">_remember_me</argument>
-      </argument>
-      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-    </service>
-    <service id="security.authentication.listener.rememberme.main" class="Symfony\Component\Security\Http\Firewall\RememberMeListener">
-      <argument type="service" id="security.untracked_token_storage"/>
-      <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
-      <argument type="service" id="security.authentication.manager"/>
-      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-      <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
-      <argument>true</argument>
-      <argument type="service" id="security.authentication.session_strategy"/>
-      <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use the new authenticator system instead.</deprecated>
-    </service>
-    <service id="security.logout.listener.remember_me.main" class="Symfony\Component\Security\Http\EventListener\RememberMeLogoutListener">
-      <tag name="kernel.event_subscriber" dispatcher="security.event_dispatcher.main"/>
-      <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener">
       <argument type="service" id="security.token_storage"/>
@@ -6092,7 +6018,6 @@
         <argument type="service" id="security.channel_listener"/>
         <argument type="service" id="security.context_listener.0"/>
         <argument type="service" id="security.authentication.listener.form.main"/>
-        <argument type="service" id="security.authentication.listener.rememberme.main"/>
         <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service" id="security.exception_listener.main"/>
@@ -6109,12 +6034,6 @@
     </service>
     <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher">
       <argument>^/admin</argument>
-    </service>
-    <service id=".security.request_matcher.eKXDm4f" class="Symfony\Component\HttpFoundation\RequestMatcher">
-      <argument>^/login$</argument>
-    </service>
-    <service id=".security.request_matcher.wCCGb77" class="Symfony\Component\HttpFoundation\RequestMatcher">
-      <argument>/</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand">
       <tag name="console.command" command="security:encode-password"/>
@@ -7266,13 +7185,6 @@
         <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
       </argument>
     </service>
-    <service id=".service_locator.YZZYH8t" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
-        <argument key="verifyEmailHelper" type="service_closure" id="symfonycasts.verify_email.helper"/>
-      </argument>
-    </service>
     <service id=".service_locator.UDgw6Ol" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7312,7 +7224,7 @@
         <argument key="task" type="service_closure" id=".errored..service_locator.TfvLzuL.App\Entity\Task"/>
       </argument>
     </service>
-    <service id=".service_locator.GS3LMjk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.SSMknUL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7338,7 +7250,6 @@
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.4u5os03"/>
-        <argument key="App\Controller\RegistrationController::verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\TaskController::createAction" type="service_closure" id=".service_locator.k9Qlhvk"/>
         <argument key="App\Controller\TaskController::deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -7378,7 +7289,6 @@
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.ZOQ9v2d"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.4u5os03"/>
-        <argument key="App\Controller\RegistrationController:verifyUserEmail" type="service_closure" id=".service_locator.YZZYH8t"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.UDgw6Ol"/>
         <argument key="App\Controller\TaskController:createAction" type="service_closure" id=".service_locator.k9Qlhvk"/>
         <argument key="App\Controller\TaskController:deleteTaskAction" type="service_closure" id=".service_locator.MQERK.A"/>
@@ -8090,12 +8000,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.GS3LMjk"/>
+      <argument type="service" id=".service_locator.SSMknUL"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.GS3LMjk"/>
+      <argument type="service" id=".service_locator.SSMknUL"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9096,7 +9006,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.GS3LMjk"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.SSMknUL"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9125,11 +9035,10 @@
     <service id=".service_locator.rAlqQ78" alias=".service_locator.3on9uHL"/>
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.Dby0_1s" alias=".service_locator.4u5os03"/>
-    <service id=".service_locator.EeodFiw" alias=".service_locator.YZZYH8t"/>
     <service id=".service_locator.LGIn_mq" alias=".service_locator.k9Qlhvk"/>
     <service id=".service_locator.F5suoal" alias=".service_locator.UkG67Q3"/>
     <service id=".service_locator.rRt8PVp" alias=".service_locator.MQERK.A"/>
-    <service id=".service_locator.Anpq6Ud" alias=".service_locator.GS3LMjk"/>
+    <service id=".service_locator.ZfAfL_n" alias=".service_locator.SSMknUL"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.nzafaWi" alias=".service_locator.PpZ3js9"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9173,7 +9082,6 @@
     <service id=".service_locator.1tlLxRd" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.6KoT76J" alias=".service_locator.2dc0eaX"/>
     <service id=".service_locator.LzwvCJx" alias=".service_locator.4u5os03"/>
-    <service id=".service_locator.8wvPAfM" alias=".service_locator.YZZYH8t"/>
     <service id=".service_locator.kXCVHeG" alias=".service_locator.UDgw6Ol"/>
     <service id=".service_locator.n_CDrYD" alias=".service_locator.k9Qlhvk"/>
     <service id=".service_locator.kxfFwQY" alias=".service_locator.K8mEeqr"/>

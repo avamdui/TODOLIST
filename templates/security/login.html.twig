@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	{% if error %}
+		<div class="alert alert-danger mb-2">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	{% for message in app.flashes('success') %}
+		<br>
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+		<br>
+	{% endfor %}
+	{% for message in app.session.flashBag.get('success') %}
+		<div class="alert alert-success" role="alert">
+			<strong>Superbe !</strong>
+			{{ message }}
+		</div>
+	{% endfor %}
+	{% for message in app.session.flashBag.get('error') %}
+		<div class="alert alert-danger" role="alert">
+			<strong>Oops !</strong>
+			{{ message }}
+		</div>
+	{% endfor %}
 	<br>
 	<div class="row justify-content-center">
 		<div class="col-md-10 col-md-offset-1 mb-4">
