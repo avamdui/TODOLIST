@@ -38,21 +38,12 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
-    public function testEditAction()
+    public function testShowEditAction()
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
         $userTest = $userRepository->findOneByEmail('test@test.fr');
         $this->client->loginUser($userTest);
-
         $crawler = $this->client->request('GET', '/tasks/1/showedit');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $buttonCrawlerNode = $crawler->selectButton("Modifier");
-        $form = $buttonCrawlerNode->form();
-        $form['task[title]'] = 'PHPUNIT Modifié';
-        $form['task[content]'] = 'Faire les test unitaires';
-        $this->client->submit($form);
-
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 

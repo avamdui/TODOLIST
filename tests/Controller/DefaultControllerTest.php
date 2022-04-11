@@ -30,4 +30,10 @@ class DefaultControllerTest extends WebTestCase
         $this->client->request('GET', '/');
         $this->assertSelectorTextContains('h1', "Bienvenue test");
     }
+    public function testRegistrationAction()
+    {
+        $this->client->request('GET', '/registration');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', "Bienvenu");
+    }
 }
