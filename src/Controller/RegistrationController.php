@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use DateTimeImmutable;
@@ -51,7 +52,8 @@ class RegistrationController extends AbstractController
             $signatureComponents = $this->verifyEmailHelper->generateSignature(
                 'registration_confirmation_route',
                 $user->getId(),
-                $user->getEmail()
+                $user->getEmail(),
+                ['id' => $user->getId()] // add the user's id as an extra query param
             );
             $email = new TemplatedEmail();
             $email->from('Avamdui.dev@gmail.com');
@@ -73,10 +75,19 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/verify", name="registration_confirmation_route")
      */
-    public function verifyUserEmail(Request $request): Response
+    public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
+        $id = $request->get('id'); // retrieve the user id from the url
+
+        // Verify the user id exists and is not null
+        if (null === $id) {
+            return $this->redirectToRoute('app_home');
+        }
+        $user = $userRepository->find($id);
+        // Ensure the user exists in persistence
+        if (null === $user) {
+            return $this->redirectToRoute('app_home');
+        }
 
         // Do not get the User's Id or Email Address from the Request object
         try {
@@ -88,8 +99,10 @@ class RegistrationController extends AbstractController
         }
 
         // Mark your user as verified. e.g. switch a User::verified property to true
-
-        $this->addFlash('success', 'Your e-mail address has been verified.');
+        $user->setIsVerified(true);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        $this->addFlash('success', 'Votre adresse e-mail a été vérifiée.');
 
         return $this->redirectToRoute('homepage');
     }
