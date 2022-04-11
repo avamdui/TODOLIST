@@ -16,15 +16,16 @@ final class DashboardDto
     private $textDirection;
     private string $contentWidth = Crud::LAYOUT_CONTENT_DEFAULT;
     private string $sidebarWidth = Crud::LAYOUT_SIDEBAR_DEFAULT;
-    private bool $signedUrls = true;
+    private bool $signedUrls = false;
     private bool $absoluteUrls = true;
+    private bool $enableDarkMode = true;
 
     public function getRouteName(): string
     {
         return $this->routeName;
     }
 
-    public function setRouteName(/*string*/ $routeName): void
+    public function setRouteName(/* string */ $routeName): void
     {
         if (!\is_string($routeName)) {
             trigger_deprecation(
@@ -76,7 +77,7 @@ final class DashboardDto
         return $this->textDirection;
     }
 
-    public function setTextDirection(/*?string*/ $textDirection): void
+    public function setTextDirection(/* ?string */ $textDirection): void
     {
         if (!\is_string($textDirection)
             && null !== $textDirection) {
@@ -136,5 +137,17 @@ final class DashboardDto
         $this->absoluteUrls = $absoluteUrls;
 
         return $this;
+    }
+
+    public function setEnableDarkMode(bool $enableDarkMode): self
+    {
+        $this->enableDarkMode = $enableDarkMode;
+
+        return $this;
+    }
+
+    public function isDarkModeEnabled(): bool
+    {
+        return $this->enableDarkMode;
     }
 }

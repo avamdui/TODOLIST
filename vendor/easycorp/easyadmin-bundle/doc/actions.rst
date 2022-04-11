@@ -268,7 +268,7 @@ the ``Action`` class constructor::
     $viewInvoice = Action::new('viewInvoice', false);
 
     // the third optional argument is the full CSS class of a FontAwesome icon
-    // see https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
+    // see https://fontawesome.com/v6/search?m=free
     $viewInvoice = Action::new('viewInvoice', 'Invoice', 'fa fa-file-invoice');
 
 Then you can configure the basic HTML/CSS attributes of the button/element
@@ -420,7 +420,7 @@ If you do that, EasyAdmin will inject a DTO with all the batch action data::
 
         public function approveUsers(BatchActionDto $batchActionDto)
         {
-            $entityManager = $this->getDoctrine()->getManagerForClass($batchActionDto->getEntityFqcn());
+            $entityManager = $this->container->get('doctrine')->getManagerForClass($batchActionDto->getEntityFqcn());
             foreach ($batchActionDto->getEntityIds() as $id) {
                 $user = $entityManager->find($id);
                 $user->approve();
@@ -623,3 +623,4 @@ by EasyAdmin::
             // ...
         }
     }
+

@@ -88,6 +88,11 @@ label.form-check-label {
     word-break: keep-all;
     transition: box-shadow .08s ease-in, color .08s ease-in;
 }
+.form-widget .form-select[multiple] {
+    height: auto;
+    background-image: none;
+    padding: 0;
+}
 .form-widget input.form-check-input {
     border: 1px solid var(--form-type-check-input-border-color);
     box-shadow: var(--form-type-check-input-box-shadow);
@@ -661,4 +666,20 @@ form .invalid-feedback > .d-block + .d-block {
     right: 0;
     text-align: right;
     top: 0;
+}
+
+// Fix "Browse" button for regular file inputs
+.form-control {
+    &::file-selector-button, &::-webkit-file-upload-button {
+        color: var(--button-secondary-color);
+        background-color: var(--button-secondary-bg);
+        box-shadow: var(--button-shadow);
+    }
+
+    &:hover:not(:disabled):not([readonly]) {
+        &::file-selector-button, &::-webkit-file-upload-button {
+            background-color: var(--button-secondary-bg);
+            box-shadow: var(--button-hover-shadow);
+        }
+    }
 }

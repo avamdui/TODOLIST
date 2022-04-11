@@ -3,38 +3,37 @@ require('../css/app.scss');
 
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 import Mark from 'mark.js/src/vanilla';
-import DirtyForm from 'dirty-form';
-import * as basicLightbox from 'basiclightbox';
 import Autocomplete from './autocomplete';
 
 // Provide Bootstrap variable globally to allow custom backend pages to use it
 window.bootstrap = bootstrap;
 
 document.addEventListener('DOMContentLoaded', () => {
-    App.createMainMenu();
-    App.createColorSchemeSelector();
-    App.createLayoutResizeControls();
-    App.createNavigationToggler();
-    App.createSearchHighlight();
-    App.createFilters();
-    App.createToggleFields();
-    App.createAutoCompleteFields();
-    App.createBatchActions();
-    App.createModalWindowsForDeleteActions();
-    App.createPopovers();
-    App.createTooltips();
-    App.createUnsavedFormChangesWarning();
-    App.createNullableFields();
-    App.createImageFields();
-    App.createFileUploadFields();
-    App.createFieldsWithErrors();
-    App.preventMultipleFormSubmission();
-
-    document.addEventListener('ea.collection.item-added', () => App.createAutoCompleteFields());
+    new App();
 });
 
-const App = (() => {
-    const createMainMenu = () => {
+class App {
+    #sidebarWidthLocalStorageKey;
+    #contentWidthLocalStorageKey;
+
+    constructor() {
+        this.#sidebarWidthLocalStorageKey = 'ea/sidebar/width';
+        this.#contentWidthLocalStorageKey = 'ea/content/width';
+
+        this.#createMainMenu();
+        this.#createLayoutResizeControls();
+        this.#createNavigationToggler();
+        this.#createSearchHighlight();
+        this.#createFilters();
+        this.#createAutoCompleteFields();
+        this.#createBatchActions();
+        this.#createModalWindowsForDeleteActions();
+        this.#createPopovers();
+
+        document.addEventListener('ea.collection.item-added', () => this.#createAutoCompleteFields());
+    }
+
+    #createMainMenu() {
         // inspired by https://codepen.io/phileflanagan/pen/mwpQpY
         const menuItemsWithSubmenus = document.querySelectorAll('#main-menu .menu-item.has-submenu');
         menuItemsWithSubmenus.forEach((menuItem) => {
@@ -73,65 +72,35 @@ const App = (() => {
                 }
             });
         });
-    };
+    }
 
-    const createColorSchemeSelector = () => {
-        if (null === document.querySelector('.dropdown-appearance')) {
-            return;
-        }
-
-        const currentScheme = localStorage.getItem('ea/colorScheme') || 'auto';
-        const colorSchemeSelectors = document.querySelectorAll('.dropdown-appearance a[data-ea-color-scheme]');
-        const activeColorSchemeSelector = document.querySelector(`.dropdown-appearance a[data-ea-color-scheme="${ currentScheme }"]`);
-
-        colorSchemeSelectors.forEach((selector) => { selector.classList.remove('active') });
-        activeColorSchemeSelector.classList.add('active');
-
-        colorSchemeSelectors.forEach((selector) => {
-            selector.addEventListener('click', () => {
-                const selectedColorScheme = selector.getAttribute('data-ea-color-scheme');
-                const resolvedColorScheme = 'auto' === selectedColorScheme
-                    ? matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-                    : selectedColorScheme;
-
-                document.body.classList.remove('ea-light-scheme', 'ea-dark-scheme');
-                document.body.classList.add('light' === resolvedColorScheme ? 'ea-light-scheme' : 'ea-dark-scheme');
-                localStorage.setItem('ea/colorScheme', selectedColorScheme);
-                document.body.style.colorScheme = resolvedColorScheme;
-
-                colorSchemeSelectors.forEach((otherSelector) => { otherSelector.classList.remove('active') });
-                selector.classList.add('active');
-            });
-        });
-    };
-
-    const createLayoutResizeControls = () => {
-        const sidebarResizerHandler = document.getElementById('sidebar-resizer-handler');
+    #createLayoutResizeControls() {
+        const sidebarResizerHandler = document.querySelector('#sidebar-resizer-handler');
         if (null !== sidebarResizerHandler) {
             sidebarResizerHandler.addEventListener('click', () => {
-                const oldValue = localStorage.getItem('ea/sidebar/width') || 'normal';
-                const newValue = 'normal' == oldValue ? 'compact' : 'normal';
+                const oldValue = localStorage.getItem(this.#sidebarWidthLocalStorageKey) || 'normal';
+                const newValue = 'normal' === oldValue ? 'compact' : 'normal';
 
-                document.querySelector('body').classList.remove('ea-sidebar-width-' + oldValue);
-                document.querySelector('body').classList.add('ea-sidebar-width-' + newValue);
-                localStorage.setItem('ea/sidebar/width', newValue);
+                document.querySelector('body').classList.remove(`ea-sidebar-width-${ oldValue }`);
+                document.querySelector('body').classList.add(`ea-sidebar-width-${ newValue }`);
+                localStorage.setItem(this.#sidebarWidthLocalStorageKey, newValue);
             });
         }
 
-        const contentResizerHandler = document.getElementById('content-resizer-handler');
+        const contentResizerHandler = document.querySelector('#content-resizer-handler');
         if (null !== contentResizerHandler) {
             contentResizerHandler.addEventListener('click', () => {
-                const oldValue = localStorage.getItem('ea/content/width') || 'normal';
-                const newValue = 'normal' == oldValue ? 'full' : 'normal';
+                const oldValue = localStorage.getItem(this.#contentWidthLocalStorageKey) || 'normal';
+                const newValue = 'normal' === oldValue ? 'full' : 'normal';
 
-                document.querySelector('body').classList.remove('ea-content-width-' + oldValue);
-                document.querySelector('body').classList.add('ea-content-width-' + newValue);
-                localStorage.setItem('ea/content/width', newValue);
+                document.querySelector('body').classList.remove(`ea-content-width-${ oldValue }`);
+                document.querySelector('body').classList.add(`ea-content-width-${ newValue }`);
+                localStorage.setItem(this.#contentWidthLocalStorageKey, newValue);
             });
         }
-    };
+    }
 
-    const createNavigationToggler = () => {
+    #createNavigationToggler() {
         const toggler = document.querySelector('#navigation-toggler');
         const cssClassName = 'ea-mobile-sidebar-visible';
         let modalBackdrop;
@@ -158,9 +127,9 @@ const App = (() => {
                 modalBackdrop = null;
             }
         });
-    };
+    }
 
-    const createSearchHighlight = () => {
+    #createSearchHighlight() {
         const searchElement = document.querySelector('.form-action-search [name="query"]');
         if (null === searchElement) {
             return;
@@ -174,9 +143,9 @@ const App = (() => {
         const elementsToHighlight = document.querySelectorAll('table tbody td:not(.actions)');
         const highlighter = new Mark(elementsToHighlight);
         highlighter.mark(searchQuery);
-    };
+    }
 
-    const createFilters = () => {
+    #createFilters() {
         const filterButton = document.querySelector('.datagrid-filters .action-filters-button');
         if (null === filterButton) {
             return;
@@ -196,8 +165,9 @@ const App = (() => {
             fetch(filterButton.getAttribute('href'))
                 .then((response) => { return response.text(); })
                 .then((text) => {
-                    setInnerHTMLAndRunScripts(filterModalBody, text);
-                    App.createAutoCompleteFields();
+                    filterModalBody.innerHTML = text;
+                    this.#createAutoCompleteFields();
+                    this.#createFilterToggles();
                 })
                 .catch((error) => { console.error(error); });
 
@@ -225,41 +195,9 @@ const App = (() => {
             });
             filterModal.querySelector('form').submit();
         });
-    };
+    }
 
-    const createToggleFields = () => {
-        const disableToggleField = (toggleField, isChecked) => {
-            // in case of error, restore the original toggle field value and disable it
-            toggleField.checked = isChecked;
-            toggleField.disabled = true;
-            toggleField.closest('.custom-switch').classList.add('disabled');
-        };
-
-        document.querySelectorAll('td.field-boolean .form-switch input[type="checkbox"]').forEach((toggleField) => {
-            toggleField.addEventListener('change', () => {
-                const newValue = toggleField.checked;
-                const oldValue = !newValue;
-
-                const toggleUrl = toggleField.getAttribute('data-toggle-url') + "&newValue=" + newValue.toString();
-                fetch(toggleUrl, {
-                    method: 'PATCH',
-                    // the XMLHttpRequest header is needed to keep compatibility with the previous code, which didn't use the Fetch API
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                })
-                    .then((response) => {
-                        if (!response.ok) {
-                            disableToggleField(toggleField, oldValue);
-                        }
-
-                        return response.text();
-                    })
-                    .then(() => { /* do nothing else when the toggle request is successful */ })
-                    .catch(() => disableToggleField(toggleField, oldValue));
-            });
-        });
-    };
-
-    const createBatchActions = () => {
+    #createBatchActions() {
         let lastUpdatedRowCheckbox = null;
         const selectAllCheckbox = document.querySelector('.form-batch-checkbox-all');
         if (null === selectAllCheckbox) {
@@ -380,16 +318,16 @@ const App = (() => {
                 });
             });
         });
-    };
+    }
 
-    const createAutoCompleteFields = () => {
+    #createAutoCompleteFields() {
         const autocomplete = new Autocomplete();
         document.querySelectorAll('[data-ea-widget="ea-autocomplete"]').forEach((autocompleteElement) => {
             autocomplete.create(autocompleteElement);
         });
-    };
+    }
 
-    const createModalWindowsForDeleteActions = () => {
+    #createModalWindowsForDeleteActions() {
         document.querySelectorAll('.action-delete').forEach((actionElement) => {
             actionElement.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -404,291 +342,55 @@ const App = (() => {
         });
     }
 
-    const createPopovers = () => {
-        let popovers = [];
+    #createPopovers() {
         document.querySelectorAll('[data-bs-toggle="popover"]').forEach((popoverElement) => {
-            const popover = new bootstrap.Popover(popoverElement, {
-                animation: true,
-                delay: 150,
-                html: true,
-                placement: 'bottom',
-                trigger: 'click',
-            });
-
-            popovers.push(popover);
+            new bootstrap.Popover(popoverElement);
         });
+    }
 
-        // by default, when a popover is triggered by 'click', you can only close it
-        // if you click again on the same element; improve UX by allowing to close them
-        // when clicking anywhere on the page
-        document.body.addEventListener('click', () => {
-            popovers.forEach((popover) => popover.hide());
-        });
-    };
+    #createFilterToggles() {
+        document.querySelectorAll('.filter-checkbox').forEach((filterCheckbox) => {
+            filterCheckbox.addEventListener('change', () => {
+                const filterToggleLink = filterCheckbox.nextElementSibling;
+                const filterExpandedAttribute = filterCheckbox.nextElementSibling.getAttribute('aria-expanded');
 
-    const createTooltips = () => {
-        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((tooltipElement) => {
-            new bootstrap.Tooltip(tooltipElement, {
-                html: true,
-            });
-        });
-    };
-
-    const createUnsavedFormChangesWarning = () => {
-        ['.ea-new-form', '.ea-edit-form'].forEach((formSelector) => {
-            const form = document.querySelector(formSelector);
-            if (null === form) {
-                return;
-            }
-
-            // although DirtyForm supports passing a custom message to display,
-            // modern browsers don't allow to display custom messages to protect users
-            new DirtyForm(form);
-        });
-    };
-
-    const createNullableFields = () => {
-        const updateNullableControlStatus = (checkbox) => {
-            const formFieldIsNull = checkbox.checked;
-            checkbox.closest('.form-group').querySelectorAll('select, input[type="date"], input[type="time"], input[type="datetime-local"]').forEach((dateTimeHtmlElement) => {
-                dateTimeHtmlElement.disabled = formFieldIsNull;
-                const dateTimeWidget = dateTimeHtmlElement.closest('.datetime-widget');
-                if (null !== dateTimeWidget) {
-                    dateTimeWidget.style.display = formFieldIsNull ? 'none' : 'block';
+                if ((filterCheckbox.checked && 'false' === filterExpandedAttribute) || (!filterCheckbox.checked && 'true' === filterExpandedAttribute)) {
+                    filterToggleLink.click();
                 }
             });
-        };
-
-        document.querySelectorAll('.nullable-control input[type="checkbox"]').forEach((checkbox) => {
-            updateNullableControlStatus(checkbox);
-
-            checkbox.addEventListener('change', () => {
-                updateNullableControlStatus(checkbox);
-            });
         });
-    };
 
-    const createImageFields = () => {
-        document.querySelectorAll('.ea-lightbox-thumbnail').forEach((image) => {
-            image.addEventListener('click', (event) => {
-                event.preventDefault();
-                const lightboxContent = document.querySelector(image.getAttribute('data-ea-lightbox-content-selector')).innerHTML;
-                const lightbox = basicLightbox.create(lightboxContent);
-                lightbox.show();
-            });
-        });
-    };
-
-    const createFileUploadFields = () => {
-        const humanizeFileSize = (bytes) => {
-            const unit = ['B', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
-            const factor = Math.trunc(Math.floor(Math.log(bytes) / Math.log(1024)));
-
-            return Math.trunc(bytes / (1024 ** factor)) + unit[factor];
-        };
-
-        document.querySelectorAll('.ea-fileupload input[type="file"]').forEach((fileUploadElement) => {
-            fileUploadElement.addEventListener('change', () => {
-                if (0 === fileUploadElement.files.length) {
+        document.querySelectorAll('form[data-ea-filters-form-id]').forEach((form) => {
+            // TODO: when using the native datepicker, 'change' isn't fired unless you input the entire date + time information
+            form.addEventListener('change', (event) => {
+                if (event.target.classList.contains('filter-checkbox')) {
                     return;
                 }
 
-                let filename = '';
-                if (1 === fileUploadElement.files.length) {
-                    filename = fileUploadElement.files[0].name;
-                } else {
-                    filename = fileUploadElement.files.length + ' ' + fileUploadElement.getAttribute('data-files-label');
-                }
-
-                let bytes = 0;
-                for (let i = 0; i < fileUploadElement.files.length; i++) {
-                    bytes += fileUploadElement.files[i].size;
-                }
-
-                const fileUploadContainer = fileUploadElement.closest('.ea-fileupload');
-                const fileUploadCustomInput = fileUploadContainer.querySelector('.custom-file-label');
-                const fileUploadFileSizeLabel = fileUploadContainer.querySelector('.input-group-text');
-                const fileUploadDeleteButton = fileUploadContainer.querySelector('.ea-fileupload-delete-btn');
-
-                fileUploadFileSizeLabel.childNodes.forEach((fileUploadFileSizeLabelChild) => {
-                    if (fileUploadFileSizeLabelChild.nodeType === Node.TEXT_NODE) {
-                        fileUploadFileSizeLabel.removeChild(fileUploadFileSizeLabelChild);
-                    }
-                });
-
-                fileUploadCustomInput.innerHTML = filename;
-                fileUploadFileSizeLabel.prepend(humanizeFileSize(bytes));
-                fileUploadDeleteButton.style.display = 'block';
-            });
-        });
-
-        document.querySelectorAll('.ea-fileupload .ea-fileupload-delete-btn').forEach((fileUploadDeleteButton) => {
-            fileUploadDeleteButton.addEventListener('click', () => {
-                const fileUploadContainer = fileUploadDeleteButton.closest('.ea-fileupload');
-                const fileUploadInput = fileUploadContainer.querySelector('input');
-                const fileUploadCustomInput = fileUploadContainer.querySelector('.custom-file-label');
-                const fileUploadFileSizeLabel = fileUploadContainer.querySelector('.input-group-text');
-                const fileUploadListOfFiles = fileUploadContainer.querySelector('.fileupload-list');
-                const fileUploadDeleteCheckbox = fileUploadContainer.querySelector('input[type=checkbox].form-check-input');
-
-                if (fileUploadDeleteCheckbox) {
-                    fileUploadDeleteCheckbox.checked = true;
-                    fileUploadDeleteCheckbox.click();
-                }
-                fileUploadInput.value = '';
-                fileUploadCustomInput.innerHTML = '';
-                fileUploadDeleteButton.style.display = 'none';
-
-                fileUploadFileSizeLabel.childNodes.forEach((fileUploadFileSizeLabelChild) => {
-                    if (fileUploadFileSizeLabelChild.nodeType === Node.TEXT_NODE) {
-                        fileUploadFileSizeLabel.removeChild(fileUploadFileSizeLabelChild);
-                    }
-                });
-
-                if (null !== fileUploadListOfFiles) {
-                    fileUploadListOfFiles.style.display = 'none';
+                const filterCheckbox = event.target.closest('.filter-field').querySelector('.filter-checkbox');
+                if (!filterCheckbox.checked) {
+                    filterCheckbox.checked = true;
                 }
             });
         });
-    };
 
-    const createFieldsWithErrors = () => {
-        const handleFieldsWithErrors = (form, pageName) => {
-            // Intercept errors before submit to avoid browser error "An invalid form control with name='...' is not focusable."
-            //
-            // Adding visual feedback for invalid fields: any ".form-group" with invalid fields
-            // receives "has-error" class. The class is removed on click on the ".form-group"
-            // itself to support custom/complex fields.
-            //
-            // Adding visual error counter feedback for invalid fields inside form tabs (visible or not)
-            document.querySelector('.ea-edit, .ea-new').querySelectorAll('[type="submit"]').forEach((button) => {
-                button.addEventListener('click', function onSubmitButtonsClick(clickEvent) {
+        document.querySelectorAll('[data-ea-comparison-id]').forEach((comparisonWidget) => {
+            comparisonWidget.addEventListener('change', (event) => {
+                const comparisonWidget = event.currentTarget;
+                const comparisonId = comparisonWidget.dataset.eaComparisonId;
 
-                    let formHasErrors = false;
-
-                    // Remove all error counter badges
-                    document.querySelectorAll('.form-tabs .nav-item .badge-danger.badge').forEach( (badge) => {
-                        badge.parentElement.removeChild(badge);
-                    });
-
-                    form.querySelectorAll('input,select,textarea').forEach( (input) => {
-                        if (!input.validity.valid) {
-                            formHasErrors = true;
-
-                            // Visual feedback for tabz
-                            // Adding a badge with a error count next to the tab label
-                            const formTab = input.closest('div.tab-pane');
-                            if (formTab) {
-                                const navLinkTab = document.querySelector('#' + formTab.id + '-tab');
-                                const badge = navLinkTab.querySelector('.badge');
-                                if (badge) {
-                                    // Increment number of error
-                                    badge.textContent = parseInt(badge.textContent) + 1;
-                                } else {
-                                    // Create a new badge
-                                    let newErrorBadge = document.createElement('span');
-                                    newErrorBadge.classList.add('badge', 'badge-danger');
-                                    newErrorBadge.title = 'form.tab.error_badge_title';
-                                    newErrorBadge.textContent = 1;
-                                    navLinkTab.appendChild(newErrorBadge);
-                                }
-                                navLinkTab.addEventListener('click', function onFormNavLinkTabClick() {
-                                    navLinkTab.querySelectorAll('.badge-danger.badge').forEach( (badge) => {
-                                        badge.parentElement.removeChild(badge);
-                                    });
-                                    navLinkTab.removeEventListener('click', onFormNavLinkTabClick);
-                                });
-                            }
-
-                            // Visual feedback for group
-                            const formGroup = input.closest('div.form-group');
-                            formGroup.classList.add('has-error');
-
-                            formGroup.addEventListener('click', function onFormGroupClick() {
-                                formGroup.classList.remove('has-error');
-                                formGroup.removeEventListener('click', onFormGroupClick);
-                            });
-                        }
-                    });
-
-                    if (formHasErrors) {
-                        clickEvent.preventDefault();
-                        clickEvent.stopPropagation();
-                    }
-                });
-            });
-
-            form.addEventListener('submit', (submitEvent) => {
-                const eaEvent = new CustomEvent('ea.form.submit', {
-                    cancelable: true,
-                    detail: { page: pageName, form: form }
-                });
-                const eaEventResult = document.dispatchEvent(eaEvent);
-                if (false === eaEventResult) {
-                    submitEvent.preventDefault();
-                    submitEvent.stopPropagation();
+                if (comparisonId === undefined) {
+                    return;
                 }
+
+                const secondValue = document.querySelector(`[data-ea-value2-of-comparison-id="${comparisonId}"]`);
+
+                if (secondValue === null) {
+                    return;
+                }
+
+                secondValue.style.display = comparisonWidget.value === 'between' ? '' : 'none';
             });
-        };
-
-        ['.ea-new-form', '.ea-edit-form'].forEach((formSelector) => {
-            const form = document.querySelector(formSelector);
-            if (null !== form) {
-                handleFieldsWithErrors(form, formSelector.includes('-new-') ? 'new' : 'edit');
-            }
         });
-    };
-
-    const preventMultipleFormSubmission = () => {
-        ['.ea-new-form', '.ea-edit-form'].forEach((formSelector) => {
-            const form = document.querySelector(formSelector);
-            if (null === form) {
-                return;
-            }
-
-            form.addEventListener('submit', () => {
-                // this timeout is needed to include the disabled button into the submitted form
-                setTimeout(() => {
-                    const submitButtons = document.querySelector('.ea-edit, .ea-new').querySelectorAll('[type="submit"]');
-                    submitButtons.forEach((button) => {
-                        button.setAttribute('disabled', 'disabled');
-                    });
-                }, 1);
-            }, false);
-        });
-    };
-
-    const setInnerHTMLAndRunScripts = (element, htmlContent) => {
-        // HTML5 specifies that a <script> tag inserted with innerHTML should not execute
-        // https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#Security_considerations
-        // That's why we can't use just 'innerHTML'. See https://stackoverflow.com/a/47614491/2804294
-        element.innerHTML = htmlContent;
-        Array.from(element.querySelectorAll('script')).forEach(oldScript => {
-            const newScript = document.createElement('script');
-            Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-            oldScript.parentNode.replaceChild(newScript, oldScript);
-        });
-    };
-
-    return {
-        createMainMenu: createMainMenu,
-        createColorSchemeSelector: createColorSchemeSelector,
-        createLayoutResizeControls: createLayoutResizeControls,
-        createNavigationToggler: createNavigationToggler,
-        createSearchHighlight: createSearchHighlight,
-        createFilters: createFilters,
-        createToggleFields: createToggleFields,
-        createBatchActions: createBatchActions,
-        createAutoCompleteFields: createAutoCompleteFields,
-        createModalWindowsForDeleteActions: createModalWindowsForDeleteActions,
-        createPopovers: createPopovers,
-        createTooltips: createTooltips,
-        createUnsavedFormChangesWarning: createUnsavedFormChangesWarning,
-        createNullableFields: createNullableFields,
-        createImageFields: createImageFields,
-        createFileUploadFields: createFileUploadFields,
-        createFieldsWithErrors: createFieldsWithErrors,
-        preventMultipleFormSubmission: preventMultipleFormSubmission,
-    };
-})();
+    }
+}

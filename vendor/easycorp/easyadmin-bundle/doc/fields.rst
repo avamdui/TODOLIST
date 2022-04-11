@@ -138,8 +138,43 @@ conversion between field names and methods must comply with the rules of the
         ];
     }
 
-The main limitation of unmapped fields is that they are not sortable because
-they cannot be included in the Doctrine query.
+Beware that unmapped fields are **not sortable** because they don't exist as a
+database table column, so they cannot be included in the Doctrine query. In some
+cases, you can overcome this limitation yourself by computing the unmapped field
+contents using SQL. To do so, override the ``createIndexQueryBuilder()`` method
+used in your :doc:`CRUD controller </crud>`::
+
+    namespace App\Controller\Admin;
+
+    use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+    use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+
+    class UserCrudController extends AbstractCrudController
+    {
+        // ...
+
+        public function configureFields(string $pageName): iterable
+        {
+            return [
+                TextField::new('fullName'),
+                // ...
+            ];
+        }
+
+        public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+        {
+            $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+
+            // if user defined sort is not set
+            if (0 === count($searchDto->getSort())) {
+                $queryBuilder
+                    ->addSelect('CONCAT(entity.first_name, \' \', entity.last_name) AS HIDDEN full_name')
+                    ->addOrderBy('full_name', 'DESC');
+            }
+
+            return $queryBuilder;
+        }
+    }
 
 Displaying Different Fields per Page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -467,6 +502,14 @@ In addition to these, EasyAdmin includes other field types for specific values:
   that correspond to Symfony's ``EntityType``, ``CollectionType`` and ``ChoiceType``
   respectively.
 
+.. tip::
+
+    If you want to use one of Doctrine's `Custom Mapping Types`_ you should
+    create one of Symfony's `Custom Form Field Types`_ and one of
+    EasyAdmin's :ref:`Custom Fields <custom-fields>`. Note that for some
+    custom mapping types you will also need to customize EasyAdmin's
+    search and filter functionality if you need them.
+
 Field Configuration
 -------------------
 
@@ -751,3 +794,5 @@ attribute of the tag to run your configurator before or after the built-in ones.
 .. _`Bootstrap grid system`: https://getbootstrap.com/docs/5.0/layout/grid/
 .. _`Bootstrap breakpoints`: https://getbootstrap.com/docs/5.0/layout/breakpoints/
 .. _`Doctrine DBAL Type`: https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html
+.. _`Custom Mapping Types`: https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html#custom-mapping-types
+.. _`Custom Form Field Types`: https://symfony.com/doc/current/form/create_custom_field_type.html
