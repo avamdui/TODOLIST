@@ -2,10 +2,7 @@ security:
     password_hashers:
         # auto hasher with default options for the User class (and children)
         App\Entity\User: 'auto'
-        # auto hasher with custom options for all PasswordAuthenticatedUserInterface instances
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-            algorithm: 'auto'
-            cost:      15
+
     providers:
         users:
             entity: 
@@ -30,3 +27,4 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/tasks, roles: ROLE_USER }

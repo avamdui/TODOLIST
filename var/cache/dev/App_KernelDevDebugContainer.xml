@@ -5308,18 +5308,6 @@
           <argument key="memory_cost">null</argument>
           <argument key="time_cost">null</argument>
         </argument>
-        <argument key="Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface" type="collection">
-          <argument key="algorithm">auto</argument>
-          <argument key="cost">15</argument>
-          <argument key="migrate_from" type="collection"/>
-          <argument key="hash_algorithm">sha512</argument>
-          <argument key="key_length">40</argument>
-          <argument key="ignore_case">false</argument>
-          <argument key="encode_as_base64">true</argument>
-          <argument key="iterations">5000</argument>
-          <argument key="memory_cost">null</argument>
-          <argument key="time_cost">null</argument>
-        </argument>
       </argument>
       <deprecated package="symfony/security-bundle" version="5.3">The "%service_id%" service is deprecated, use "security.password_hasher_factory" instead.</deprecated>
     </service>
@@ -5450,18 +5438,6 @@
           <argument key="memory_cost">null</argument>
           <argument key="time_cost">null</argument>
         </argument>
-        <argument key="Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface" type="collection">
-          <argument key="algorithm">auto</argument>
-          <argument key="cost">15</argument>
-          <argument key="migrate_from" type="collection"/>
-          <argument key="hash_algorithm">sha512</argument>
-          <argument key="key_length">40</argument>
-          <argument key="ignore_case">false</argument>
-          <argument key="encode_as_base64">true</argument>
-          <argument key="iterations">5000</argument>
-          <argument key="memory_cost">null</argument>
-          <argument key="time_cost">null</argument>
-        </argument>
       </argument>
     </service>
     <service id="security.user_password_hasher" class="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher">
@@ -5503,6 +5479,13 @@
         <argument type="service" id=".security.request_matcher.5dJADCx"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.yJoB2n2"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -6049,13 +6032,15 @@
     <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher">
       <argument>^/admin</argument>
     </service>
+    <service id=".security.request_matcher.yJoB2n2" class="Symfony\Component\HttpFoundation\RequestMatcher">
+      <argument>^/tasks</argument>
+    </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand">
       <tag name="console.command" command="security:encode-password"/>
       <tag name="container.no_preload"/>
       <argument type="service" id="security.encoder_factory.generic"/>
       <argument type="collection">
         <argument>App\Entity\User</argument>
-        <argument>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</argument>
       </argument>
       <call method="setName">
         <argument>security:encode-password</argument>
@@ -6071,7 +6056,6 @@
       <argument type="service" id="security.password_hasher_factory"/>
       <argument type="collection">
         <argument>App\Entity\User</argument>
-        <argument>Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</argument>
       </argument>
       <call method="setName">
         <argument>security:hash-password</argument>
