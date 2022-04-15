@@ -30,10 +30,13 @@ class UserCrudController extends AbstractCrudController
         yield EmailField::new('email');
         yield Field::new('username')
             ->onlyOnForms();
+        yield Field::new('password')
+            ->onlyOnForms();
         yield BooleanField::new('is_verified')
             ->renderAsSwitch(false);
         yield DateField::new('createdAt')
-            ->hideOnForm();
+            ->onlyOnForms();
+
 
         $roles = ['ROLE_ADMIN', 'ROLE_USER'];
         yield ChoiceField::new('roles')

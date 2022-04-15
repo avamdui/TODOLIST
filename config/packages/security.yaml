@@ -19,9 +19,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-            login_throttling:
-                max_attempts: 3
-                interval: '15 minutes'
+           
             logout:
                 path: logout
    
